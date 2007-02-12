@@ -371,7 +371,7 @@ class Workbook(object):
     ## Methods
     ##################################################################
 
-    @accepts(object, Style.XFStyle)
+    @accepts(object, (Style.XFStyle, type(None)))
     def add_style(self, style):
         return self.__styles.add(style)
 
