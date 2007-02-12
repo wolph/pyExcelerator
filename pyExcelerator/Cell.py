@@ -114,9 +114,9 @@ class NumberCell(object):
             rk_encoded = (w3 << 16) | w2
             return BIFFRecords.RKRecord(self.__parent.get_index(), self.__idx, self.__xf_idx, rk_encoded).get()
 
-        if abs(self.__number) < 0x40000000 and int(self.__number) == self.__number:
+        if abs(self.__number) < 0x20000000 and int(self.__number) == self.__number:
             #print "30-bit integer RK"
-            rk_encoded = 2 | (int(self.__number) << 2)
+            rk_encoded = (2 | (int(self.__number) << 2)) & 0xffffffffL
             return BIFFRecords.RKRecord(self.__parent.get_index(), self.__idx, self.__xf_idx, rk_encoded).get()
 
         temp = self.__number*100
@@ -128,9 +128,9 @@ class NumberCell(object):
             rk_encoded = 1 | (w3 << 16) | w2
             return BIFFRecords.RKRecord(self.__parent.get_index(), self.__idx, self.__xf_idx, rk_encoded).get()
 
-        if abs(temp) < 0x40000000 and int(temp) == temp:
+        if abs(temp) < 0x20000000 and int(temp) == temp:
             #print "30-bit integer RK*100"
-            rk_encoded = 3 | (int(temp) << 2)
+            rk_encoded = (3 | (int(temp) << 2)) & 0xffffffffL
             return BIFFRecords.RKRecord(self.__parent.get_index(), self.__idx, self.__xf_idx, rk_encoded).get()
 
         #print "Number" 
