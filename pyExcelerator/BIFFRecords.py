@@ -2295,3 +2295,120 @@ class SetupPageRecord(BiffRecord):
                                         header_margin, footer_margin,
                                         num_copies)
 
+class NameRecord(BiffRecord):
+    """
+    This record is part of a Link Table. It contains the name and the token
+    array of an internal defined name. Token arrays of defined names
+    contain tokens with aberrant token classes.
+
+    Record NAME, BIFF5/BIFF7:
+    Offset      Size    Contents
+       0          2     Option flags, see below
+       2          1     Keyboard shortcut (only for command macro names, see below)
+       3          1     Length of the name (character count, ln)
+       4          2     Size of the formula data (sz)
+       6          2     0 = Global name, otherwise index to EXTERNSHEET record (one-based)
+       8          2     0 = Global name, otherwise index to sheet (one-based)
+      10          1     Length of menu text (character count, lm)
+      11          1     Length of description text (character count, ld)
+      12          1     Length of help topic text (character count, lh)
+      13          1     Length of status bar text (character count, ls)
+      14         ln     Character array of the name
+    14+ln        sz     Formula data (RPN token array without size field, 4)
+  14+ln+sz       lm     Character array of menu text
+     var.        ld     Character array of description text
+     var.        lh     Character array of help topic text
+     var.        ls     Character array of status bar text
+
+    Record NAME, BIFF8:
+    Offset      Size Contents
+       0          2  Option flags, see below
+       2          1  Keyboard shortcut (only for command macro names, see below)
+       3          1  Length of the name (character count, ln)
+       4          2  Size of the formula data (sz)
+       6          2  Not used
+       8          2  0 = Global name, otherwise index to sheet (one-based)
+      10          1  Length of menu text (character count, lm)
+      11          1  Length of description text (character count, ld)
+      12          1  Length of help topic text (character count, lh)
+      13          1  Length of status bar text (character count, ls)
+      14        var. Name (Unicode string without length field, 3.4)
+     var.        sz  Formula data (RPN token array without size field, 4)
+    [var.]      var. (optional, only if lm > 0) Menu text (Unicode string without length field, 3.4)
+    [var.]      var. (optional, only if ld > 0) Description text (Unicode string without length field, 3.4)
+    [var.]      var. (optional, only if lh > 0) Help topic text (Unicode string without length field, 3.4)
+    [var.]      var. (optional, only if ls > 0) Status bar text (Unicode string without length field, 3.4)
+    """
+    _REC_ID = 0x0018
+
+    def __init__(self, options, keyboard_shortcut, name, sheet_index, rpn, menu_text='', desc_text='', help_text='', status_text=''):
+        BiffRecord.__init__(self)
+        if type(name) == int:
+            uname = chr(name)
+        else:
+            uname = upack1(name)[1:]
+        uname_len = len(uname)
+        
+        #~ self._rec_data = struct.pack('<HBBHHHBBBB%ds%ds' % (uname_len, len(rpn)), options, keyboard_shortcut, uname_len, len(rpn), 0x0000, sheet_index, len(menu_text), len(desc_text), len(help_text), len(status_text), uname, rpn) + menu_text + desc_text + help_text + status_text
+        self._rec_data = struct.pack('<HBBHHHBBBBB%ds%ds' % (uname_len, len(rpn)), options, keyboard_shortcut, uname_len, len(rpn), 0x0000, sheet_index, 0x00, len(menu_text), len(desc_text), len(help_text), len(status_text), uname, rpn) + menu_text + desc_text + help_text + status_text
+        
+        #~ print repr(self.get())
+        #~ print repr(self._rec_data)
+        #~ print len(self._rec_data)
+
+class ExternSheetRecord(BiffRecord):
+    """
+    In BIFF8 the record stores a list with indexes to SUPBOOK
+    records (list of REF structures, 6.100). See 5.10.3 for 
+    details about external references in BIFF8.
+    
+    Record EXTERNSHEET, BIFF8:
+    Offset          Size      Contents
+       0             2        Number of following REF structures (nm)
+       2           6nm        List of nm REF structures. Each REF contains the following data:
+                              Offset     Size     Contents
+                                 0         2      Index to SUPBOOK record
+                                 2         2      Index to first SUPBOOK sheet
+                                 4         2      Index to last SUPBOOK sheet
+    """
+    _REC_ID = 0x0017
+
+    def __init__(self, refs=[]):
+        BiffRecord.__init__(self)
+        
+        # do we always need this ref? or only if there are no refs?
+        refs.insert(0, (0,0,0))
+        #~ ref_data = ''.join([ref.get() for r in refs])
+        ref_data = ''.join([struct.pack('<HHH', *r) for r in refs])
+        self._rec_data = struct.pack('<H%ds' % (len(refs)*6), len(refs), ref_data)
+
+class SupBookRecord(BiffRecord):
+    """
+    This record mainly stores the URL of an external document
+    and a list of sheet names inside this document. Furthermore
+    it is used to store DDE and OLE object links, or to indicate
+    an internal 3D reference or an add-in function. See 5.10.3
+    for details about external references in BIFF8.
+    
+    """
+    _REC_ID = 0x01AE
+
+    def __init__(self):
+        BiffRecord.__init__(self)
+
+class InternalReferenceSupBookRecord(SupBookRecord):
+    """
+    In each file occurs a SUPBOOK that is used for internal 3D
+    references. It stores the number of sheets of the own document.
+    
+    Record SUPBOOK for 3D references, BIFF8:
+    Offset         Size   Contents
+      0             2     Number of sheets in this document
+      2             2     01H 04H (relict of BIFF5/BIFF7, the byte string "<04H>", see 3.9.1)
+
+    """
+
+    def __init__(self, num_sheets):
+        SupBookRecord.__init__(self)
+        
+        self._rec_data = struct.pack('<HBB', num_sheets, 0x01, 0x04)

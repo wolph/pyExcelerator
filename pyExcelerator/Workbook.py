@@ -92,6 +92,23 @@ from Deco import accepts, returns
 
 class Workbook(object):
 
+    macros = {
+        'Consolidate_Area' : 0x00,
+        'Auto_Open' : 0x01,
+        'Auto_Close' : 0x02,
+        'Extract' : 0x03,
+        'Database' : 0x04,
+        'Criteria' : 0x05,
+        'Print_Area' : 0x06,
+        'Print_Titles' : 0x07, # in the docs it says Pint_Titles, I think its a mistake
+        'Recorder' : 0x08,
+        'Data_Form' : 0x09,
+        'Auto_Activate' : 0x0A,
+        'Auto_Deactivate' : 0x0B,
+        'Sheet_Title' : 0x0C,
+        '_FilterDatabase' : 0x0D,
+    }
+
     #################################################################
     ## Constructor
     #################################################################
@@ -128,6 +145,8 @@ class Workbook(object):
         self.__sst = BIFFRecords.SharedStringTable()
         
         self.__worksheets = []
+        self.__names = []
+        self.__refs = []
 
     #################################################################
     ## Properties, "getters", "setters"
@@ -374,6 +393,22 @@ class Workbook(object):
     def get_sheet(self, sheetnum):
         return self.__worksheets[sheetnum]
         
+    @accepts(object, (int, unicode, str), int, int, int, int)    
+    def print_area(self, sheetnum, rstart, rend, cstart, cend):
+        import ExcelFormula
+        from struct import pack
+        if type(sheetnum) != int:
+            for i, ws in enumerate(self.__worksheets):
+                if ws.name == sheetnum: sheetnum = i+1
+        
+        options = 0x0020 # see Options Flags for Name record
+        
+        # FIXME: this is just a bad hack, need to use Formula to make the rpn
+        #~ rpn = ExcelFormula.Formula('').rpn()[2:] # minus the size field
+        rpn = pack('<BHHHHH', 0x3B, 0x0000, rstart, rend, cstart, cend)
+        
+        return self.__names.append(BIFFRecords.NameRecord(options, 0x00, self.macros['Print_Area'], sheetnum, rpn))
+
     ##################################################################
     ## BIFF records generation
     ##################################################################
@@ -471,6 +506,12 @@ class Workbook(object):
     def __useselfs_rec(self):
         return BIFFRecords.UseSelfsRecord().get()
         
+    def __names_rec(self):
+        name_records = ''
+        for n in self.__names:
+            name_records += n.get()
+        return name_records
+        
     def __boundsheets_rec(self, data_len_before, data_len_after, sheet_biff_lens):
         #  .................................  
         # BOUNDSEHEET0
@@ -493,8 +534,12 @@ class Workbook(object):
         return result
 
     def __all_links_rec(self):
-        result = ''
-        return result
+        supbook_records = ''
+        #~ supbook_records += BIFFRecords.AddInFunctionSupBookRecord(len(self.__worksheets)).get()
+        supbook_records += BIFFRecords.InternalReferenceSupBookRecord(len(self.__worksheets)).get()
+        #~ supbook_records += BIFFRecords.ExternalReferenceSupBookRecord(len(self.__worksheets)).get()
+        externsheet_record = BIFFRecords.ExternSheetRecord(self.__refs).get()
+        return supbook_records + externsheet_record
         
     def __sst_rec(self):
         return self.__sst.get_biff_record()
@@ -515,6 +560,7 @@ class Workbook(object):
         before += self.__dsf_rec() 
         before += self.__tabid_rec() 
         before += self.__fngroupcount_rec()
+        #~ before += self.__names_rec()
         before += self.__wnd_protect_rec()
         before += self.__protect_rec()
         before += self.__obj_protect_rec()
@@ -534,9 +580,10 @@ class Workbook(object):
         
         country            = self.__country_rec()
         all_links          = self.__all_links_rec()
+        names              = self.__names_rec()
         
         shared_str_table   = self.__sst_rec()        
-        after = country + all_links + shared_str_table
+        after = country + all_links + names + shared_str_table
         
         ext_sst = self.__ext_sst_rec(0) # need fake cause we need calc stream pos
         eof = self.__eof_rec()
@@ -551,7 +598,7 @@ class Workbook(object):
             
         bundlesheets = self.__boundsheets_rec(len(before), len(after)+len(ext_sst)+len(eof), sheet_biff_lens)       
        
-        sst_stream_pos = len(before) + len(bundlesheets) + len(country)  + len(all_links)
+        sst_stream_pos = len(before) + len(bundlesheets) + len(country)  + len(all_links) +  len(names)
         ext_sst = self.__ext_sst_rec(sst_stream_pos)           
         
         return before + bundlesheets + after + ext_sst + eof + sheets

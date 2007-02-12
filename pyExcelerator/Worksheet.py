@@ -1187,6 +1187,9 @@ class Worksheet(object):
         for i, c in enumerate(cdata):
             self.write(r, cstart+i, c, style)
 
+    def  print_area(self, rstart, rend, cstart, cend):
+        self.__parent.print_area(self.__name, rstart, rend, cstart, cend)
+
     ##################################################################
     ## BIFF records generation
     ##################################################################
