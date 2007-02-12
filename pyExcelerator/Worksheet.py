@@ -84,6 +84,9 @@ import Formatting
 import Style
 from Deco import *
 
+FormulaOpt_RecalcAlways=0x01
+FormulaOpt_ColcOnOpen=0x02
+FormulaOpt_PartOfShareFormula=0x08
 
 class Worksheet(object):
     from Workbook import Workbook
@@ -155,6 +158,7 @@ class Worksheet(object):
         self.__iterations_on = 0
         self.__delta = 0.001
         self.__save_recalc = 0
+        self.__frmla_opts = FormulaOpt_RecalcAlways | FormulaOpt_ColcOnOpen
 
         self.__print_headers = 0
         self.__print_grid = 0
@@ -641,7 +645,7 @@ class Worksheet(object):
 
     @accepts(object, int)
     def set_calc_mode(self, value):
-        self.__calc_mode = value & 0x03
+        self.__calc_mode = (value == 0xFFFF and value) or value & 0x01
 
     def get_calc_mode(self):
         return self.__calc_mode
@@ -702,6 +706,17 @@ class Worksheet(object):
         return bool(self.__save_recalc)
 
     save_recalc = property(get_save_recalc, set_save_recalc)
+
+    #################################################################
+
+    @accepts(object, int)
+    def set_frmla_opts(self, value):
+        self.__frmla_opts = int(value)
+
+    def get_frmla_opts(self):
+        return bool(self.__frmla_opts)
+
+    frmla_opts = property(get_frmla_opts, set_frmla_opts)
 
     #################################################################
 
@@ -1287,8 +1302,8 @@ class Worksheet(object):
 
     def __calc_settings_rec(self):
         result = ''
-        result += BIFFRecords.CalcModeRecord(self.__calc_mode & 0x01).get()
         result += BIFFRecords.CalcCountRecord(self.__calc_count & 0xFFFF).get()
+        result += BIFFRecords.CalcModeRecord(self.__calc_mode).get()
         result += BIFFRecords.RefModeRecord(self.__RC_ref_mode & 0x01).get()
         result += BIFFRecords.IterationRecord(self.__iterations_on & 0x01).get()
         result += BIFFRecords.DeltaRecord(self.__delta).get()

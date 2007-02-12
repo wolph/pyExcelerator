@@ -80,6 +80,7 @@ class Row(object):
                  "__xf_index",
                  "__has_default_format",
                  "__height_in_pixels",
+                 "__frmla_opts",
                  # public variables
                  "height",
                  "has_default_height",
@@ -103,6 +104,7 @@ class Row(object):
         self.__xf_index = 0x0F
         self.__has_default_format = 0
         self.__height_in_pixels = 0x11
+        self.__frmla_opts = self.__parent.frmla_opts
         
         self.height = 0x00FF
         self.has_default_height = 0x00
@@ -219,7 +221,7 @@ class Row(object):
         elif isinstance(label, (dt.datetime, dt.time)):
             self.__cells.extend([ Cell.NumberCell(self, col, self.__parent_wb.add_style(style), self.__excel_date_dt(label)) ])
         else:
-            self.__cells.extend([ Cell.FormulaCell(self, col, self.__parent_wb.add_style(style), label) ])
+            self.__cells.extend([ Cell.FormulaCell(self, col, self.__parent_wb.add_style(style), self.__frmla_opts, label) ])
 
     @accepts(object, int, int, Style.XFStyle)                        
     def write_blanks(self, c1, c2, style):

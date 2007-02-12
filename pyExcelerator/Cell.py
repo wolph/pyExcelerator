@@ -79,6 +79,7 @@ class MulBlankCell(object):
                 "__parent", "__col1", "__col2", "__xf_idx"]
 
     def __init__(self, parent, col1, col2, xf_idx):
+        assert col1 < col2, '%d < %d is false'%(col1, col2)
         self.__parent = parent
         self.__col1 = col1
         self.__col2 = col2
@@ -153,17 +154,18 @@ class MulNumberCell(object):
 
 class FormulaCell(object):
     __slots__ = ["__init__", "get_biff_data",
-                "__parent", "__idx", "__xf_idx", "__frmla"]
+                "__parent", "__idx", "__xf_idx", "__opts", "__frmla"]
 
-    def __init__(self, parent, idx, xf_idx, frmla):
+    def __init__(self, parent, idx, xf_idx, opts, frmla):
         self.__parent = parent
         self.__idx = idx
         self.__xf_idx = xf_idx
+        self.__opts = opts
         self.__frmla = frmla
 
 
     def get_biff_data(self):
-        return BIFFRecords.FormulaRecord(self.__parent.get_index(), self.__idx, self.__xf_idx, self.__frmla.rpn()).get()
+        return BIFFRecords.FormulaRecord(self.__parent.get_index(), self.__idx, self.__xf_idx, self.__opts, self.__frmla.rpn()).get()
 
 
 

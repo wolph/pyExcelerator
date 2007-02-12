@@ -1574,9 +1574,10 @@ class FormulaRecord(BiffRecord):
     """
     _REC_ID = 0x0006
 
-    def __init__(self, row, col, xf_index, rpn):
+    def __init__(self, row, col, xf_index, opts, rpn):
         BiffRecord.__init__(self)
-        self._rec_data = struct.pack('<3HQHL', row, col, xf_index, 0xFFFF000000000003, 0, 0) + rpn
+        # for an empty cell
+        self._rec_data = struct.pack('<3HQHL', row, col, xf_index, 0xFFFF000000000003, opts, 0) + rpn
 
 
 class GutsRecord(BiffRecord):
