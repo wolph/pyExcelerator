@@ -546,7 +546,9 @@ class XlsDoc:
         self.__build_sat()
         self.__build_header()
         
-        f = file(filename, 'wb')
+        f = filename
+        if not hasattr(filename, 'write'):
+            f = file(filename, 'wb')
         f.write(self.header)
         f.write(self.packed_MSAT_1st)
         f.write(stream)
