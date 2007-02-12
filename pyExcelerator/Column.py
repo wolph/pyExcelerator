@@ -43,6 +43,7 @@
 __rev_id__ = """$Id: Column.py,v 1.4 2005/07/20 07:24:11 rvk Exp $"""
 
 
+import Style
 from BIFFRecords import ColInfoRecord
 from Deco import *
 from Worksheet import Worksheet
@@ -51,10 +52,10 @@ from Worksheet import Worksheet
 class Column(object):
     @accepts(object, int, Worksheet)
     def __init__(self, indx, parent_sheet):
-        self._index = indx
-        self._parent = parent_sheet
-        self._parent_wb = parent_sheet.get_parent()
-        self._xf_index = 0x0F
+        self.__index = indx
+        self.__parent = parent_sheet
+        self.__parent_wb = parent_sheet.get_parent()
+        self.__xf_index = 0x0F
         
         self.width = 0x0B92
         self.hidden = 0
@@ -67,7 +68,15 @@ class Column(object):
         options |= (self.level & 0x07) << 8
         options |= (self.collapse & 0x01) << 12
         
-        return ColInfoRecord(self._index, self._index, self.width, self._xf_index, options).get()
+        return ColInfoRecord(self.__index, self.__index, self.width, self.__xf_index, options).get()
         
         
+    @accepts(object, Style.XFStyle)
+    def set_style(self, style):
+        # self.__adjust_height(style)
+        self.__xf_index = self.__parent_wb.add_style(style)        
+        
+
+    def get_index(self):
+        return self.__index
         
