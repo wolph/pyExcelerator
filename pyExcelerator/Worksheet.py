@@ -1163,6 +1163,30 @@ class Worksheet(object):
             result += self.__rows[r].get_str_count()
         return result
 
+    def set_column(self, col_range, width=None, format=Style.XFStyle()):
+        col_by_name = Utils.col_by_name
+        # width is in pixels
+        if col_range.find(':') > -1:
+            start_col, end_col = col_range.split(':')
+            scol_ind, ecol_ind = col_by_name(start_col), col_by_name(end_col)
+            col_range = range(scol_ind, ecol_ind+1)
+        else: col_range = [col_by_name(col_range)]
+        for i in col_range:
+            #~ if width: worksheet.col_default_width = width
+            if width:
+                self.col(i).width = (width*(2962/81.0))
+                #~ print 'setting col %i to width %i'%(i,width*(2962/81.0))
+            #~ if format: worksheet.col(i)._xf_index = worksheet.parent.add_style(format)
+            self.col(i).set_style(format)
+
+    def set_columns(self, col_range, width=None, format=Style.XFStyle()):
+        for r in col_range.split(','):
+            self.set_column(r, width, format)
+
+    def  write_cols(self, r, cstart, cdata, style=Style.XFStyle()):
+        for i, c in enumerate(cdata):
+            self.write(r, cstart+i, c, style)
+
     ##################################################################
     ## BIFF records generation
     ##################################################################
