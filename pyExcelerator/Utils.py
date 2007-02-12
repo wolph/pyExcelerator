@@ -163,3 +163,8 @@ def cell_to_packed_rowcol(cell):
     col |= int(not row_abs) << 15
     col |= int(not col_abs) << 14
     return row, col
+
+def pts_to_px(pts): return pts*(4.0/3)
+def px_to_pts(px): return px*(3.0/4)
+def tw_to_px(tw): return tw/15.0
+def px_to_tw(px): return px*15
