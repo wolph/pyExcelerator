@@ -75,6 +75,33 @@ __rev_id__ = """$Id: Formatting.py,v 1.4 2005/07/20 07:24:11 rvk Exp $"""
 
 import BIFFRecords
 
+colours = {
+        'aqua'    : 0x0F,
+        'cyan'    : 0x0F,
+        'black'   : 0x08,
+        'blue'    : 0x0C,
+        'brown'   : 0x10,
+        'magenta' : 0x0E,
+        'fuchsia' : 0x0E,
+        'gray'    : 0x17,
+        'grey'    : 0x17,
+        'green'   : 0x11,
+        'lime'    : 0x0B,
+        'navy'    : 0x12,
+        'orange'  : 0x35,
+        'pink'    : 0x21,
+        'purple'  : 0x14,
+        'red'     : 0x0A,
+        'silver'  : 0x16,
+        'white'   : 0x09,
+        'yellow'  : 0x0D,
+}
+
+def get_colour_val(c):
+    if c in colours:
+        return colours[c]
+    return c
+
 class Font(object):
     ESCAPEMENT_NONE         = 0x00
     ESCAPEMENT_SUPERSCRIPT  = 0x01
@@ -150,7 +177,7 @@ class Font(object):
         if self.shadow:
             options |= 0x020
             
-        colour_index = self.colour_index 
+        colour_index = get_colour_val(self.colour_index)
         weight = self._weight
         escapement = self.escapement
         underline = self.underline 
@@ -252,9 +279,17 @@ class Pattern(object):
     
     def __init__(self):
         self.pattern = self.NO_PATTERN
-        self.pattern_fore_colour = 0x40
-        self.pattern_back_colour = 0x41
-        
+        self._pattern_fore_colour = 0x40
+        self._pattern_back_colour = 0x41
+    
+    def get_pattern_fore_colour(self): return self._pattern_fore_colour
+    def set_pattern_fore_colour(self, c): self._pattern_fore_colour = get_colour_val(c)
+    pattern_fore_colour = property(get_pattern_fore_colour, set_pattern_fore_colour)
+    
+    def get_pattern_back_colour(self): return self._pattern_back_colour
+    def set_pattern_back_colour(self, c): self._pattern_back_colour = get_colour_val(c)
+    pattern_back_colour = property(get_pattern_back_colour, set_pattern_back_colour)
+
 class Protection(object):
     def __init__(self):
         self.cell_locked = 1
