@@ -82,6 +82,7 @@ import BIFFRecords
 import Bitmap
 import Formatting
 import Style
+import Utils
 from Deco import *
 
 FormulaOpt_RecalcAlways=0x01
@@ -151,6 +152,10 @@ class Worksheet(object):
 
         self.__row_default_height = 0x00FF
         self.__col_default_width = 0x0008
+
+        self.__default_row_hidden = 0
+        self.__default_row_space_above = 0
+        self.__default_row_space_below = 0
 
         self.__calc_mode = 1
         self.__calc_count = 0x0064
@@ -623,10 +628,11 @@ class Worksheet(object):
 
     @accepts(object, int)
     def set_row_default_height(self, value):
-        self.__row_default_height = value
+        ''' set default row height in pixels '''
+        self.__row_default_height = Utils.px_to_tw(value)
 
     def get_row_default_height(self):
-        return self.__row_default_height
+        return Utils.tw_to_px(self.__row_default_height)
 
     row_default_height = property(get_row_default_height, set_row_default_height)
 
@@ -1175,6 +1181,14 @@ class Worksheet(object):
 
         return BIFFRecords.GutsRecord(self.__row_gut_width, self.__col_gut_height, row_visible_levels, col_visible_levels).get()
 
+    def __default_row_height_rec(self):
+        options = 0x00
+        options = (0x00 & 0x01) << 0
+        options = (self.__default_row_hidden & 0x01) << 1
+        options = (self.__default_row_space_above & 0x01) << 2
+        options = (self.__default_row_space_below & 0x01) << 3
+        return BIFFRecords.DefaultRowHeight(options, self.__row_default_height).get()
+
     def __wsbool_rec(self):
         options = 0x00
         options |= (self.__show_auto_page_breaks & 0x01) << 0
@@ -1364,6 +1378,7 @@ class Worksheet(object):
         result += self.__bof_rec()
         result += self.__calc_settings_rec()
         result += self.__guts_rec()
+        result += self.__default_row_height_rec()
         result += self.__wsbool_rec()
         result += self.__colinfo_rec()
         result += self.__dimensions_rec()
