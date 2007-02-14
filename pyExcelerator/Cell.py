@@ -156,13 +156,13 @@ class FormulaCell(object):
     __slots__ = ["__init__", "get_biff_data", "result",
                 "__parent", "__idx", "__xf_idx", "__result", "__opts", "__frmla", "__str"]
 
-    def __init__(self, parent, idx, xf_idx, opts, frmla):
+    def __init__(self, parent, idx, xf_idx, frmla):
         self.__str = None
         self.__parent = parent
         self.__idx = idx
         self.__xf_idx = xf_idx
         self.result = frmla.default
-        self.__opts = opts
+        self.__opts = frmla.opts != None and frmla.opts or self.__parent.frmla_opts
         self.__frmla = frmla
 
 

@@ -88,7 +88,9 @@ class Row(object):
                  "collapse",
                  "hidden",
                  "space_above",
-                 "space_below"]
+                 "space_below",
+                 "height",
+                 "frmla_opts",]
 
     #################################################################
     ## Constructor
@@ -216,6 +218,15 @@ class Row(object):
     
     height = property(get_height, set_height)
 
+    @accepts(object, int)
+    def set_frmla_opts(self, value):
+        assert (int(value) & ~(0x0b)) == 0, "Invalid bits set for frmla_opts (%s)"%hex(int(value))
+        self.__frmla_opts = int(value)
+
+    def get_frmla_opts(self):
+        return self.__frmla_opts
+
+    frmla_opts = property(get_frmla_opts, set_frmla_opts)
 
     @accepts(object, int, (str, unicode, int, float, dt.datetime, dt.time, dt.date, ExcelFormula.Formula), (Style.XFStyle, type(None)))
     def write(self, col, label, style):
@@ -232,7 +243,7 @@ class Row(object):
         elif isinstance(label, (dt.datetime, dt.time)):
             self.__cells.extend([ Cell.NumberCell(self, col, self.__parent_wb.add_style(style), self.__excel_date_dt(label)) ])
         else:
-            self.__cells.extend([ Cell.FormulaCell(self, col, self.__parent_wb.add_style(style), self.__frmla_opts, label) ])
+            self.__cells.extend([ Cell.FormulaCell(self, col, self.__parent_wb.add_style(style), label) ])
 
     @accepts(object, int, int, Style.XFStyle)                        
     def write_blanks(self, c1, c2, style):

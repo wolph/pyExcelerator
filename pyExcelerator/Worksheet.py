@@ -83,12 +83,8 @@ import Bitmap
 import Formatting
 import Style
 import Utils
+import ExcelFormula
 from Deco import *
-
-FormulaOpt_NoCalcs=0x00
-FormulaOpt_RecalcAlways=0x01
-FormulaOpt_CalcOnOpen=0x02
-FormulaOpt_PartOfShareFormula=0x08
 
 class Worksheet(object):
     from Workbook import Workbook
@@ -164,7 +160,7 @@ class Worksheet(object):
         self.__iterations_on = 0
         self.__delta = 0.001
         self.__save_recalc = 0
-        self.__frmla_opts = FormulaOpt_RecalcAlways | FormulaOpt_CalcOnOpen
+        self.__frmla_opts = ExcelFormula.RecalcAlways | ExcelFormula.CalcOnOpen
 
         self.__print_headers = 0
         self.__print_grid = 0
@@ -722,7 +718,7 @@ class Worksheet(object):
         self.__frmla_opts = int(value)
 
     def get_frmla_opts(self):
-        return bool(self.__frmla_opts)
+        return self.__frmla_opts
 
     frmla_opts = property(get_frmla_opts, set_frmla_opts)
 
