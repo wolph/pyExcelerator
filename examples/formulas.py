@@ -5,19 +5,21 @@ __rev_id__ = """$Id: formulas.py,v 1.4 2005/10/26 07:44:24 rvk Exp $"""
 
 
 from pyExcelerator import *
+from pyExcelerator.Worksheet import *
 
 w = Workbook()
 ws = w.add_sheet('F')
+ws.frmla_opts=NoCalcs
 
-ws.write(0, 0, Formula("-(1+1)"))
-ws.write(1, 0, Formula("-(1+1)/(-2-2)"))
-ws.write(2, 0, Formula("-(134.8780789+1)"))
-ws.write(3, 0, Formula("-(134.8780789e-10+1)"))
-ws.write(4, 0, Formula("-1/(1+1)+9344"))
+ws.write(0, 0, Formula("-(1+1)", None))
+ws.write(1, 0, Formula("-(1+1)/(-2-2)", 3.14))
+ws.write(2, 0, Formula("-(134.8780789+1)", ErrorCode("#NULL!"), CalcOnOpen))
+ws.write(3, 0, Formula("-(134.8780789e-10+1)", ErrorCode("#NAME?")))
+ws.write(4, 0, Formula("-1/(1+1)+9344", 12345))
 
-ws.write(0, 1, Formula("-(1+1)"))
-ws.write(1, 1, Formula("-(1+1)/(-2-2)"))
-ws.write(2, 1, Formula("-(134.8780789+1)"))
+ws.write(0, 1, Formula("-(1+1)", "this is 2", CalcOnOpen))
+ws.write(1, 1, Formula("-(1+1)/(-2-2)", u"this is 0.5"))
+ws.write(2, 1, Formula("-(134.8780789+1)", ""))
 ws.write(3, 1, Formula("-(134.8780789e-10+1)"))
 ws.write(4, 1, Formula("-1/(1+1)+9344"))
 
