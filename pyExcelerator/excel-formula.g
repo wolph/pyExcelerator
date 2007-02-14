@@ -72,7 +72,7 @@ expr[arg_type]
             (
                   EQ { op = struct.pack('B', ptgEQ) }
                 | NE { op = struct.pack('B', ptgNE) }
-                | GT { op = struct.pack('B', ptgGE) }
+                | GT { op = struct.pack('B', ptgGT) }
                 | LT { op = struct.pack('B', ptgLT) }
                 | GE { op = struct.pack('B', ptgGE) }
                 | LE { op = struct.pack('B', ptgLE) }

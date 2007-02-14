@@ -96,7 +96,7 @@ class Parser(antlr.LLkParser):
                 elif la1 and la1 in [GT]:
                     pass
                     self.match(GT)
-                    op = struct.pack('B', ptgGE)
+                    op = struct.pack('B', ptgGT)
                 elif la1 and la1 in [LT]:
                     pass
                     self.match(LT)
