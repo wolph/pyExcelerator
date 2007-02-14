@@ -85,8 +85,9 @@ import Style
 import Utils
 from Deco import *
 
+FormulaOpt_NoCalcs=0x00
 FormulaOpt_RecalcAlways=0x01
-FormulaOpt_ColcOnOpen=0x02
+FormulaOpt_CalcOnOpen=0x02
 FormulaOpt_PartOfShareFormula=0x08
 
 class Worksheet(object):
@@ -163,7 +164,7 @@ class Worksheet(object):
         self.__iterations_on = 0
         self.__delta = 0.001
         self.__save_recalc = 0
-        self.__frmla_opts = FormulaOpt_RecalcAlways | FormulaOpt_ColcOnOpen
+        self.__frmla_opts = FormulaOpt_RecalcAlways | FormulaOpt_CalcOnOpen
 
         self.__print_headers = 0
         self.__print_grid = 0
@@ -717,6 +718,7 @@ class Worksheet(object):
 
     @accepts(object, int)
     def set_frmla_opts(self, value):
+        assert (int(value) & ~(0x0b)) == 0, "Invalid bits set for frmla_opts (%s)"%hex(int(value))
         self.__frmla_opts = int(value)
 
     def get_frmla_opts(self):
