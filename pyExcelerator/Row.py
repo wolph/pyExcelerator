@@ -173,7 +173,7 @@ class Row(object):
 
         
     def get_max_col(self):
-        return self.__min_col_idx
+        return self.__max_col_idx
 
         
     def get_str_count(self):
