@@ -228,7 +228,7 @@ class Row(object):
 
     frmla_opts = property(get_frmla_opts, set_frmla_opts)
 
-    @accepts(object, int, (str, unicode, int, float, dt.datetime, dt.time, dt.date, ExcelFormula.Formula), (Style.XFStyle, type(None)))
+    @accepts(object, int, (str, unicode, int, long, float, dt.datetime, dt.time, dt.date, ExcelFormula.Formula), (Style.XFStyle, type(None)))
     def write(self, col, label, style):
         self.__adjust_height(style)
         self.__adjust_bound_col_idx(col)
@@ -238,7 +238,7 @@ class Row(object):
                 self.__total_str += 1
             else:
                 self.__cells.extend([ Cell.BlankCell(self, col, self.__parent_wb.add_style(style)) ])
-        elif isinstance(label, (int, float)):
+        elif isinstance(label, (int, long, float)):
             self.__cells.extend([ Cell.NumberCell(self, col, self.__parent_wb.add_style(style), label) ])            
         elif isinstance(label, (dt.datetime, dt.time)):
             self.__cells.extend([ Cell.NumberCell(self, col, self.__parent_wb.add_style(style), self.__excel_date_dt(label)) ])
