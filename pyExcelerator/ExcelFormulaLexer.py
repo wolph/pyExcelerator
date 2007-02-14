@@ -104,6 +104,10 @@ class Lexer(TokenStream):
         return len(self._text) <= self._pos
 
 
+    def rest(self):
+        return self._text[self._pos:]
+
+
     def curr_ch(self):
         return self._text[self._pos]
 
@@ -141,8 +145,8 @@ class Lexer(TokenStream):
                 return t
         # second, we want find short tokens
         for ty, te in type_text_tuples:
-            if self.curr_ch() == te:
-                self.next_ch()
+            if self.rest().startswith(te):
+                self.next_ch(len(te))
                 return Tok(type = ty, text = te, col = self._pos)
         # at this point, smth strange is happened
         raise TokenStreamException("Unknown char %s at %u col." % (self.curr_ch(), self._pos))
