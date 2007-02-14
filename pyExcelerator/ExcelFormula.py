@@ -43,16 +43,24 @@
 __rev_id__ = """$Id: ExcelFormula.py,v 1.3 2005/08/11 08:53:48 rvk Exp $"""
 
 
-import ExcelFormulaParser, ExcelFormulaLexer
+import ExcelFormulaParser, ExcelFormulaLexer, ExcelMagic
 import struct
 from antlr import ANTLRException
 
+class ErrorCode(object):
+    error_msg = dict([(i[1], i[0]) for i in ExcelMagic.error_msg_by_code.items()])
+    
+    def __init__(self, s):
+        self.val = self.error_msg[s]
+    
+    def int(self): return self.val
 
 class Formula(object):
-    __slots__ = ["__init__", "text", "rpn", "__s", "__parser"]
+    __slots__ = ["__init__", "text", "rpn", "default", "__s", "__parser", "__default"]
 
 
-    def __init__(self, s):
+    def __init__(self, s, default=None):
+        self.__default = default
         try:
             self.__s = s
             lexer = ExcelFormulaLexer.Lexer(s)
@@ -60,6 +68,14 @@ class Formula(object):
             self.__parser.formula()
         except ANTLRException:
             raise Exception, "can't parse formula " + s
+
+    def get_default(self):
+        return self.__default
+
+    def set_default(self, val):
+        self.__default = val
+
+    default = property(get_default, set_default)
 
     def text(self):
         return self.__s

@@ -1556,6 +1556,49 @@ class NumberRecord(BiffRecord):
         self._rec_data = struct.pack('<3Hd', row, col, xf_index, number)
 
 
+class StringRecord(BiffRecord):
+    """
+    Offset     Size   Contents
+    0       1 or 2  Length of the string (character count, ln)
+    1 or 2      1     Option flags:
+                     Bit       Mask Contents
+                                01H
+                      0                  Character compression (ccompr):
+                                         02 = Compressed (8-bit characters)
+                                         12 = Uncompressed (16-bit characters)
+                                04H
+                      2                  Asian phonetic settings (phonetic):
+                                         02 = Does not contain Asian phonetic settings
+                                         12 = Contains Asian phonetic settings
+                                08H
+                      3                  Rich-Text settings (richtext):
+                                         02 = Does not contain Rich-Text settings
+                                         12 = Contains Rich-Text settings
+    [2 or 3]     2     (optional, only if richtext=1) Number of Rich-Text formatting runs (rt)
+    [var.]      4     (optional, only if phonetic=1) Size of Asian phonetic settings block (in bytes, sz)
+    var.   ln or 2ln Character array (8-bit characters or 16-bit characters, dependent on ccompr)
+    [var.]    4rt     (optional, only if richtext=1) List of rt formatting runs (3.2)
+            sz
+    [var.]            (optional, only if phonetic=1) Asian Phonetic Settings Block (3.4.2)
+    """
+    _REC_ID = 0x0207
+
+    def __init__(self, s):
+        BiffRecord.__init__(self)
+        uncompressed = 0x01
+        asian_phonetic_settings = 0x04
+        rich_text_settings = 0x08
+        
+        s = s.encode('UTF-16le')
+        slen = len(s)/2
+        options = uncompressed
+        if not s[1::2].strip(chr(0x00)):
+            # if high bytes are all zero, do string compression
+            s = s[::2]
+            slen = len(s)
+            options &= ~uncompressed
+        self._rec_data = struct.pack('<HB%ds'%len(s), slen, options, s)
+
 class FormulaRecord(BiffRecord):
     """
     Offset Size Contents
@@ -1574,10 +1617,10 @@ class FormulaRecord(BiffRecord):
     """
     _REC_ID = 0x0006
 
-    def __init__(self, row, col, xf_index, opts, rpn):
+    def __init__(self, row, col, xf_index, result, opts, rpn):
         BiffRecord.__init__(self)
         # for an empty cell
-        self._rec_data = struct.pack('<3HQHL', row, col, xf_index, 0xFFFF000000000003, opts, 0) + rpn
+        self._rec_data = struct.pack('<3HQHL', row, col, xf_index, result, opts, 0) + rpn
 
 
 class GutsRecord(BiffRecord):
