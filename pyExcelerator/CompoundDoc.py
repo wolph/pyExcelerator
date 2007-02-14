@@ -53,7 +53,10 @@ class Reader:
         self.dump = dump
         self.STREAMS = {}
 
-        doc = file(filename, 'rb').read()
+        f = filename
+        if not hasattr(filename, 'read'):
+            f = file(filename, 'rb')
+        doc = f.read()
         self.header, self.data = doc[0:512], doc[512:]
         del doc
 
