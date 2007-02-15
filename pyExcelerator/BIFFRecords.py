@@ -1599,6 +1599,7 @@ class StringRecord(BiffRecord):
             options &= ~uncompressed
         self._rec_data = struct.pack('<HB%ds'%len(s), slen, options, s)
 
+
 class FormulaRecord(BiffRecord):
     """
     Offset Size Contents
@@ -1621,6 +1622,132 @@ class FormulaRecord(BiffRecord):
         BiffRecord.__init__(self)
         # for an empty cell
         self._rec_data = struct.pack('<3HQHL', row, col, xf_index, result, opts, 0) + rpn
+
+
+class HyperlinkRecord(BiffRecord):
+    """
+    Each HLINK record starts with the same data items and continues with
+    special data related to the current type of hyperlink. It starts with a
+    cell range. Each cell of this range will contain the same hyperlink.
+
+    Record HLINK, BIFF8:
+   Offset            Size        Contents
+       0               8         Cell range address of all cells containing this hyperlink (3.13.1)
+       8              16         GUID of StdLink:
+                                 D0H C9H EAH 79H F9H BAH CEH 11H 8CH 82H 00H AAH 00H 4BH A9H 0BH
+                                 (79EAC9D0-BAF9-11CE-8C82-00AA004BA90B)
+      24               4         Unknown value: 00000002H
+      28               4        Option flags (see below)
+     [32]              4        (optional, see option flags) Character count of description text, including trailing zero word
+                                (dl)
+     [36]            2dl        (optional, see option flags) Character array of description text, no Unicode string header,
+                                always 16-bit characters, zero-terminated
+    [var.]             4        (optional, see option flags) Character count of target frame, including trailing zero word
+                                (fl)
+    [var.]           2fl         (optional, see option flags) Character array of target frame, no Unicode string header,
+                                 always 16-bit characters, zero-terminated
+     var.            var.        Special data (6.53.2 and following)
+    [var.]             4         (optional, see option flags) Character count of the text mark, including trailing zero word
+                                 (tl)
+    [var.]           2tl         (optional, see option flags) Character array of the text mark without "#" sign, no Unicode
+                                 string header, always 16-bit characters, zero-terminated
+
+    """
+    _REC_ID = 0x01B8
+
+    def __init__(self, frow, lrow, fcol, lcol, url, target=None, textmark=None, description=None):
+        BiffRecord.__init__(self)
+        options = 0x00
+        special=None
+        
+        #~ assert url is not None or textmark is not None, 'must specify either url or textmark arguments'
+        
+        if description is not None:
+            options |= 0x14
+            description = description.encode('UTF-16le') + '\x00\x00'
+        
+        if target is not None:
+            options |= 0x80
+            target = target.encode('UTF-16le') + '\x00\x00'
+        
+        u16url = url.encode('UTF-16le') + '\x00\x00'
+        if url[0].isalpha() and url.find(':') > 3:
+            # hyperlink containing a URL (6.53.2)
+            assert url[:url.find(':')].isalpha(), 'not valid URL'%url
+            options |= 0x03
+            special  = pack('<4L', 0x79eac9e0, 0x11cebaf9, 0xaa00828c, 0x0ba94b00)
+            special += pack('<L%ds'%len(u16url), len(u16url), u16url)
+        elif url[0].isalnum() or url[0] in ('.',):
+            # hyperlink to the current workbook (6.53.3)
+            options |= 0x01
+            
+            uplvl_cnt=0
+            if url[0].isalpha() and url[1:].startswith(':\\'):
+                # this is an absolute path
+                options |= 0x02
+            else:
+                uplvl_cnt += 1
+                while url.startswith('..\\'):
+                    url = url[3:]
+            url += '\x00'
+            
+            special  = pack('<4L', 0x00000303, 0x00000000, 0x000000C0, 0x46000000)
+            special += pack('<HL%ds'%len(url), uplvl_cnt, len(url), url)
+            special += pack('<4s20x', '\xff\xff\xad\xde')
+            # I don't understand the first field here, setting to zero is safe
+            # till I figure out what it is
+            special += pack('<LL2s%ds'%len(u16url[:-2]), 0, len(u16url[:-2]), 
+                            '\x03\x00', u16url[:-2])
+        elif url.startswith('\\\\'):
+            # hyperlink to a File with UNC Path (6.53.4)
+            options |= 0x103
+            special  = pack('<L%ds'%len(u16url), len(u16url), u16url)
+        elif url.startswith('#'):
+            # hyperlink to the current workbook (6.53.5)
+            assert textmark is None, 'can not use textmarks with hyperlinks to the current workbook'
+            textmark = url
+        
+        if textmark is not None:
+            options |= 0x08
+            textmark = textmark.encode('UTF-16le') + '\x00\x00'
+        
+        self._rec_data  = pack('<4H', frow, lrow, fcol, lcol)
+        # GUID of StdLink
+        self._rec_data += pack('<4L', 0x79eac9d0, 0x11cebaf9, 0xaa00828c, 0x0ba94b00)
+        #~ self._rec_data += '\xd0\xc9\xea\x79\xf9\xba\xce\x11\x8c\x82\x00\xaa\x00\x4b\xa9\x0b'
+        self._rec_data += pack('<LL',   0x2, options)
+        if description is not None:
+            self._rec_data += pack('<L%ds'%len(description), len(description)/2, description)
+        if target is not None:
+            self._rec_data += pack('<L%ds'%len(target), len(target)/2, target)
+        if special is not None:
+            self._rec_data += pack('<%ds'%len(special), special)
+        if textmark is not None:
+            self._rec_data += pack('<L%ds'%len(textmark), len(textmark)/2, textmark)
+
+
+class QuicktipRecord(BiffRecord):
+    """
+    This record contains the cell range and text for a tool tip. It occurs in
+    conjunction with the HLINK record for hyperlinks (6.53) in the Hyperlink
+    Table (5.13). This record is only available in Excel 9.0 (Excel 2000) and
+    later.
+
+    Record QUICKTIP, BIFF8:
+
+    Offset Size Contents
+    0      2   0800H (repeated record identifier)
+    2      8   Cell range address of all cells containing the tool tip (3.13.1)
+    10    var. Character array of the tool tip, no Unicode string header, always 16-bit characters, zero-
+            terminated
+
+    """
+    _REC_ID = 0x0800
+
+    def __init__(self, frow, lrow, fcol, lcol, hint):
+        BiffRecord.__init__(self)
+        hint = hint.encode('UTF-16le')
+        self._rec_data = pack('<5H%dsx'%len(hint), self._REC_ID, frow, lrow, fcol, lcol, hint)
 
 
 class GutsRecord(BiffRecord):

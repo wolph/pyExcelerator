@@ -106,6 +106,7 @@ class Worksheet(object):
         self.__rows = {}
         self.__cols = {}
         self.__merged_ranges = []
+        self.__links = {}
         self.__bmp_rec = ''
 
         self.__show_formulas = 0
@@ -1188,6 +1189,9 @@ class Worksheet(object):
     def  print_area(self, rstart, rend, cstart, cend):
         self.__parent.print_area(self.__name, rstart, rend, cstart, cend)
 
+    def set_link(self, x, y, url, target=None, textmark=None, description=None):
+        self.__links[(x,y)] = (url, target, textmark, description)
+
     ##################################################################
     ## BIFF records generation
     ##################################################################
@@ -1398,6 +1402,14 @@ class Worksheet(object):
         result += BIFFRecords.PasswordRecord(self.__password).get()
         return result
 
+    def __hyperlink_table_rec(self):
+        result = ''
+        for (x, y), (url, target, textmark, description) in self.__links.items():
+            result += BIFFRecords.HyperlinkRecord(x, x, y, y, url, target=target, textmark=textmark, description=description).get()
+            if description is not None:
+                result += BIFFRecords.QuicktipRecord(x, x, y, y, description).get()
+        return result
+
     def get_biff_data(self):
         result = ''
         result += self.__bof_rec()
@@ -1414,6 +1426,7 @@ class Worksheet(object):
         result += self.__bitmaps_rec()
         result += self.__window2_rec()
         result += self.__panes_rec()
+        result += self.__hyperlink_table_rec()
         result += self.__eof_rec()
 
         return result
