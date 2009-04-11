@@ -1655,10 +1655,11 @@ class HyperlinkRecord(BiffRecord):
     """
     _REC_ID = 0x01B8
 
-    def __init__(self, frow, lrow, fcol, lcol, url, target=None, textmark=None, description=None):
+    def __init__(self, frow, lrow, fcol, lcol, url, target=None, description=None):
         BiffRecord.__init__(self)
         options = 0x00
         special=None
+        textmark=None
         
         #~ assert url is not None or textmark is not None, 'must specify either url or textmark arguments'
         
@@ -1704,11 +1705,10 @@ class HyperlinkRecord(BiffRecord):
             special  = pack('<L%ds'%len(u16url), len(u16url), u16url)
         elif url.startswith('#'):
             # hyperlink to the current workbook (6.53.5)
-            assert textmark is None, 'can not use textmarks with hyperlinks to the current workbook'
-            textmark = url
+            options |= 0x08
+            textmark = url[1:]
         
         if textmark is not None:
-            options |= 0x08
             textmark = textmark.encode('UTF-16le') + '\x00\x00'
         
         self._rec_data  = pack('<4H', frow, lrow, fcol, lcol)

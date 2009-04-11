@@ -1189,8 +1189,8 @@ class Worksheet(object):
     def  print_area(self, rstart, rend, cstart, cend):
         self.__parent.print_area(self.__name, rstart, rend, cstart, cend)
 
-    def set_link(self, x, y, url, target=None, textmark=None, description=None):
-        self.__links[(x,y)] = (url, target, textmark, description)
+    def set_link(self, x, y, url, target=None, description=None):
+        self.__links[(x,y)] = (url, target, description)
 
     ##################################################################
     ## BIFF records generation
@@ -1404,8 +1404,8 @@ class Worksheet(object):
 
     def __hyperlink_table_rec(self):
         result = ''
-        for (x, y), (url, target, textmark, description) in self.__links.items():
-            result += BIFFRecords.HyperlinkRecord(x, x, y, y, url, target=target, textmark=textmark, description=description).get()
+        for (x, y), (url, target, description) in self.__links.items():
+            result += BIFFRecords.HyperlinkRecord(x, x, y, y, url, target=target, description=description).get()
             if description is not None:
                 result += BIFFRecords.QuicktipRecord(x, x, y, y, description).get()
         return result

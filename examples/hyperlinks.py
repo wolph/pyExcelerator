@@ -18,6 +18,7 @@ h_style.font = f
 
 w = Workbook()
 ws = w.add_sheet('F')
+ws_A = w.add_sheet('A')
 
 ##############
 ## NOTE: parameters are separated by semicolon!!!
@@ -26,5 +27,10 @@ ws = w.add_sheet('F')
 n = "HYPERLINK"
 ws.write_merge(1, 1, 1, 10, Formula(n + '("http://www.irs.gov/pub/irs-pdf/f1000.pdf";"f1000.pdf")'), h_style)
 ws.write_merge(2, 2, 2, 25, Formula(n + '("mailto:roman.kiseliov@gmail.com?subject=pyExcelerator-feedback&Body=Hello,%20Roman!";"pyExcelerator-feedback")'), h_style)
+
+ws.write(3, 0, "Goto Google")
+ws.set_link(3, 0, "http://www.google.com", description="Google")
+ws.write(4, 0, "Goto Next Page")
+ws.set_link(4, 0, "#A!A2", description="page A")
 
 w.save("hyperlinks.xls")
