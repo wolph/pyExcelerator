@@ -66,3 +66,26 @@
       20-30% faster)
     * updated THANKS file
     * xls2csv, xls2txt, xls2html now resides in ./tools
+
+0.6.4a (11.04.2009)
+---------
+    * support writing to file-like objects
+    * add support for setting formula cell options
+    * add support for using color name strings to set the Font color
+      properties
+    * add support for setting default row height records
+    * add set_column, set_columns, and write_cols which are similar
+      to the perl counter parts and allow setting/writing to multiple columns
+    * allow page breaks to be intergers in the page break list
+    * add support for setting print area, and beginnings of other macros
+      and builtin functions
+    * allow None to be given to add_style to set default style
+    * Accepted patch for some bugs in the RK conversion routine from
+      John Machin
+    * add support for setting default results for formulas
+    * fix bug in lexer where symbols of more than one character are
+      not recognized
+    * Fix #1621199: typo causes DIMENSIONS record to have wrong number
+      of columns
+    * add support hyperlinks
+    * FIX #1618833: XFStyle defaults are now copies of the default properties.
