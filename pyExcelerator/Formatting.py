@@ -102,7 +102,15 @@ def get_colour_val(c):
         return colours[c]
     return c
 
-class Font(object):
+class CopyableObject(object):
+    # make sure to override this in the derived class if
+    # copying needs to be more complex
+    def copy(self):
+        cobj = self.__class__()
+        cobj.__dict__.update(self.__dict__)
+        return cobj
+
+class Font(CopyableObject):
     ESCAPEMENT_NONE         = 0x00
     ESCAPEMENT_SUPERSCRIPT  = 0x01
     ESCAPEMENT_SUBSCRIPT    = 0x02
@@ -189,7 +197,7 @@ class Font(object):
                     underline, family, charset, 
                     name)
 
-class Alignment(object):
+class Alignment(CopyableObject):
     HORZ_GENERAL                = 0x00
     HORZ_LEFT                   = 0x01
     HORZ_CENTER                 = 0x02
@@ -234,7 +242,7 @@ class Alignment(object):
         self.inde = 0
         self.merg = 0
 
-class Borders(object):
+class Borders(CopyableObject):
     NO_LINE = 0x00
     THIN    = 0x01
     MEDIUM  = 0x02
@@ -272,7 +280,7 @@ class Borders(object):
         self.need_diag1 = self.NO_NEED_DIAG1
         self.need_diag2 = self.NO_NEED_DIAG2
 
-class Pattern(object):
+class Pattern(CopyableObject):
     # patterns 0x00 - 0x12
     NO_PATTERN      = 0x00 
     SOLID_PATTERN   = 0x01 
@@ -290,7 +298,7 @@ class Pattern(object):
     def set_pattern_back_colour(self, c): self._pattern_back_colour = get_colour_val(c)
     pattern_back_colour = property(get_pattern_back_colour, set_pattern_back_colour)
 
-class Protection(object):
+class Protection(CopyableObject):
     def __init__(self):
         self.cell_locked = 1
         self.formula_hidden = 0
@@ -310,4 +318,3 @@ if __name__ == '__main__':
         f = file(filename, 'wb')
         f.write(font.get_biff_record().get_data())
         f.close
-        

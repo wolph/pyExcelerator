@@ -58,11 +58,11 @@ class XFStyle(object):
     
     def __init__(self):
         self.num_format_str  = _default_num_format
-        self.font            = _default_font 
-        self.alignment       = _default_alignment
-        self.borders         = _default_borders
-        self.pattern         = _default_pattern 
-        self.protection      = _default_protection
+        self.font            = _default_font.copy()
+        self.alignment       = _default_alignment.copy()
+        self.borders         = _default_borders.copy()
+        self.pattern         = _default_pattern.copy()
+        self.protection      = _default_protection.copy()
 
 class StyleCollection(object):
     _std_num_fmt_list = [

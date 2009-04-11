@@ -7,13 +7,10 @@ __rev_id__ = """$Id: format.py,v 1.3 2005/03/27 12:47:06 rvk Exp $"""
 
 from pyExcelerator import *
 
-font0 = Font()
-font0.name = 'Times New Roman'
-font0.struck_out = True
-font0.bold = True
-
 style0 = XFStyle()
-style0.font = font0
+style0.font.name = 'Times New Roman'
+style0.font.struck_out = True
+style0.font.bold = True
 
 
 wb = Workbook()
@@ -22,17 +19,11 @@ ws0 = wb.add_sheet('0')
 ws0.write(1, 1, 'Test', style0)
 
 for i in range(0, 0x53):
-    fnt = Font()
-    fnt.name = 'Arial'
-    fnt.colour_index = i
-    fnt.outline = True
-
-    borders = Borders()
-    borders.left = i
-
     style = XFStyle()
-    style.font = fnt
-    style.borders = borders
+    style.font.name = 'Arial'
+    style.font.colour_index = i
+    style.font.outline = True
+    style.borders.left = i
 
     ws0.write(i, 2, 'colour', style)
     ws0.write(i, 3, hex(i), style0)
