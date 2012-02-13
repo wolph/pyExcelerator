@@ -253,7 +253,11 @@ class Row(object):
     def write_blanks(self, c1, c2, style):
         self.__adjust_height(style)
         self.__adjust_bound_col_idx(c1, c2)
-        self.__cells.extend([ Cell.MulBlankCell(self, c1, c2, self.__parent_wb.add_style(style)) ])
+        assert c1 <= c2, 'start column (%d) must preceed end column (%d)'%(c1, c2)
+        if (c1 == c2):
+            self.__cells.extend([ Cell.BlankCell(self, c1, self.__parent_wb.add_style(style)) ])
+        else:
+            self.__cells.extend([ Cell.MulBlankCell(self, c1, c2, self.__parent_wb.add_style(style)) ])
 
         
         
