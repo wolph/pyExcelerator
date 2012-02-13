@@ -559,6 +559,8 @@ class XlsDoc:
         f.write(self.packed_MSAT_2nd)
         f.write(self.packed_SAT)
         f.write(self.dir_stream)
+        if not hasattr(filename, 'write'):
+            f.close()
 
 
 if __name__ == '__main__':
