@@ -187,7 +187,7 @@ class Row(object):
         options =  (self.level & 0x07) << 0
         options |= (self.collapse & 0x01) << 4
         options |= (self.hidden & 0x01) << 5
-        options |= (0x00 & 0x01) << 6
+        options |= ((~ self.__has_default_height) & 0x01) << 6
         options |= (0x01 & 0x01) << 8
         if self.__xf_index != 0x0F:
             options |= (0x01 & 0x01) << 7
@@ -214,7 +214,9 @@ class Row(object):
     def set_height(self, h):
         if h == None:
             self.__has_default_height = 0x01
-        else: self.__height = h
+        else:
+            self.__height = h
+            self.__has_default_height = 0x00
     
     height = property(get_height, set_height)
 
