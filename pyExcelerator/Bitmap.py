@@ -234,13 +234,17 @@ def _process_bitmap(bitmap):
     MSDN library.
 
     """
-    # Open file and binmode the data in case the platform needs it.
-    fh = file(bitmap, "rb")
+    if hasattr(bitmap, 'read'):
+        fh = bitmap
+    else:
+        # Open file and binmode the data in case the platform needs it.
+        fh = file(bitmap, "rb")
     try:
         # Slurp the file into a string.
         data = fh.read()
     finally:
-        fh.close()
+        if not hasattr(bitmap, 'read'):
+            fh.close()
     # Check that the file is big enough to be a bitmap.
     if len(data) <= 0x36:
         raise Exception("bitmap doesn't contain enough data.")
