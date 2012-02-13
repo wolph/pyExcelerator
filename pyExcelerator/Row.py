@@ -242,7 +242,7 @@ class Row(object):
                 self.__cells.extend([ Cell.BlankCell(self, col, self.__parent_wb.add_style(style)) ])
         elif isinstance(label, (int, long, float)):
             self.__cells.extend([ Cell.NumberCell(self, col, self.__parent_wb.add_style(style), label) ])            
-        elif isinstance(label, (dt.datetime, dt.time)):
+        elif isinstance(label, (dt.datetime, dt.date, dt.time)):
             self.__cells.extend([ Cell.NumberCell(self, col, self.__parent_wb.add_style(style), self.__excel_date_dt(label)) ])
         else:
             self.__cells.extend([ Cell.FormulaCell(self, col, self.__parent_wb.add_style(style), label) ])
