@@ -1,0 +1,7 @@
+mini Module
+===========
+
+.. automodule:: mini
+    :members:
+    :undoc-members:
+    :show-inheritance:

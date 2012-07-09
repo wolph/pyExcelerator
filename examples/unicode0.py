@@ -3,14 +3,14 @@
 # Copyright (C) 2005 Kiseliov Roman
 __rev_id__ = """$Id: unicode0.py,v 1.1 2005/03/27 12:47:06 rvk Exp $"""
 
+if __name__ == '__main__':
+    from pyExcelerator import *
 
-from pyExcelerator import *
+    w = Workbook()
+    ws1 = w.add_sheet('cp1251')
 
-w = Workbook()
-ws1 = w.add_sheet('cp1251')
+    UnicodeUtils.DEFAULT_ENCODING = 'cp1251'
+    ws1.write(0, 0, 'Îëÿ')
 
-UnicodeUtils.DEFAULT_ENCODING = 'cp1251'
-ws1.write(0, 0, 'Îëÿ')
-
-w.save('unicode0.xls')
+    w.save('unicode0.xls')
 

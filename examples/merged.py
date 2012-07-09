@@ -4,39 +4,40 @@
 
 __rev_id__ = """$Id: merged.py,v 1.3 2005/03/27 12:47:06 rvk Exp $"""
 
+if __name__ == '__main__':
+    from pyExcelerator import *
 
-from pyExcelerator import *
+    fnt = Font()
+    fnt.name = 'Arial'
+    fnt.colour_index = 4
+    fnt.bold = True
 
-fnt = Font()
-fnt.name = 'Arial'
-fnt.colour_index = 4
-fnt.bold = True
+    borders = Borders()
+    borders.left = 6
+    borders.right = 6
+    borders.top = 6
+    borders.bottom = 6
 
-borders = Borders()
-borders.left = 6
-borders.right = 6
-borders.top = 6
-borders.bottom = 6
+    al = Alignment()
+    al.horz = Alignment.HORZ_CENTER
+    al.vert = Alignment.VERT_CENTER
 
-al = Alignment()
-al.horz = Alignment.HORZ_CENTER
-al.vert = Alignment.VERT_CENTER
-
-style = XFStyle()
-style.font = fnt
-style.borders = borders
-style.alignment = al
-
-
-wb = Workbook()
-ws0 = wb.add_sheet('sheet0')
-ws1 = wb.add_sheet('sheet1')
-ws2 = wb.add_sheet('sheet2')
-
-for i in range(0, 0x200, 2):
-    ws0.write_merge(i, i+1, 1, 5, 'test %d' % i, style)
-    ws1.write_merge(i, i, 1, 7, 'test %d' % i, style)
-    ws2.write_merge(i, i+1, 1, 7 + (i%10), 'test %d' % i, style)
+    style = XFStyle()
+    style.font = fnt
+    style.borders = borders
+    style.alignment = al
 
 
-wb.save('merged.xls')
+    wb = Workbook()
+    ws0 = wb.add_sheet('sheet0')
+    ws1 = wb.add_sheet('sheet1')
+    ws2 = wb.add_sheet('sheet2')
+
+    for i in range(0, 0x200, 2):
+        ws0.write_merge(i, i+1, 1, 5, 'test %d' % i, style)
+        ws1.write_merge(i, i, 1, 7, 'test %d' % i, style)
+        ws2.write_merge(i, i+1, 1, 7 + (i%10), 'test %d' % i, style)
+
+
+    wb.save('merged.xls')
+

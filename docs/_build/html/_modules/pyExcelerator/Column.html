@@ -1,0 +1,184 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyExcelerator.Column &mdash; pyExcelerator 0.6.4.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.6.4.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="pyExcelerator 0.6.4.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="../../_static/small_flask.css" type= "text/css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">pyExcelerator 0.6.4.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for pyExcelerator.Column</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: windows-1251 -*-</span>
+
+<span class="c">#  Copyright (C) 2005 Roman V. Kiseliov</span>
+<span class="c">#  All rights reserved.</span>
+<span class="c"># </span>
+<span class="c">#  Redistribution and use in source and binary forms, with or without</span>
+<span class="c">#  modification, are permitted provided that the following conditions</span>
+<span class="c">#  are met:</span>
+<span class="c"># </span>
+<span class="c">#  1. Redistributions of source code must retain the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer.</span>
+<span class="c"># </span>
+<span class="c">#  2. Redistributions in binary form must reproduce the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer in</span>
+<span class="c">#     the documentation and/or other materials provided with the</span>
+<span class="c">#     distribution.</span>
+<span class="c"># </span>
+<span class="c">#  3. All advertising materials mentioning features or use of this</span>
+<span class="c">#     software must display the following acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c"># </span>
+<span class="c">#  4. Redistributions of any form whatsoever must retain the following</span>
+<span class="c">#     acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c"># </span>
+<span class="c">#  THIS SOFTWARE IS PROVIDED BY Roman V. Kiseliov ``AS IS&#39;&#39; AND ANY</span>
+<span class="c">#  EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c">#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</span>
+<span class="c">#  PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL Roman V. Kiseliov OR</span>
+<span class="c">#  ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="c">#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT</span>
+<span class="c">#  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class="c">#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)</span>
+<span class="c">#  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,</span>
+<span class="c">#  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c">#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED</span>
+<span class="c">#  OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+
+<span class="n">__rev_id__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;$Id: Column.py,v 1.4 2005/07/20 07:24:11 rvk Exp $&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">Style</span>
+<span class="kn">from</span> <span class="nn">BIFFRecords</span> <span class="kn">import</span> <span class="n">ColInfoRecord</span>
+<span class="kn">from</span> <span class="nn">Deco</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">Worksheet</span> <span class="kn">import</span> <span class="n">Worksheet</span>
+
+
+<div class="viewcode-block" id="Column"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Column.Column">[docs]</a><span class="k">class</span> <span class="nc">Column</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="nd">@accepts</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Worksheet</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indx</span><span class="p">,</span> <span class="n">parent_sheet</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__index</span> <span class="o">=</span> <span class="n">indx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__parent</span> <span class="o">=</span> <span class="n">parent_sheet</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__parent_wb</span> <span class="o">=</span> <span class="n">parent_sheet</span><span class="o">.</span><span class="n">get_parent</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__xf_index</span> <span class="o">=</span> <span class="mh">0x0F</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mh">0x0B92</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collapse</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<div class="viewcode-block" id="Column.get_biff_record"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Column.Column.get_biff_record">[docs]</a>    <span class="k">def</span> <span class="nf">get_biff_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">options</span> <span class="o">=</span>  <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span>
+        <span class="n">options</span> <span class="o">|=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">&amp;</span> <span class="mh">0x07</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span>
+        <span class="n">options</span> <span class="o">|=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">collapse</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">12</span>
+        
+        <span class="k">return</span> <span class="n">ColInfoRecord</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__xf_index</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        
+        </div>
+    <span class="nd">@accepts</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">Style</span><span class="o">.</span><span class="n">XFStyle</span><span class="p">)</span>
+<div class="viewcode-block" id="Column.set_style"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Column.Column.set_style">[docs]</a>    <span class="k">def</span> <span class="nf">set_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">):</span>
+        <span class="c"># self.__adjust_height(style)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__xf_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__parent_wb</span><span class="o">.</span><span class="n">add_style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>        
+        
+</div>
+<div class="viewcode-block" id="Column.get_index"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Column.Column.get_index">[docs]</a>    <span class="k">def</span> <span class="nf">get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__index</span>
+        </div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */</script>
+
+    <div class="footer">
+      &copy; Copyright 2012, Rick van Hattem.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+    </div>
+  </body>
+</html>

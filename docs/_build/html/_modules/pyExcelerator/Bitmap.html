@@ -1,0 +1,409 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyExcelerator.Bitmap &mdash; pyExcelerator 0.6.4.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.6.4.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="pyExcelerator 0.6.4.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="../../_static/small_flask.css" type= "text/css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">pyExcelerator 0.6.4.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for pyExcelerator.Bitmap</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: windows-1251 -*-</span>
+
+<span class="c">#  Copyright (C) 2005 Roman V. Kiseliov</span>
+
+<span class="c">#  Portions are Copyright (c) 2004 Evgeny Filatov &lt;fufff@users.sourceforge.net&gt;</span>
+
+<span class="c">#  Portions are Copyright (c) 2002-2004 John McNamara (Perl Spreadsheet::WriteExcel)</span>
+
+<span class="c">#  All rights reserved.</span>
+
+<span class="c"># </span>
+<span class="c">#  Redistribution and use in source and binary forms, with or without</span>
+<span class="c">#  modification, are permitted provided that the following conditions</span>
+<span class="c">#  are met:</span>
+<span class="c"># </span>
+<span class="c">#  1. Redistributions of source code must retain the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer.</span>
+<span class="c"># </span>
+<span class="c">#  2. Redistributions in binary form must reproduce the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer in</span>
+<span class="c">#     the documentation and/or other materials provided with the</span>
+<span class="c">#     distribution.</span>
+<span class="c"># </span>
+<span class="c">#  3. All advertising materials mentioning features or use of this</span>
+<span class="c">#     software must display the following acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c"># </span>
+<span class="c">#  4. Redistributions of any form whatsoever must retain the following</span>
+<span class="c">#     acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c"># </span>
+<span class="c">#  THIS SOFTWARE IS PROVIDED BY Roman V. Kiseliov ``AS IS&#39;&#39; AND ANY</span>
+<span class="c">#  EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c">#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</span>
+<span class="c">#  PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL Roman V. Kiseliov OR</span>
+<span class="c">#  ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="c">#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT</span>
+<span class="c">#  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class="c">#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)</span>
+<span class="c">#  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,</span>
+<span class="c">#  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c">#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED</span>
+<span class="c">#  OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+
+<span class="n">__rev_id__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;$Id: Bitmap.py,v 1.4 2005/07/20 07:24:11 rvk Exp $&quot;&quot;&quot;</span>
+
+
+<span class="kn">from</span> <span class="nn">BIFFRecords</span> <span class="kn">import</span> <span class="n">BiffRecord</span>
+<span class="kn">from</span> <span class="nn">struct</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="k">def</span> <span class="nf">_size_col</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sheet</span><span class="o">.</span><span class="n">col_width</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_size_row</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sheet</span><span class="o">.</span><span class="n">row_height</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>     
+
+
+<span class="k">def</span> <span class="nf">_position_image</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row_start</span><span class="p">,</span> <span class="n">col_start</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the vertices that define the position of the image as required by</span>
+<span class="sd">    the OBJ record.</span>
+
+<span class="sd">             +------------+------------+</span>
+<span class="sd">             |     A      |      B     |</span>
+<span class="sd">       +-----+------------+------------+</span>
+<span class="sd">       |     |(x1,y1)     |            |</span>
+<span class="sd">       |  1  |(A1)._______|______      |</span>
+<span class="sd">       |     |    |              |     |</span>
+<span class="sd">       |     |    |              |     |</span>
+<span class="sd">       +-----+----|    BITMAP    |-----+</span>
+<span class="sd">       |     |    |              |     |</span>
+<span class="sd">       |  2  |    |______________.     |</span>
+<span class="sd">       |     |            |        (B2)|</span>
+<span class="sd">       |     |            |     (x2,y2)|</span>
+<span class="sd">       +---- +------------+------------+</span>
+
+<span class="sd">    Example of a bitmap that covers some of the area from cell A1 to cell B2.</span>
+
+<span class="sd">    Based on the width and height of the bitmap we need to calculate 8 vars:</span>
+<span class="sd">        col_start, row_start, col_end, row_end, x1, y1, x2, y2.</span>
+<span class="sd">    The width and height of the cells are also variable and have to be taken into</span>
+<span class="sd">    account.</span>
+<span class="sd">    The values of col_start and row_start are passed in from the calling</span>
+<span class="sd">    function. The values of col_end and row_end are calculated by subtracting</span>
+<span class="sd">    the width and height of the bitmap from the width and height of the</span>
+<span class="sd">    underlying cells.</span>
+<span class="sd">    The vertices are expressed as a percentage of the underlying cell width as</span>
+<span class="sd">    follows (rhs values are in pixels):</span>
+
+<span class="sd">           x1 = X / W *1024</span>
+<span class="sd">           y1 = Y / H *256</span>
+<span class="sd">           x2 = (X-1) / W *1024</span>
+<span class="sd">           y2 = (Y-1) / H *256</span>
+
+<span class="sd">           Where:  X is distance from the left side of the underlying cell</span>
+<span class="sd">                   Y is distance from the top of the underlying cell</span>
+<span class="sd">                   W is the width of the cell</span>
+<span class="sd">                   H is the height of the cell</span>
+
+<span class="sd">    Note: the SDK incorrectly states that the height should be expressed as a</span>
+<span class="sd">    percentage of 1024.</span>
+
+<span class="sd">    col_start  - Col containing upper left corner of object</span>
+<span class="sd">    row_start  - Row containing top left corner of object</span>
+<span class="sd">    x1  - Distance to left side of object</span>
+<span class="sd">    y1  - Distance to top of object</span>
+<span class="sd">    width  - Width of image frame</span>
+<span class="sd">    height  - Height of image frame</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Adjust start column for offsets that are greater than the col width</span>
+    <span class="k">while</span> <span class="n">x1</span> <span class="o">&gt;=</span> <span class="n">_size_col</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">col_start</span><span class="p">):</span>
+        <span class="n">x1</span> <span class="o">-=</span> <span class="n">_size_col</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">col_start</span><span class="p">)</span>
+        <span class="n">col_start</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c"># Adjust start row for offsets that are greater than the row height</span>
+    <span class="k">while</span> <span class="n">y1</span> <span class="o">&gt;=</span> <span class="n">_size_row</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row_start</span><span class="p">):</span>
+        <span class="n">y1</span> <span class="o">-=</span> <span class="n">_size_row</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row_start</span><span class="p">)</span>
+        <span class="n">row_start</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c"># Initialise end cell to the same as the start cell</span>
+    <span class="n">row_end</span> <span class="o">=</span> <span class="n">row_start</span>   <span class="c"># Row containing bottom right corner of object</span>
+    <span class="n">col_end</span> <span class="o">=</span> <span class="n">col_start</span>   <span class="c"># Col containing lower right corner of object</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">width</span> <span class="o">+</span> <span class="n">x1</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">height</span> <span class="o">+</span> <span class="n">y1</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="c"># Subtract the underlying cell widths to find the end cell of the image</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">width</span> <span class="o">&gt;=</span> <span class="n">_size_col</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">col_end</span><span class="p">)):</span>
+        <span class="n">width</span> <span class="o">-=</span> <span class="n">_size_col</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">col_end</span><span class="p">)</span>
+        <span class="n">col_end</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c"># Subtract the underlying cell heights to find the end cell of the image</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">height</span> <span class="o">&gt;=</span> <span class="n">_size_row</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row_end</span><span class="p">)):</span>
+        <span class="n">height</span> <span class="o">-=</span> <span class="n">_size_row</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row_end</span><span class="p">)</span>
+        <span class="n">row_end</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c"># Bitmap isn&#39;t allowed to start or finish in a hidden cell, i.e. a cell</span>
+    <span class="c"># with zero height or width.</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">_size_col</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">col_start</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">_size_col</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">col_end</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="n">_size_row</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row_start</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">_size_row</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row_end</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)):</span>
+        <span class="k">return</span>
+    <span class="c"># Convert the pixel values to the percentage value expected by Excel</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span> <span class="o">/</span> <span class="n">_size_col</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">col_start</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1024</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span> <span class="o">/</span> <span class="n">_size_row</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row_start</span><span class="p">)</span> <span class="o">*</span> <span class="mi">256</span>
+    <span class="c"># Distance to right side of object</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">width</span><span class="p">)</span> <span class="o">/</span> <span class="n">_size_col</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">col_end</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1024</span>
+    <span class="c"># Distance to bottom of object</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="n">_size_row</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row_end</span><span class="p">)</span> <span class="o">*</span> <span class="mi">256</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">col_start</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">row_start</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">col_end</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">row_end</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ObjBmpRecord"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Bitmap.ObjBmpRecord">[docs]</a><span class="k">class</span> <span class="nc">ObjBmpRecord</span><span class="p">(</span><span class="n">BiffRecord</span><span class="p">):</span>
+    <span class="n">_REC_ID</span> <span class="o">=</span> <span class="mh">0x005D</span>    <span class="c"># Record identifier</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">sheet</span><span class="p">,</span> <span class="n">im_data_bmp</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scale_x</span><span class="p">,</span> <span class="n">scale_y</span><span class="p">):</span>
+        <span class="c"># Scale the frame of the image.</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="n">im_data_bmp</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">scale_x</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">im_data_bmp</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="n">scale_y</span>
+
+        <span class="c"># Calculate the vertices of the image and write the OBJ record</span>
+        <span class="n">col_start</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">row_start</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">col_end</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">row_end</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">_position_image</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+        <span class="sd">&quot;&quot;&quot;Store the OBJ record that precedes an IMDATA record. This could be generalise</span>
+<span class="sd">        to support other Excel objects.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cObj</span> <span class="o">=</span> <span class="mh">0x0001</span>      <span class="c"># Count of objects in file (set to 1)</span>
+        <span class="n">OT</span> <span class="o">=</span> <span class="mh">0x0008</span>        <span class="c"># Object type. 8 = Picture</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="mh">0x0001</span>        <span class="c"># Object ID</span>
+        <span class="n">grbit</span> <span class="o">=</span> <span class="mh">0x0614</span>     <span class="c"># Option flags</span>
+        <span class="n">colL</span> <span class="o">=</span> <span class="n">col_start</span>    <span class="c"># Col containing upper left corner of object</span>
+        <span class="n">dxL</span> <span class="o">=</span> <span class="n">x1</span>            <span class="c"># Distance from left side of cell</span>
+        <span class="n">rwT</span> <span class="o">=</span> <span class="n">row_start</span>     <span class="c"># Row containing top left corner of object</span>
+        <span class="n">dyT</span> <span class="o">=</span> <span class="n">y1</span>            <span class="c"># Distance from top of cell</span>
+        <span class="n">colR</span> <span class="o">=</span> <span class="n">col_end</span>      <span class="c"># Col containing lower right corner of object</span>
+        <span class="n">dxR</span> <span class="o">=</span> <span class="n">x2</span>            <span class="c"># Distance from right of cell</span>
+        <span class="n">rwB</span> <span class="o">=</span> <span class="n">row_end</span>       <span class="c"># Row containing bottom right corner of object</span>
+        <span class="n">dyB</span> <span class="o">=</span> <span class="n">y2</span>            <span class="c"># Distance from bottom of cell</span>
+        <span class="n">cbMacro</span> <span class="o">=</span> <span class="mh">0x0000</span>    <span class="c"># Length of FMLA structure</span>
+        <span class="n">Reserved1</span> <span class="o">=</span> <span class="mh">0x0000</span>  <span class="c"># Reserved</span>
+        <span class="n">Reserved2</span> <span class="o">=</span> <span class="mh">0x0000</span>  <span class="c"># Reserved</span>
+        <span class="n">icvBack</span> <span class="o">=</span> <span class="mh">0x09</span>      <span class="c"># Background colour</span>
+        <span class="n">icvFore</span> <span class="o">=</span> <span class="mh">0x09</span>      <span class="c"># Foreground colour</span>
+        <span class="n">fls</span> <span class="o">=</span> <span class="mh">0x00</span>          <span class="c"># Fill pattern</span>
+        <span class="n">fAuto</span> <span class="o">=</span> <span class="mh">0x00</span>        <span class="c"># Automatic fill</span>
+        <span class="n">icv</span> <span class="o">=</span> <span class="mh">0x08</span>          <span class="c"># Line colour</span>
+        <span class="n">lns</span> <span class="o">=</span> <span class="mh">0xff</span>          <span class="c"># Line style</span>
+        <span class="n">lnw</span> <span class="o">=</span> <span class="mh">0x01</span>          <span class="c"># Line weight</span>
+        <span class="n">fAutoB</span> <span class="o">=</span> <span class="mh">0x00</span>       <span class="c"># Automatic border</span>
+        <span class="n">frs</span> <span class="o">=</span> <span class="mh">0x0000</span>        <span class="c"># Frame style</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mh">0x0009</span>         <span class="c"># Image format, 9 = bitmap</span>
+        <span class="n">Reserved3</span> <span class="o">=</span> <span class="mh">0x0000</span>  <span class="c"># Reserved</span>
+        <span class="n">cbPictFmla</span> <span class="o">=</span> <span class="mh">0x0000</span> <span class="c"># Length of FMLA structure</span>
+        <span class="n">Reserved4</span> <span class="o">=</span> <span class="mh">0x0000</span>  <span class="c"># Reserved</span>
+        <span class="n">grbit2</span> <span class="o">=</span> <span class="mh">0x0001</span>     <span class="c"># Option flags</span>
+        <span class="n">Reserved5</span> <span class="o">=</span> <span class="mh">0x0000</span>  <span class="c"># Reserved</span>
+        
+        <span class="n">data</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;L&quot;</span><span class="p">,</span> <span class="n">cObj</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">OT</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">grbit</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">colL</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">dxL</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">rwT</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">dyT</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">colR</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">dxR</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">rwB</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">dyB</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">cbMacro</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;L&quot;</span><span class="p">,</span> <span class="n">Reserved1</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">Reserved2</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;B&quot;</span><span class="p">,</span> <span class="n">icvBack</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;B&quot;</span><span class="p">,</span> <span class="n">icvFore</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;B&quot;</span><span class="p">,</span> <span class="n">fls</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;B&quot;</span><span class="p">,</span> <span class="n">fAuto</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;B&quot;</span><span class="p">,</span> <span class="n">icv</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;B&quot;</span><span class="p">,</span> <span class="n">lns</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;B&quot;</span><span class="p">,</span> <span class="n">lnw</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;B&quot;</span><span class="p">,</span> <span class="n">fAutoB</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">frs</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;L&quot;</span><span class="p">,</span> <span class="n">cf</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">Reserved3</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">cbPictFmla</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">Reserved4</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;H&quot;</span><span class="p">,</span> <span class="n">grbit2</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;L&quot;</span><span class="p">,</span> <span class="n">Reserved5</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rec_data</span> <span class="o">=</span> <span class="n">data</span>
+</div>
+<span class="k">def</span> <span class="nf">_process_bitmap</span><span class="p">(</span><span class="n">bitmap</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a 24 bit bitmap into the modified internal format used by Windows.</span>
+<span class="sd">    This is described in BITMAPCOREHEADER and BITMAPCOREINFO structures in the</span>
+<span class="sd">    MSDN library.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">bitmap</span><span class="p">,</span> <span class="s">&#39;read&#39;</span><span class="p">):</span>
+        <span class="n">fh</span> <span class="o">=</span> <span class="n">bitmap</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c"># Open file and binmode the data in case the platform needs it.</span>
+        <span class="n">fh</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">bitmap</span><span class="p">,</span> <span class="s">&quot;rb&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c"># Slurp the file into a string.</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">bitmap</span><span class="p">,</span> <span class="s">&#39;read&#39;</span><span class="p">):</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="c"># Check that the file is big enough to be a bitmap.</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mh">0x36</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;bitmap doesn&#39;t contain enough data.&quot;</span><span class="p">)</span>
+    <span class="c"># The first 2 bytes are used to identify the bitmap.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&quot;BM&quot;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;bitmap doesn&#39;t appear to to be a valid bitmap image.&quot;</span><span class="p">)</span>
+    <span class="c"># Remove bitmap data: ID.</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="c"># Read and remove the bitmap size. This is more reliable than reading</span>
+    <span class="c"># the data size at offset 0x22.</span>
+    <span class="c">#</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">&quot;&lt;L&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[:</span><span class="mi">4</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">size</span> <span class="o">-=</span>  <span class="mh">0x36</span>   <span class="c"># Subtract size of bitmap header.</span>
+    <span class="n">size</span> <span class="o">+=</span>  <span class="mh">0x0C</span>   <span class="c"># Add size of BIFF header.</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+    <span class="c"># Remove bitmap data: reserved, offset, header length.</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">12</span><span class="p">:]</span>
+    <span class="c"># Read and remove the bitmap width and height. Verify the sizes.</span>
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">&quot;&lt;LL&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[:</span><span class="mi">8</span><span class="p">])</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mh">0xFFFF</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;bitmap: largest image width supported is 65k.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">height</span> <span class="o">&gt;</span> <span class="mh">0xFFFF</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;bitmap: largest image height supported is 65k.&quot;</span><span class="p">)</span>
+    <span class="c"># Read and remove the bitmap planes and bpp data. Verify them.</span>
+    <span class="n">planes</span><span class="p">,</span> <span class="n">bitcount</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">&quot;&lt;HH&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">bitcount</span> <span class="o">!=</span> <span class="mi">24</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;bitmap isn&#39;t a 24bit true color bitmap.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">planes</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;bitmap: only 1 plane supported in bitmap image.&quot;</span><span class="p">)</span>
+    <span class="c"># Read and remove the bitmap compression. Verify compression.</span>
+    <span class="n">compression</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">&quot;&lt;L&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[:</span><span class="mi">4</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">compression</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;bitmap: compression not supported in bitmap image.&quot;</span><span class="p">)</span>
+    <span class="c"># Remove bitmap data: data size, hres, vres, colours, imp. colours.</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">20</span><span class="p">:]</span>
+    <span class="c"># Add the BITMAPCOREHEADER data</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;LHHHH&quot;</span><span class="p">,</span> <span class="mh">0x000c</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x18</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">header</span> <span class="o">+</span> <span class="n">data</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ImDataBmpRecord"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Bitmap.ImDataBmpRecord">[docs]</a><span class="k">class</span> <span class="nc">ImDataBmpRecord</span><span class="p">(</span><span class="n">BiffRecord</span><span class="p">):</span>
+    <span class="n">_REC_ID</span> <span class="o">=</span> <span class="mh">0x007F</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Insert a 24bit bitmap image in a worksheet. The main record required is</span>
+<span class="sd">        IMDATA but it must be proceeded by a OBJ record to define its position.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">BiffRecord</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">_process_bitmap</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="c"># Write the IMDATA record to store the bitmap data</span>
+        <span class="n">cf</span> <span class="o">=</span> <span class="mh">0x09</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="mh">0x01</span>
+        <span class="n">lcb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rec_data</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="s">&quot;&lt;HHL&quot;</span><span class="p">,</span> <span class="n">cf</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">lcb</span><span class="p">)</span> <span class="o">+</span> <span class="n">data</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */</script>
+
+    <div class="footer">
+      &copy; Copyright 2012, Rick van Hattem.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+    </div>
+  </body>
+</html>

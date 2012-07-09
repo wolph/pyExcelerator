@@ -1,0 +1,670 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyExcelerator.CompoundDoc &mdash; pyExcelerator 0.6.4.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.6.4.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="pyExcelerator 0.6.4.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="../../_static/small_flask.css" type= "text/css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">pyExcelerator 0.6.4.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for pyExcelerator.CompoundDoc</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: windows-1251 -*-</span>
+
+<span class="c">#  Copyright (C) 2005 Roman V. Kiseliov</span>
+<span class="c">#  All rights reserved.</span>
+<span class="c"># </span>
+<span class="c">#  Redistribution and use in source and binary forms, with or without</span>
+<span class="c">#  modification, are permitted provided that the following conditions</span>
+<span class="c">#  are met:</span>
+<span class="c"># </span>
+<span class="c">#  1. Redistributions of source code must retain the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer.</span>
+<span class="c"># </span>
+<span class="c">#  2. Redistributions in binary form must reproduce the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer in</span>
+<span class="c">#     the documentation and/or other materials provided with the</span>
+<span class="c">#     distribution.</span>
+<span class="c"># </span>
+<span class="c">#  3. All advertising materials mentioning features or use of this</span>
+<span class="c">#     software must display the following acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c"># </span>
+<span class="c">#  4. Redistributions of any form whatsoever must retain the following</span>
+<span class="c">#     acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c"># </span>
+<span class="c">#  THIS SOFTWARE IS PROVIDED BY Roman V. Kiseliov ``AS IS&#39;&#39; AND ANY</span>
+<span class="c">#  EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c">#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</span>
+<span class="c">#  PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL Roman V. Kiseliov OR</span>
+<span class="c">#  ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="c">#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT</span>
+<span class="c">#  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class="c">#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)</span>
+<span class="c">#  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,</span>
+<span class="c">#  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c">#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED</span>
+<span class="c">#  OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+
+
+
+<span class="n">__rev_id__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;$Id: CompoundDoc.py,v 1.7 2005/10/26 07:44:24 rvk Exp $&quot;&quot;&quot;</span>
+
+        
+<div class="viewcode-block" id="Reader"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.CompoundDoc.Reader">[docs]</a><span class="k">class</span> <span class="nc">Reader</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">dump</span> <span class="o">=</span> <span class="bp">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump</span> <span class="o">=</span> <span class="n">dump</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">STREAMS</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;read&#39;</span><span class="p">):</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">512</span><span class="p">],</span> <span class="n">doc</span><span class="p">[</span><span class="mi">512</span><span class="p">:]</span>
+        <span class="k">del</span> <span class="n">doc</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__build_header</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__build_MSAT</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__build_SAT</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__build_directory</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__build_short_sectors_data</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">short_sectors_data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__build_SSAT</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_ssat_sectors</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssat_start_sid</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">2</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;NOTE: header says that must be&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_ssat_sectors</span><span class="p">,</span> <span class="s">&#39;short sectors&#39;</span>
+                <span class="k">print</span> <span class="s">&#39;NOTE: starting at&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssat_start_sid</span><span class="p">,</span> <span class="s">&#39;sector&#39;</span>
+                <span class="k">print</span> <span class="s">&#39;NOTE: but file does not contains data in short sectors&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ssat_start_sid</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">total_ssat_sectors</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SSAT</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">dentry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir_entry_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="p">(</span><span class="n">did</span><span class="p">,</span> 
+             <span class="n">sz</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> 
+             <span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> 
+             <span class="n">did_left</span><span class="p">,</span> <span class="n">did_right</span><span class="p">,</span> <span class="n">did_root</span><span class="p">,</span> 
+             <span class="n">dentry_start_sid</span><span class="p">,</span> 
+             <span class="n">stream_size</span>
+            <span class="p">)</span> <span class="o">=</span> <span class="n">dentry</span>
+            <span class="n">stream_data</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+            <span class="k">if</span> <span class="n">stream_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">stream_size</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_stream_size</span><span class="p">:</span>
+                    <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SAT</span><span class="p">,</span> <span class="n">dentry_start_sid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">short_sectors_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SSAT</span><span class="p">,</span> <span class="n">dentry_start_sid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">short_sect_size</span><span class="p">)</span>
+                <span class="n">stream_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stream_data</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+                <span class="c"># BAD IDEA: names may be equal. NEED use full paths...</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">STREAMS</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">stream_data</span>
+
+    
+    <span class="k">def</span> <span class="nf">__build_header</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc_magic</span>             <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">doc_magic</span> <span class="o">!=</span> <span class="s">&#39;</span><span class="se">\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1</span><span class="s">&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">,</span> <span class="s">&#39;Not an OLE file.&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_uid</span>              <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">24</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rev_num</span>               <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">24</span><span class="p">:</span><span class="mi">26</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ver_num</span>               <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">26</span><span class="p">:</span><span class="mi">28</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">byte_order</span>            <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">28</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log2_sect_size</span><span class="p">,</span>       <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;H&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">30</span><span class="p">:</span><span class="mi">32</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log2_short_sect_size</span><span class="p">,</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;H&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">32</span><span class="p">:</span><span class="mi">34</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_sat_sectors</span><span class="p">,</span>    <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;L&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">44</span><span class="p">:</span><span class="mi">48</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir_start_sid</span><span class="p">,</span>        <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">48</span><span class="p">:</span><span class="mi">52</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_stream_size</span><span class="p">,</span>      <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;L&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">56</span><span class="p">:</span><span class="mi">60</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ssat_start_sid</span><span class="p">,</span>       <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">60</span><span class="p">:</span><span class="mi">64</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_ssat_sectors</span><span class="p">,</span>   <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;L&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">64</span><span class="p">:</span><span class="mi">68</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msat_start_sid</span><span class="p">,</span>       <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">68</span><span class="p">:</span><span class="mi">72</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_msat_sectors</span><span class="p">,</span>   <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;L&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">72</span><span class="p">:</span><span class="mi">76</span><span class="p">])</span>
+         
+        <span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span>        <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">log2_sect_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">short_sect_size</span>  <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">log2_short_sect_size</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;file magic: &#39;</span>
+            <span class="n">print_bin_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">doc_magic</span><span class="p">)</span>
+
+            <span class="k">print</span> <span class="s">&#39;file uid: &#39;</span>
+            <span class="n">print_bin_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_uid</span><span class="p">)</span>
+
+            <span class="k">print</span> <span class="s">&#39;revision number: &#39;</span>
+            <span class="n">print_bin_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rev_num</span><span class="p">)</span>
+         
+            <span class="k">print</span> <span class="s">&#39;version number: &#39;</span>
+            <span class="n">print_bin_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ver_num</span><span class="p">)</span>
+            
+            <span class="k">print</span> <span class="s">&#39;byte order: &#39;</span>
+            <span class="n">print_bin_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">byte_order</span><span class="p">)</span>
+            
+            <span class="k">print</span> <span class="s">&#39;sector size                                :&#39;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span>
+            <span class="c">#print &#39;total sectors in file                      :&#39;, hex(self.total_sectors), self.total_sectors</span>
+            <span class="k">print</span> <span class="s">&#39;short sector size                          :&#39;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">short_sect_size</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">short_sect_size</span>
+            <span class="k">print</span> <span class="s">&#39;Total number of sectors used for the SAT   :&#39;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_sat_sectors</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_sat_sectors</span>
+            <span class="k">print</span> <span class="s">&#39;SID of first sector of the directory stream:&#39;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir_start_sid</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir_start_sid</span>
+            <span class="k">print</span> <span class="s">&#39;Minimum size of a standard stream          :&#39;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_stream_size</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_stream_size</span>
+            <span class="k">print</span> <span class="s">&#39;SID of first sector of the SSAT            :&#39;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ssat_start_sid</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssat_start_sid</span>
+            <span class="k">print</span> <span class="s">&#39;Total number of sectors used for the SSAT  :&#39;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_ssat_sectors</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_ssat_sectors</span>
+            <span class="k">print</span> <span class="s">&#39;SID of first additional sector of the MSAT :&#39;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">msat_start_sid</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">msat_start_sid</span>
+            <span class="k">print</span> <span class="s">&#39;Total number of sectors used for the MSAT  :&#39;</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_msat_sectors</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_msat_sectors</span>
+
+
+    <span class="k">def</span> <span class="nf">__build_MSAT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MSAT</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;109l&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="mi">76</span><span class="p">:]))</span>
+        
+        <span class="nb">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">msat_start_sid</span>
+        <span class="k">while</span> <span class="nb">next</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+           <span class="n">msat_sector</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;128l&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="nb">next</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span><span class="p">:(</span><span class="nb">next</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span><span class="p">])</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">MSAT</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">msat_sector</span><span class="p">[:</span><span class="mi">127</span><span class="p">])</span>
+           <span class="nb">next</span> <span class="o">=</span> <span class="n">msat_sector</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;MSAT (header part): </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MSAT</span><span class="p">[:</span><span class="mi">109</span><span class="p">]</span>
+            <span class="k">print</span> <span class="s">&#39;additional MSAT sectors: </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MSAT</span><span class="p">[</span><span class="mi">109</span><span class="p">:]</span>
+
+
+    <span class="k">def</span> <span class="nf">__build_SAT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">sat_stream</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">MSAT</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">sat_sids_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sat_stream</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SAT</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;</span><span class="si">%d</span><span class="s">l&#39;</span> <span class="o">%</span> <span class="n">sat_sids_count</span><span class="p">,</span> <span class="n">sat_stream</span><span class="p">)</span> <span class="c"># SIDs tuple</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;SAT sid count:</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">sat_sids_count</span>
+            <span class="k">print</span> <span class="s">&#39;SAT content:</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SAT</span>
+
+
+    <span class="k">def</span> <span class="nf">__build_SSAT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ssat_stream</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stream_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SAT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssat_start_sid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span><span class="p">)</span>
+
+        <span class="n">ssids_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ssat_stream</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SSAT</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;</span><span class="si">%d</span><span class="s">l&#39;</span> <span class="o">%</span> <span class="n">ssids_count</span><span class="p">,</span> <span class="n">ssat_stream</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&#39;SSID count:&#39;</span><span class="p">,</span> <span class="n">ssids_count</span>
+            <span class="k">print</span> <span class="s">&#39;SSAT content:</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SSAT</span>
+
+
+    <span class="k">def</span> <span class="nf">__build_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">dir_stream</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stream_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SAT</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir_start_sid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir_entry_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">dir_stream</span><span class="p">):</span>
+            <span class="n">dentry</span> <span class="o">=</span> <span class="n">dir_stream</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">128</span><span class="p">]</span> <span class="c"># 128 -- dir entry size</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">128</span>
+            
+            <span class="n">did</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir_entry_list</span><span class="p">)</span>
+            <span class="n">sz</span><span class="p">,</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;H&#39;</span><span class="p">,</span> <span class="n">dentry</span><span class="p">[</span><span class="mi">64</span><span class="p">:</span><span class="mi">66</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">sz</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">dentry</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">sz</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf_16_le&#39;</span><span class="p">,</span> <span class="s">&#39;replace&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="s">u&#39;&#39;</span>
+            <span class="n">t</span><span class="p">,</span>  <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="n">dentry</span><span class="p">[</span><span class="mi">66</span><span class="p">])</span>
+            <span class="n">c</span><span class="p">,</span>  <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="n">dentry</span><span class="p">[</span><span class="mi">67</span><span class="p">])</span>
+            <span class="n">did_left</span> <span class="p">,</span>  <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="n">dentry</span><span class="p">[</span><span class="mi">68</span><span class="p">:</span><span class="mi">72</span><span class="p">])</span>
+            <span class="n">did_right</span> <span class="p">,</span>  <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="n">dentry</span><span class="p">[</span><span class="mi">72</span><span class="p">:</span><span class="mi">76</span><span class="p">])</span>
+            <span class="n">did_root</span> <span class="p">,</span>  <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="n">dentry</span><span class="p">[</span><span class="mi">76</span><span class="p">:</span><span class="mi">80</span><span class="p">])</span>
+            <span class="n">dentry_start_sid</span> <span class="p">,</span>  <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="n">dentry</span><span class="p">[</span><span class="mi">116</span><span class="p">:</span><span class="mi">120</span><span class="p">])</span>
+            <span class="n">stream_size</span> <span class="p">,</span>  <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;L&#39;</span><span class="p">,</span> <span class="n">dentry</span><span class="p">[</span><span class="mi">120</span><span class="p">:</span><span class="mi">124</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">dir_entry_list</span><span class="o">.</span><span class="n">extend</span><span class="p">([(</span><span class="n">did</span><span class="p">,</span> <span class="n">sz</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> 
+                                            <span class="n">did_left</span><span class="p">,</span> <span class="n">did_right</span><span class="p">,</span> <span class="n">did_root</span><span class="p">,</span> 
+                                            <span class="n">dentry_start_sid</span><span class="p">,</span> <span class="n">stream_size</span><span class="p">)])</span> 
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump</span><span class="p">:</span>
+            <span class="n">dentry_types</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="mh">0x00</span><span class="p">:</span> <span class="s">&#39;Empty&#39;</span><span class="p">,</span>
+                <span class="mh">0x01</span><span class="p">:</span> <span class="s">&#39;User storage&#39;</span><span class="p">,</span>
+                <span class="mh">0x02</span><span class="p">:</span> <span class="s">&#39;User stream&#39;</span><span class="p">,</span>
+                <span class="mh">0x03</span><span class="p">:</span> <span class="s">&#39;LockBytes&#39;</span><span class="p">,</span>
+                <span class="mh">0x04</span><span class="p">:</span> <span class="s">&#39;Property&#39;</span><span class="p">,</span>
+                <span class="mh">0x05</span><span class="p">:</span> <span class="s">&#39;Root storage&#39;</span>
+            <span class="p">}</span>
+            <span class="n">node_colours</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="mh">0x00</span><span class="p">:</span> <span class="s">&#39;Red&#39;</span><span class="p">,</span>
+                <span class="mh">0x01</span><span class="p">:</span> <span class="s">&#39;Black&#39;</span>
+            <span class="p">}</span>
+            <span class="k">print</span> <span class="s">&#39;total directory entries:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir_entry_list</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">dentry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir_entry_list</span><span class="p">:</span>
+                <span class="p">(</span><span class="n">did</span><span class="p">,</span> <span class="n">sz</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> 
+                 <span class="n">did_left</span><span class="p">,</span> <span class="n">did_right</span><span class="p">,</span> <span class="n">did_root</span><span class="p">,</span> 
+                 <span class="n">dentry_start_sid</span><span class="p">,</span> <span class="n">stream_size</span><span class="p">)</span> <span class="o">=</span> <span class="n">dentry</span>
+                <span class="k">print</span> <span class="s">&#39;DID&#39;</span><span class="p">,</span> <span class="n">did</span>
+                <span class="k">print</span> <span class="s">&#39;Size of the used area of the character buffer of the name:&#39;</span><span class="p">,</span> <span class="n">sz</span>
+                <span class="k">print</span> <span class="s">&#39;dir entry name:&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">print</span> <span class="s">&#39;type of entry:&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dentry_types</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+                <span class="k">print</span> <span class="s">&#39;entry colour:&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">node_colours</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+                <span class="k">print</span> <span class="s">&#39;left child DID :&#39;</span><span class="p">,</span> <span class="n">did_left</span>
+                <span class="k">print</span> <span class="s">&#39;right child DID:&#39;</span><span class="p">,</span> <span class="n">did_right</span>
+                <span class="k">print</span> <span class="s">&#39;root DID       :&#39;</span><span class="p">,</span> <span class="n">did_root</span>
+                <span class="k">print</span> <span class="s">&#39;start SID       :&#39;</span><span class="p">,</span> <span class="n">dentry_start_sid</span>
+                <span class="k">print</span> <span class="s">&#39;stream size     :&#39;</span><span class="p">,</span> <span class="n">stream_size</span>
+                <span class="k">if</span> <span class="n">stream_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s">&#39;stream is empty&#39;</span>
+                <span class="k">elif</span> <span class="n">stream_size</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_stream_size</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s">&#39;stream stored as normal stream&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s">&#39;stream stored as short-stream&#39;</span>
+
+    
+    <span class="k">def</span> <span class="nf">__build_short_sectors_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">did</span><span class="p">,</span> <span class="n">sz</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> 
+         <span class="n">did_left</span><span class="p">,</span> <span class="n">did_right</span><span class="p">,</span> <span class="n">did_root</span><span class="p">,</span> 
+         <span class="n">dentry_start_sid</span><span class="p">,</span> <span class="n">stream_size</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir_entry_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">t</span> <span class="o">==</span> <span class="mh">0x05</span> <span class="c"># Short-Stream Container Stream (SSCS) resides in Root Storage</span>
+        <span class="k">if</span> <span class="n">stream_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">short_sectors_data</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">short_sectors_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stream_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SAT</span><span class="p">,</span> <span class="n">dentry_start_sid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sect_size</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Reader.get_stream_data"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.CompoundDoc.Reader.get_stream_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_stream_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">SAT</span><span class="p">,</span> <span class="n">start_sid</span><span class="p">,</span> <span class="n">sect_size</span><span class="p">):</span>
+        <span class="n">sid</span> <span class="o">=</span> <span class="n">start_sid</span>
+        <span class="n">chunks</span> <span class="o">=</span> <span class="p">[(</span><span class="n">sid</span><span class="p">,</span> <span class="n">sid</span><span class="p">)]</span>
+        <span class="n">stream_data</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+        <span class="k">while</span> <span class="n">SAT</span><span class="p">[</span><span class="n">sid</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">next_in_chain</span> <span class="o">=</span> <span class="n">SAT</span><span class="p">[</span><span class="n">sid</span><span class="p">]</span>
+            <span class="n">last_chunk_start</span><span class="p">,</span> <span class="n">last_chunk_finish</span> <span class="o">=</span> <span class="n">chunks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">next_in_chain</span> <span class="o">==</span> <span class="n">last_chunk_finish</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">chunks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">last_chunk_start</span><span class="p">,</span> <span class="n">next_in_chain</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">chunks</span><span class="o">.</span><span class="n">extend</span><span class="p">([(</span><span class="n">next_in_chain</span><span class="p">,</span> <span class="n">next_in_chain</span><span class="p">)])</span> 
+            <span class="n">sid</span> <span class="o">=</span> <span class="n">next_in_chain</span>
+        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+            <span class="n">stream_data</span> <span class="o">+=</span> <span class="n">data</span><span class="p">[</span><span class="n">s</span><span class="o">*</span><span class="n">sect_size</span><span class="p">:(</span><span class="n">f</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">sect_size</span><span class="p">]</span>
+        <span class="c">#print chunks</span>
+        <span class="k">return</span> <span class="n">stream_data</span>
+
+        </div></div>
+<div class="viewcode-block" id="print_bin_data"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.CompoundDoc.print_bin_data">[docs]</a><span class="k">def</span> <span class="nf">print_bin_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="s">&#39;0x</span><span class="si">%02X</span><span class="s">&#39;</span> <span class="o">%</span> <span class="nb">ord</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">print</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;&lt;NO DATA&gt;&#39;</span>
+
+
+
+<span class="c"># This implementation writes only &#39;Root Entry&#39;, &#39;Workbook&#39; streams</span>
+<span class="c"># and 2 empty streams for aligning directory stream on sector boundary</span>
+<span class="c"># </span>
+<span class="c"># LAYOUT:</span>
+<span class="c"># 0         header</span>
+<span class="c"># 76                MSAT (1st part: 109 SID)</span>
+<span class="c"># 512       workbook stream</span>
+<span class="c"># ...       additional MSAT sectors if streams&#39; size &gt; about 7 Mb == (109*512 * 128)</span>
+<span class="c"># ...       SAT</span>
+<span class="c"># ...       directory stream</span>
+<span class="c">#</span>
+<span class="c"># NOTE: this layout is &quot;ad hoc&quot;. It can be more general. RTFM</span>
+</div>
+<div class="viewcode-block" id="XlsDoc"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.CompoundDoc.XlsDoc">[docs]</a><span class="k">class</span> <span class="nc">XlsDoc</span><span class="p">:</span>
+    <span class="n">SECTOR_SIZE</span> <span class="o">=</span> <span class="mh">0x0200</span>
+    <span class="n">MIN_LIMIT</span>   <span class="o">=</span> <span class="mh">0x1000</span>
+
+    <span class="n">SID_FREE_SECTOR</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">SID_END_OF_CHAIN</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+    <span class="n">SID_USED_BY_SAT</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+    <span class="n">SID_USED_BY_MSAT</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c">#self.book_stream = &#39;&#39;                # padded</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">book_stream_sect</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir_stream</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir_stream_sect</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">packed_SAT</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SAT_sect</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">packed_MSAT_1st</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">packed_MSAT_2nd</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MSAT_sect_2nd</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__build_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c"># align on sector boundary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir_stream</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+        <span class="n">dentry_name</span>      <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;Root Entry</span><span class="se">\x00</span><span class="s">&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span>
+        <span class="n">dentry_name_sz</span>   <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dentry_name</span><span class="p">)</span>
+        <span class="n">dentry_name_pad</span>  <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="o">*</span><span class="p">(</span><span class="mi">64</span> <span class="o">-</span> <span class="n">dentry_name_sz</span><span class="p">)</span>
+        <span class="n">dentry_type</span>      <span class="o">=</span> <span class="mh">0x05</span> <span class="c"># root storage</span>
+        <span class="n">dentry_colour</span>    <span class="o">=</span> <span class="mh">0x01</span> <span class="c"># black</span>
+        <span class="n">dentry_did_left</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">dentry_did_right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">dentry_did_root</span>  <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">dentry_start_sid</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+        <span class="n">dentry_stream_sz</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir_stream</span> <span class="o">+=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;64s H 2B 3l 9L l L L&#39;</span><span class="p">,</span>
+           <span class="n">dentry_name</span> <span class="o">+</span> <span class="n">dentry_name_pad</span><span class="p">,</span>
+           <span class="n">dentry_name_sz</span><span class="p">,</span>
+           <span class="n">dentry_type</span><span class="p">,</span>
+           <span class="n">dentry_colour</span><span class="p">,</span>
+           <span class="n">dentry_did_left</span><span class="p">,</span> 
+           <span class="n">dentry_did_right</span><span class="p">,</span>
+           <span class="n">dentry_did_root</span><span class="p">,</span>
+           <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+           <span class="n">dentry_start_sid</span><span class="p">,</span>
+           <span class="n">dentry_stream_sz</span><span class="p">,</span>
+           <span class="mi">0</span>
+        <span class="p">)</span>
+
+        <span class="n">dentry_name</span>      <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;Workbook</span><span class="se">\x00</span><span class="s">&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span>
+        <span class="n">dentry_name_sz</span>   <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dentry_name</span><span class="p">)</span>
+        <span class="n">dentry_name_pad</span>  <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="o">*</span><span class="p">(</span><span class="mi">64</span> <span class="o">-</span> <span class="n">dentry_name_sz</span><span class="p">)</span>
+        <span class="n">dentry_type</span>      <span class="o">=</span> <span class="mh">0x02</span> <span class="c"># user stream</span>
+        <span class="n">dentry_colour</span>    <span class="o">=</span> <span class="mh">0x01</span> <span class="c"># black</span>
+        <span class="n">dentry_did_left</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">dentry_did_right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">dentry_did_root</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">dentry_start_sid</span> <span class="o">=</span> <span class="mi">0</span>     
+        <span class="n">dentry_stream_sz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">book_stream_len</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir_stream</span> <span class="o">+=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;64s H 2B 3l 9L l L L&#39;</span><span class="p">,</span>
+           <span class="n">dentry_name</span> <span class="o">+</span> <span class="n">dentry_name_pad</span><span class="p">,</span>
+           <span class="n">dentry_name_sz</span><span class="p">,</span>
+           <span class="n">dentry_type</span><span class="p">,</span>
+           <span class="n">dentry_colour</span><span class="p">,</span>
+           <span class="n">dentry_did_left</span><span class="p">,</span> 
+           <span class="n">dentry_did_right</span><span class="p">,</span>
+           <span class="n">dentry_did_root</span><span class="p">,</span>
+           <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> 
+           <span class="n">dentry_start_sid</span><span class="p">,</span>
+           <span class="n">dentry_stream_sz</span><span class="p">,</span>
+           <span class="mi">0</span>
+        <span class="p">)</span>
+        
+        <span class="c"># padding</span>
+        <span class="n">dentry_name</span>      <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">dentry_name_sz</span>   <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dentry_name</span><span class="p">)</span>
+        <span class="n">dentry_name_pad</span>  <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="o">*</span><span class="p">(</span><span class="mi">64</span> <span class="o">-</span> <span class="n">dentry_name_sz</span><span class="p">)</span>
+        <span class="n">dentry_type</span>      <span class="o">=</span> <span class="mh">0x00</span> <span class="c"># empty</span>
+        <span class="n">dentry_colour</span>    <span class="o">=</span> <span class="mh">0x01</span> <span class="c"># black</span>
+        <span class="n">dentry_did_left</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">dentry_did_right</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">dentry_did_root</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">dentry_start_sid</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+        <span class="n">dentry_stream_sz</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir_stream</span> <span class="o">+=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;64s H 2B 3l 9L l L L&#39;</span><span class="p">,</span>
+           <span class="n">dentry_name</span> <span class="o">+</span> <span class="n">dentry_name_pad</span><span class="p">,</span>
+           <span class="n">dentry_name_sz</span><span class="p">,</span>
+           <span class="n">dentry_type</span><span class="p">,</span>
+           <span class="n">dentry_colour</span><span class="p">,</span>
+           <span class="n">dentry_did_left</span><span class="p">,</span> 
+           <span class="n">dentry_did_right</span><span class="p">,</span>
+           <span class="n">dentry_did_root</span><span class="p">,</span>
+           <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+           <span class="n">dentry_start_sid</span><span class="p">,</span>
+           <span class="n">dentry_stream_sz</span><span class="p">,</span>
+           <span class="mi">0</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="mi">2</span>
+    
+    <span class="k">def</span> <span class="nf">__build_sat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># Build SAT</span>
+        <span class="n">book_sect_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">book_stream_len</span> <span class="o">&gt;&gt;</span> <span class="mi">9</span>
+        <span class="n">dir_sect_count</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir_stream</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">9</span>
+        
+        <span class="n">total_sect_count</span>     <span class="o">=</span> <span class="n">book_sect_count</span> <span class="o">+</span> <span class="n">dir_sect_count</span>
+        <span class="n">SAT_sect_count</span>       <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">MSAT_sect_count</span>      <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">SAT_sect_count_limit</span> <span class="o">=</span> <span class="mi">109</span>
+        <span class="k">while</span> <span class="n">total_sect_count</span> <span class="o">&gt;</span> <span class="mi">128</span><span class="o">*</span><span class="n">SAT_sect_count</span> <span class="ow">or</span> <span class="n">SAT_sect_count</span> <span class="o">&gt;</span> <span class="n">SAT_sect_count_limit</span><span class="p">:</span>
+            <span class="n">SAT_sect_count</span>   <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">total_sect_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">SAT_sect_count</span> <span class="o">&gt;</span> <span class="n">SAT_sect_count_limit</span><span class="p">:</span>
+                <span class="n">MSAT_sect_count</span>      <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">total_sect_count</span>     <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">SAT_sect_count_limit</span> <span class="o">+=</span> <span class="mi">127</span>
+
+
+        <span class="n">SAT</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SID_FREE_SECTOR</span><span class="p">]</span><span class="o">*</span><span class="mi">128</span><span class="o">*</span><span class="n">SAT_sect_count</span>
+
+        <span class="n">sect</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">sect</span> <span class="o">&lt;</span> <span class="n">book_sect_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">book_stream_sect</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sect</span><span class="p">)</span>
+            <span class="n">SAT</span><span class="p">[</span><span class="n">sect</span><span class="p">]</span> <span class="o">=</span> <span class="n">sect</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">sect</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">book_stream_sect</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sect</span><span class="p">)</span>
+        <span class="n">SAT</span><span class="p">[</span><span class="n">sect</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SID_END_OF_CHAIN</span>
+        <span class="n">sect</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">sect</span> <span class="o">&lt;</span> <span class="n">book_sect_count</span> <span class="o">+</span> <span class="n">MSAT_sect_count</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">MSAT_sect_2nd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sect</span><span class="p">)</span>
+            <span class="n">SAT</span><span class="p">[</span><span class="n">sect</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SID_USED_BY_MSAT</span>
+            <span class="n">sect</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">sect</span> <span class="o">&lt;</span> <span class="n">book_sect_count</span> <span class="o">+</span> <span class="n">MSAT_sect_count</span> <span class="o">+</span> <span class="n">SAT_sect_count</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SAT_sect</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sect</span><span class="p">)</span>            
+            <span class="n">SAT</span><span class="p">[</span><span class="n">sect</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SID_USED_BY_SAT</span>
+            <span class="n">sect</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">sect</span> <span class="o">&lt;</span> <span class="n">book_sect_count</span> <span class="o">+</span> <span class="n">MSAT_sect_count</span> <span class="o">+</span> <span class="n">SAT_sect_count</span> <span class="o">+</span> <span class="n">dir_sect_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dir_stream_sect</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sect</span><span class="p">)</span>
+            <span class="n">SAT</span><span class="p">[</span><span class="n">sect</span><span class="p">]</span> <span class="o">=</span> <span class="n">sect</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">sect</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dir_stream_sect</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sect</span><span class="p">)</span>
+        <span class="n">SAT</span><span class="p">[</span><span class="n">sect</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SID_END_OF_CHAIN</span>
+        <span class="n">sect</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">packed_SAT</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;</span><span class="si">%d</span><span class="s">l&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">SAT_sect_count</span><span class="o">*</span><span class="mi">128</span><span class="p">),</span> <span class="o">*</span><span class="n">SAT</span><span class="p">)</span>
+
+        <span class="n">MSAT_1st</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SID_FREE_SECTOR</span><span class="p">]</span><span class="o">*</span><span class="mi">109</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">SAT_sect_num</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">109</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">SAT_sect</span><span class="p">):</span>
+            <span class="n">MSAT_1st</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">SAT_sect_num</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">packed_MSAT_1st</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;109l&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">MSAT_1st</span><span class="p">)</span>
+
+        <span class="n">MSAT_2nd</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">SID_FREE_SECTOR</span><span class="p">]</span><span class="o">*</span><span class="mi">128</span><span class="o">*</span><span class="n">MSAT_sect_count</span>
+        <span class="k">if</span> <span class="n">MSAT_sect_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">MSAT_2nd</span><span class="p">[</span><span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SID_END_OF_CHAIN</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">109</span>
+        <span class="n">msat_sect</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">sid_num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SAT_sect_count</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">sid_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">128</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c">#print &#39;link: &#39;,</span>
+                <span class="n">msat_sect</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">msat_sect</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSAT_sect_2nd</span><span class="p">):</span>
+                    <span class="n">MSAT_2nd</span><span class="p">[</span><span class="n">sid_num</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MSAT_sect_2nd</span><span class="p">[</span><span class="n">msat_sect</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c">#print &#39;sid: &#39;,</span>
+                <span class="n">MSAT_2nd</span><span class="p">[</span><span class="n">sid_num</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SAT_sect</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c">#print sid_num, MSAT_2nd[sid_num]</span>
+            <span class="n">sid_num</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">packed_MSAT_2nd</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;</span><span class="si">%d</span><span class="s">l&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">MSAT_sect_count</span><span class="o">*</span><span class="mi">128</span><span class="p">),</span> <span class="o">*</span><span class="n">MSAT_2nd</span><span class="p">)</span>
+
+        <span class="c">#print vars()</span>
+        <span class="c">#print zip(range(0, sect), SAT)</span>
+        <span class="c">#print self.book_stream_sect</span>
+        <span class="c">#print self.MSAT_sect_2nd</span>
+        <span class="c">#print MSAT_2nd</span>
+        <span class="c">#print self.SAT_sect</span>
+        <span class="c">#print self.dir_stream_sect</span>
+
+
+    <span class="k">def</span> <span class="nf">__build_header</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">doc_magic</span>             <span class="o">=</span> <span class="s">&#39;</span><span class="se">\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1</span><span class="s">&#39;</span>
+        <span class="n">file_uid</span>              <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="o">*</span><span class="mi">16</span>
+        <span class="n">rev_num</span>               <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x3E\x00</span><span class="s">&#39;</span>
+        <span class="n">ver_num</span>               <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x03\x00</span><span class="s">&#39;</span>
+        <span class="n">byte_order</span>            <span class="o">=</span> <span class="s">&#39;</span><span class="se">\xFE\xFF</span><span class="s">&#39;</span>
+        <span class="n">log_sect_size</span>         <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;H&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+        <span class="n">log_short_sect_size</span>   <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;H&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="n">not_used0</span>             <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="o">*</span><span class="mi">10</span>
+        <span class="n">total_sat_sectors</span>     <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;L&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SAT_sect</span><span class="p">))</span>
+        <span class="n">dir_start_sid</span>         <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dir_stream_sect</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">not_used1</span>             <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="o">*</span><span class="mi">4</span>        
+        <span class="n">min_stream_size</span>       <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;L&#39;</span><span class="p">,</span> <span class="mh">0x1000</span><span class="p">)</span>
+        <span class="n">ssat_start_sid</span>        <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">total_ssat_sectors</span>    <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;L&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSAT_sect_2nd</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">msat_start_sid</span>        <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msat_start_sid</span>        <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;l&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MSAT_sect_2nd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">total_msat_sectors</span>    <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s">&#39;&lt;L&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MSAT_sect_2nd</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span>       <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>  <span class="n">doc_magic</span><span class="p">,</span>
+                                        <span class="n">file_uid</span><span class="p">,</span>
+                                        <span class="n">rev_num</span><span class="p">,</span>
+                                        <span class="n">ver_num</span><span class="p">,</span>
+                                        <span class="n">byte_order</span><span class="p">,</span>
+                                        <span class="n">log_sect_size</span><span class="p">,</span>
+                                        <span class="n">log_short_sect_size</span><span class="p">,</span>
+                                        <span class="n">not_used0</span><span class="p">,</span>
+                                        <span class="n">total_sat_sectors</span><span class="p">,</span>
+                                        <span class="n">dir_start_sid</span><span class="p">,</span>
+                                        <span class="n">not_used1</span><span class="p">,</span>
+                                        <span class="n">min_stream_size</span><span class="p">,</span>
+                                        <span class="n">ssat_start_sid</span><span class="p">,</span>
+                                        <span class="n">total_ssat_sectors</span><span class="p">,</span>
+                                        <span class="n">msat_start_sid</span><span class="p">,</span>
+                                        <span class="n">total_msat_sectors</span>
+                                    <span class="p">])</span>
+                                        
+
+<div class="viewcode-block" id="XlsDoc.save"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.CompoundDoc.XlsDoc.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">stream</span><span class="p">):</span>
+        <span class="c"># 1. Align stream on 0x1000 boundary (and therefore on sector boundary)</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="mh">0x1000</span> <span class="o">-</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x1000</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">book_stream_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">padding</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__build_directory</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__build_sat</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__build_header</span><span class="p">()</span>
+        
+        <span class="n">f</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;write&#39;</span><span class="p">):</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">packed_MSAT_1st</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">padding</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">packed_MSAT_2nd</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">packed_SAT</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dir_stream</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;write&#39;</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+</div></div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">XlsDoc</span><span class="p">()</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;a.aaa&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="o">*</span><span class="mi">17000</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */</script>
+
+    <div class="footer">
+      &copy; Copyright 2012, Rick van Hattem.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+    </div>
+  </body>
+</html>

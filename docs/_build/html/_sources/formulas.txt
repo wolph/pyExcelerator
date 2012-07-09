@@ -1,0 +1,7 @@
+formulas Module
+===============
+
+.. automodule:: formulas
+    :members:
+    :undoc-members:
+    :show-inheritance:

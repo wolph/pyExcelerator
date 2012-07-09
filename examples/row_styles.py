@@ -3,17 +3,18 @@
 # Copyright (C) 2005 Kiseliov Roman
 __rev_id__ = """$Id: row_styles.py,v 1.3 2005/03/27 12:47:06 rvk Exp $"""
 
+if __name__ == '__main__':
+    from pyExcelerator import *
 
-from pyExcelerator import *
+    w = Workbook()
+    ws = w.add_sheet('Hey, Dude')
 
-w = Workbook()
-ws = w.add_sheet('Hey, Dude')
+    for i in range(6, 80):
+        fnt = Font()
+        fnt.height = i*20
+        style = XFStyle()
+        style.font = fnt
+        ws.write(i, 1, 'Test')
+        ws.row(i).set_style(style)
+    w.save('row_styles.xls')
 
-for i in range(6, 80):
-    fnt = Font()
-    fnt.height = i*20
-    style = XFStyle()
-    style.font = fnt
-    ws.write(i, 1, 'Test')
-    ws.row(i).set_style(style)
-w.save('row_styles.xls')

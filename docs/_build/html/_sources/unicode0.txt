@@ -1,0 +1,7 @@
+unicode0 Module
+===============
+
+.. automodule:: unicode0
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -3,37 +3,37 @@
 # Copyright (C) 2005 Kiseliov Roman
 __rev_id__ = """$Id: dates.py,v 1.1 2005/07/20 07:24:11 rvk Exp $"""
 
+if __name__ == '__main__':
+    from pyExcelerator import *
+    from datetime import datetime
 
-from pyExcelerator import *
-from datetime import datetime
+    w = Workbook()
+    ws = w.add_sheet('Hey, Dude')
 
-w = Workbook()
-ws = w.add_sheet('Hey, Dude')
+    fmts = [
+        'M/D/YY',
+        'D-MMM-YY',
+        'D-MMM',
+        'MMM-YY',
+        'h:mm AM/PM',
+        'h:mm:ss AM/PM',
+        'h:mm',
+        'h:mm:ss',
+        'M/D/YY h:mm',
+        'mm:ss',
+        '[h]:mm:ss',
+        'mm:ss.0',
+    ]
 
-fmts = [
-    'M/D/YY',
-    'D-MMM-YY',
-    'D-MMM',
-    'MMM-YY',
-    'h:mm AM/PM',
-    'h:mm:ss AM/PM',
-    'h:mm',
-    'h:mm:ss',
-    'M/D/YY h:mm',
-    'mm:ss',
-    '[h]:mm:ss',
-    'mm:ss.0',
-]
+    i = 0
+    for fmt in fmts:
+        ws.write(i, 0, fmt)
 
-i = 0
-for fmt in fmts:
-    ws.write(i, 0, fmt)
+        style = XFStyle()
+        style.num_format_str = fmt
 
-    style = XFStyle()
-    style.num_format_str = fmt
+        ws.write(i, 4, datetime.now(), style)
 
-    ws.write(i, 4, datetime.now(), style)
+        i += 1
 
-    i += 1
-
-w.save('dates.xls')
+    w.save('dates.xls')

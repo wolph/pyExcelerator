@@ -1,0 +1,7 @@
+big-35Mb Module
+===============
+
+.. automodule:: big-35Mb
+    :members:
+    :undoc-members:
+    :show-inheritance:

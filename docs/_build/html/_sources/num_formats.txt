@@ -1,0 +1,7 @@
+num_formats Module
+==================
+
+.. automodule:: num_formats
+    :members:
+    :undoc-members:
+    :show-inheritance:

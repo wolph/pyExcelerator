@@ -1,0 +1,7 @@
+numbers Module
+==============
+
+.. automodule:: numbers
+    :members:
+    :undoc-members:
+    :show-inheritance:

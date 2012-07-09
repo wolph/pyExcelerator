@@ -1,0 +1,264 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyExcelerator.ExcelFormulaLexer &mdash; pyExcelerator 0.6.4.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.6.4.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="pyExcelerator 0.6.4.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="../../_static/small_flask.css" type= "text/css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">pyExcelerator 0.6.4.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for pyExcelerator.ExcelFormulaLexer</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: windows-1251 -*-</span>
+
+<span class="c">#  Copyright (C) 2005 Roman V. Kiseliov</span>
+<span class="c">#  All rights reserved.</span>
+<span class="c">#</span>
+<span class="c">#  Redistribution and use in source and binary forms, with or without</span>
+<span class="c">#  modification, are permitted provided that the following conditions</span>
+<span class="c">#  are met:</span>
+<span class="c">#</span>
+<span class="c">#  1. Redistributions of source code must retain the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer.</span>
+<span class="c">#</span>
+<span class="c">#  2. Redistributions in binary form must reproduce the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer in</span>
+<span class="c">#     the documentation and/or other materials provided with the</span>
+<span class="c">#     distribution.</span>
+<span class="c">#</span>
+<span class="c">#  3. All advertising materials mentioning features or use of this</span>
+<span class="c">#     software must display the following acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c">#</span>
+<span class="c">#  4. Redistributions of any form whatsoever must retain the following</span>
+<span class="c">#     acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c">#</span>
+<span class="c">#  THIS SOFTWARE IS PROVIDED BY Roman V. Kiseliov ``AS IS&#39;&#39; AND ANY</span>
+<span class="c">#  EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c">#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</span>
+<span class="c">#  PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL Roman V. Kiseliov OR</span>
+<span class="c">#  ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="c">#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT</span>
+<span class="c">#  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class="c">#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)</span>
+<span class="c">#  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,</span>
+<span class="c">#  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c">#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED</span>
+<span class="c">#  OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+
+<span class="n">__rev_id__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;$Id: ExcelFormulaLexer.py,v 1.4 2005/08/14 06:40:23 rvk Exp $&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">antlr</span> <span class="kn">import</span> <span class="n">EOF</span><span class="p">,</span> <span class="n">CommonToken</span> <span class="k">as</span> <span class="n">Tok</span><span class="p">,</span> <span class="n">TokenStream</span><span class="p">,</span> <span class="n">TokenStreamException</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">ExcelFormulaParser</span>
+<span class="kn">from</span> <span class="nn">re</span> <span class="kn">import</span> <span class="nb">compile</span> <span class="k">as</span> <span class="n">recompile</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="n">LOCALE</span><span class="p">,</span> <span class="n">UNICODE</span><span class="p">,</span> <span class="n">IGNORECASE</span>
+
+
+<span class="n">int_const_pattern</span> <span class="o">=</span> <span class="n">recompile</span><span class="p">(</span><span class="s">r&quot;\d+&quot;</span><span class="p">)</span>
+<span class="n">flt_const_pattern</span> <span class="o">=</span> <span class="n">recompile</span><span class="p">(</span><span class="s">r&quot;\d*\.\d+(?:[Ee][+-]?\d+)?&quot;</span><span class="p">)</span>
+<span class="n">str_const_pattern</span> <span class="o">=</span> <span class="n">recompile</span><span class="p">(</span><span class="s">r&#39;[&quot;][^&quot;]*[&quot;]&#39;</span><span class="p">)</span>
+<span class="c">#range2d_pattern   = recompile(r&quot;\$?[A-I]?[A-Z]\$?\d+:\$?[A-I]?[A-Z]\$?\d+&quot;)</span>
+<span class="n">ref2d_pattern</span>     <span class="o">=</span> <span class="n">recompile</span><span class="p">(</span><span class="s">r&quot;\$?[A-I]?[A-Z]\$?\d+&quot;</span><span class="p">)</span>
+<span class="n">true_pattern</span>      <span class="o">=</span> <span class="n">recompile</span><span class="p">(</span><span class="s">r&quot;TRUE&quot;</span><span class="p">,</span> <span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="n">false_pattern</span>     <span class="o">=</span> <span class="n">recompile</span><span class="p">(</span><span class="s">r&quot;FALSE&quot;</span><span class="p">,</span> <span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="n">name_pattern</span>      <span class="o">=</span> <span class="n">recompile</span><span class="p">(</span><span class="s">r&quot;[\.\w]+&quot;</span><span class="p">,</span> <span class="n">LOCALE</span><span class="p">)</span>
+
+<span class="n">pattern_type_tuples</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">flt_const_pattern</span><span class="p">,</span> <span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">NUM_CONST</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">int_const_pattern</span><span class="p">,</span> <span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">INT_CONST</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">str_const_pattern</span><span class="p">,</span> <span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">STR_CONST</span><span class="p">),</span>
+<span class="c">#    (range2d_pattern  , ExcelFormulaParser.RANGE2D),</span>
+    <span class="p">(</span><span class="n">ref2d_pattern</span>    <span class="p">,</span> <span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">REF2D</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">true_pattern</span>     <span class="p">,</span> <span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">TRUE_CONST</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">false_pattern</span>    <span class="p">,</span> <span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">FALSE_CONST</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">name_pattern</span>     <span class="p">,</span> <span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">NAME</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="n">type_text_tuples</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">NE</span><span class="p">,</span> <span class="s">&#39;&lt;&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">LE</span><span class="p">,</span> <span class="s">&#39;&lt;=&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">GE</span><span class="p">,</span> <span class="s">&#39;&gt;=&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">EQ</span><span class="p">,</span> <span class="s">&#39;=&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">LT</span><span class="p">,</span> <span class="s">&#39;&lt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">GT</span><span class="p">,</span> <span class="s">&#39;&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">ADD</span><span class="p">,</span> <span class="s">&#39;+&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">SUB</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">MUL</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">DIV</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">COLON</span><span class="p">,</span> <span class="s">&#39;:&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">SEMICOLON</span><span class="p">,</span> <span class="s">&#39;;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">COMMA</span><span class="p">,</span> <span class="s">&#39;,&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">LP</span><span class="p">,</span> <span class="s">&#39;(&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">RP</span><span class="p">,</span> <span class="s">&#39;)&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">CONCAT</span><span class="p">,</span> <span class="s">&#39;&amp;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">PERCENT</span><span class="p">,</span> <span class="s">&#39;%&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ExcelFormulaParser</span><span class="o">.</span><span class="n">POWER</span><span class="p">,</span> <span class="s">&#39;^&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="Lexer"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.ExcelFormulaLexer.Lexer">[docs]</a><span class="k">class</span> <span class="nc">Lexer</span><span class="p">(</span><span class="n">TokenStream</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">text</span><span class="p">[:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pos</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_line</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<div class="viewcode-block" id="Lexer.isEOF"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.ExcelFormulaLexer.Lexer.isEOF">[docs]</a>    <span class="k">def</span> <span class="nf">isEOF</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pos</span>
+
+</div>
+<div class="viewcode-block" id="Lexer.rest"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.ExcelFormulaLexer.Lexer.rest">[docs]</a>    <span class="k">def</span> <span class="nf">rest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_pos</span><span class="p">:]</span>
+
+</div>
+<div class="viewcode-block" id="Lexer.curr_ch"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.ExcelFormulaLexer.Lexer.curr_ch">[docs]</a>    <span class="k">def</span> <span class="nf">curr_ch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_pos</span><span class="p">]</span>
+
+</div>
+<div class="viewcode-block" id="Lexer.next_ch"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.ExcelFormulaLexer.Lexer.next_ch">[docs]</a>    <span class="k">def</span> <span class="nf">next_ch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pos</span> <span class="o">+=</span> <span class="n">n</span>
+
+</div>
+<div class="viewcode-block" id="Lexer.is_whitespace"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.ExcelFormulaLexer.Lexer.is_whitespace">[docs]</a>    <span class="k">def</span> <span class="nf">is_whitespace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_ch</span><span class="p">()</span> <span class="ow">in</span> <span class="s">&quot; </span><span class="se">\t\n\r\f\v</span><span class="s">&quot;</span>
+
+</div>
+<div class="viewcode-block" id="Lexer.match_pattern"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.ExcelFormulaLexer.Lexer.match_pattern">[docs]</a>    <span class="k">def</span> <span class="nf">match_pattern</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">toktype</span><span class="p">):</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_pos</span><span class="p">:])</span>
+        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+            <span class="n">start_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pos</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">end_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pos</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">tt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">[</span><span class="n">start_pos</span><span class="p">:</span><span class="n">end_pos</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pos</span> <span class="o">=</span> <span class="n">end_pos</span>
+            <span class="k">return</span> <span class="n">Tok</span><span class="p">(</span><span class="nb">type</span> <span class="o">=</span> <span class="n">toktype</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="n">tt</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">start_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+</div>
+<div class="viewcode-block" id="Lexer.nextToken"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.ExcelFormulaLexer.Lexer.nextToken">[docs]</a>    <span class="k">def</span> <span class="nf">nextToken</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># skip whitespace</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">isEOF</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_whitespace</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">next_ch</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isEOF</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">Tok</span><span class="p">(</span><span class="nb">type</span> <span class="o">=</span> <span class="n">EOF</span><span class="p">)</span>
+        <span class="c"># first, try to match token with more chars</span>
+        <span class="k">for</span> <span class="n">ptt</span> <span class="ow">in</span> <span class="n">pattern_type_tuples</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">match_pattern</span><span class="p">(</span><span class="o">*</span><span class="n">ptt</span><span class="p">);</span>
+            <span class="k">if</span> <span class="n">t</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">t</span>
+        <span class="c"># second, we want find short tokens</span>
+        <span class="k">for</span> <span class="n">ty</span><span class="p">,</span> <span class="n">te</span> <span class="ow">in</span> <span class="n">type_text_tuples</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">te</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">next_ch</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">te</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">Tok</span><span class="p">(</span><span class="nb">type</span> <span class="o">=</span> <span class="n">ty</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="n">te</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pos</span><span class="p">)</span>
+        <span class="c"># at this point, smth strange is happened</span>
+        <span class="k">raise</span> <span class="n">TokenStreamException</span><span class="p">(</span><span class="s">&quot;Unknown char </span><span class="si">%s</span><span class="s"> at </span><span class="si">%u</span><span class="s"> col.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_ch</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pos</span><span class="p">))</span>
+
+</div></div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span> <span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">locale</span>
+    <span class="n">locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span> <span class="s">&#39;russian&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Lexer</span><span class="p">(</span><span class="s">&#39;1+2+3+67.8678 + &quot; @##$$$ klhkh kljhklhkl &quot; + .58e-678*A1:B4 - 1lkjljlkjl3535порпор&#39;</span><span class="p">):</span>
+            <span class="k">print</span> <span class="n">t</span>
+    <span class="k">except</span> <span class="n">TokenStreamException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;error:&quot;</span><span class="p">,</span> <span class="n">e</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */</script>
+
+    <div class="footer">
+      &copy; Copyright 2012, Rick van Hattem.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+    </div>
+  </body>
+</html>

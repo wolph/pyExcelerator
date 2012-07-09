@@ -1,0 +1,7 @@
+panes Module
+============
+
+.. automodule:: panes
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+hyperlinks Module
+=================
+
+.. automodule:: hyperlinks
+    :members:
+    :undoc-members:
+    :show-inheritance:

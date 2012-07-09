@@ -139,5 +139,6 @@ def main():
             print '<UNKNOWN RECORD>: rec_id == 0x%04X, size 0x%04X bytes' % (rec_id, data_size)
         print '---------------'
 
+if __name__ == '__main__':
+    main()
 
-main()

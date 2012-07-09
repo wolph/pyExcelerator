@@ -1,0 +1,7 @@
+row_styles Module
+=================
+
+.. automodule:: row_styles
+    :members:
+    :undoc-members:
+    :show-inheritance:

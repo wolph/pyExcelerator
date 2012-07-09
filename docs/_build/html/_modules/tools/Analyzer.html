@@ -1,0 +1,1789 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tools.Analyzer &mdash; pyExcelerator 0.6.4.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.6.4.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="pyExcelerator 0.6.4.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="../../_static/small_flask.css" type= "text/css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">pyExcelerator 0.6.4.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for tools.Analyzer</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: windows-1251 -*-</span>
+
+<span class="c">#  Copyright (C) 2005 Roman V. Kiseliov</span>
+<span class="c">#  All rights reserved.</span>
+<span class="c"># </span>
+<span class="c">#  Redistribution and use in source and binary forms, with or without</span>
+<span class="c">#  modification, are permitted provided that the following conditions</span>
+<span class="c">#  are met:</span>
+<span class="c"># </span>
+<span class="c">#  1. Redistributions of source code must retain the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer.</span>
+<span class="c"># </span>
+<span class="c">#  2. Redistributions in binary form must reproduce the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer in</span>
+<span class="c">#     the documentation and/or other materials provided with the</span>
+<span class="c">#     distribution.</span>
+<span class="c"># </span>
+<span class="c">#  3. All advertising materials mentioning features or use of this</span>
+<span class="c">#     software must display the following acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c"># </span>
+<span class="c">#  4. Redistributions of any form whatsoever must retain the following</span>
+<span class="c">#     acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c"># </span>
+<span class="c">#  THIS SOFTWARE IS PROVIDED BY Roman V. Kiseliov ``AS IS&#39;&#39; AND ANY</span>
+<span class="c">#  EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c">#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</span>
+<span class="c">#  PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL Roman V. Kiseliov OR</span>
+<span class="c">#  ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="c">#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT</span>
+<span class="c">#  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class="c">#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)</span>
+<span class="c">#  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,</span>
+<span class="c">#  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c">#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED</span>
+<span class="c">#  OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+<span class="n">__rev_id__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;$Id: Analyzer.py,v 1.4 2005/05/12 06:51:17 rvk Exp $&quot;&quot;&quot;</span>
+
+
+<span class="c"># total 258 records in database</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+
+<div class="viewcode-block" id="analyze_1904_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_1904_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_1904_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0022</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ADDIN_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ADDIN_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ADDIN_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0087</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ADDMENU_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ADDMENU_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ADDMENU_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00C2</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ARRAY_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ARRAY_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ARRAY_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0021, 0x0221</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_AUTOFILTER_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_AUTOFILTER_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_AUTOFILTER_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x009E</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_AUTOFILTERINFO_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_AUTOFILTERINFO_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_AUTOFILTERINFO_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x009D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BACKUP_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BACKUP_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BACKUP_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0040</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BEGIN_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BEGIN_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BEGIN_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1033</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BITMAP_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BITMAP_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BITMAP_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00E9</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BLANK_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BLANK_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BLANK_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0001, 0x0201</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BOF_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BOF_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BOF_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0009, 0x0209, 0x0409, 0x0809</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BOOKBOOL_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BOOKBOOL_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BOOKBOOL_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00DA</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BOOLERR_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BOOLERR_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BOOLERR_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0005, 0x0205</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BOTTOMMARGIN_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BOTTOMMARGIN_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BOTTOMMARGIN_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0029</span>
+    <span class="k">print</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;d&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BOUNDSHEET_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BOUNDSHEET_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BOUNDSHEET_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0085</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BUILTINFMTCNT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BUILTINFMTCNT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BUILTINFMTCNT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0056</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BUNDLEHEADER_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BUNDLEHEADER_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BUNDLEHEADER_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x008F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_BUNDLESOFFSET_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_BUNDLESOFFSET_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_BUNDLESOFFSET_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x008E</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CALCCOUNT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CALCCOUNT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CALCCOUNT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x000C</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CALCMODE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CALCMODE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CALCMODE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x000D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_MERGEDCELLS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_MERGEDCELLS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_MERGEDCELLS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00E5</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CF_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CF_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CF_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01B1</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CHTRCELLCONTENT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CHTRCELLCONTENT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CHTRCELLCONTENT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x013B</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CHTRHEADER_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CHTRHEADER_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CHTRHEADER_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0196</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CHTRINFO_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CHTRINFO_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CHTRINFO_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0138</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CHTRINSERT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CHTRINSERT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CHTRINSERT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0137</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CHTRINSERTTAB_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CHTRINSERTTAB_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CHTRINSERTTAB_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x014D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CHTRMOVERANGE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CHTRMOVERANGE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CHTRMOVERANGE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0140</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CODENAME_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CODENAME_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CODENAME_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01BA</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CODEPAGE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CODEPAGE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CODEPAGE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0042</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_COLINFO_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_COLINFO_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_COLINFO_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x007D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_COLUMNDEFAULT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_COLUMNDEFAULT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_COLUMNDEFAULT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0020</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_COLWIDTH_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_COLWIDTH_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_COLWIDTH_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0024</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CONDFMT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CONDFMT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CONDFMT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01B0</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CONTINUE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CONTINUE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CONTINUE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x003C</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_COORDLIST_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_COORDLIST_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_COORDLIST_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00A9</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_COUNTRY_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_COUNTRY_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_COUNTRY_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x008C</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_CRN_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_CRN_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_CRN_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x005A</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_Chart3D_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_Chart3D_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_Chart3D_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x103A</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_Chart3DDataFormat_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_Chart3DDataFormat_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_Chart3DDataFormat_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x105F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartAI_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartAI_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartAI_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1051</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartAlruns_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartAlruns_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartAlruns_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1050</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartArea_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartArea_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartArea_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x101A</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartAreaformat_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartAreaformat_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartAreaformat_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x100A</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartAttachedlabel_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartAttachedlabel_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartAttachedlabel_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x100C</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartAxcext_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartAxcext_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartAxcext_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1062</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartAxesused_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartAxesused_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartAxesused_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1046</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartAxis_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartAxis_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartAxis_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x101D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartAxislineformat_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartAxislineformat_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartAxislineformat_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1021</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartAxisparent_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartAxisparent_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartAxisparent_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1041</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartBar_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartBar_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartBar_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1017</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartBoppcustom_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartBoppcustom_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartBoppcustom_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1067</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartBoppop_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartBoppop_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartBoppop_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1061</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartCatserrange_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartCatserrange_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartCatserrange_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1020</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartChart_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartChart_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartChart_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1002</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartChartformat_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartChartformat_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartChartformat_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1014</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartChartline_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartChartline_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartChartline_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x101C</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartDat_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartDat_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartDat_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1063</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartDataformat_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartDataformat_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartDataformat_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1006</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartDefaulttext_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartDefaulttext_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartDefaulttext_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1024</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartDropbar_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartDropbar_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartDropbar_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x103D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartFbi_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartFbi_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartFbi_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1060</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartFontx_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartFontx_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartFontx_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1026</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartFormatlink_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartFormatlink_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartFormatlink_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1022</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartFrame_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartFrame_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartFrame_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1032</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartGelframe_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartGelframe_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartGelframe_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1066</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartIfmt_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartIfmt_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartIfmt_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x104E</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartLegend_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartLegend_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartLegend_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1015</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartLegendxn_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartLegendxn_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartLegendxn_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1043</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartLine_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartLine_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartLine_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1018</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartLineformat_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartLineformat_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartLineformat_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1007</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartMarkerformat_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartMarkerformat_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartMarkerformat_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1009</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartObjectLink_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartObjectLink_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartObjectLink_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1027</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartPicf_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartPicf_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartPicf_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x103C</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartPie_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartPie_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartPie_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1019</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartPieformat_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartPieformat_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartPieformat_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x100B</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartPlotarea_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartPlotarea_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartPlotarea_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1035</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartPlotgrowth_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartPlotgrowth_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartPlotgrowth_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1064</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartPos_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartPos_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartPos_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x104F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartRadar_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartRadar_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartRadar_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x103E</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartRadararea_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartRadararea_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartRadararea_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1040</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSbaseref_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSbaseref_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSbaseref_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1048</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartScatter_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartScatter_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartScatter_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x101B</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSerauxerrbar_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSerauxerrbar_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSerauxerrbar_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x105B</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSerauxtrend_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSerauxtrend_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSerauxtrend_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x104B</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSerfmt_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSerfmt_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSerfmt_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x105D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSeries_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSeries_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSeries_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1003</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSerieslist_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSerieslist_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSerieslist_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1016</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSeriestext_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSeriestext_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSeriestext_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x100D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSerparent_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSerparent_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSerparent_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x104A</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSertocrt_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSertocrt_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSertocrt_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1045</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartShtprops_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartShtprops_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartShtprops_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1044</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSiindex_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSiindex_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSiindex_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1065</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartSurface_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartSurface_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartSurface_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x103F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartText_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartText_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartText_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1025</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartTick_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartTick_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartTick_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x101E</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ChartValuerange_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ChartValuerange_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ChartValuerange_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x101F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DBCELL_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DBCELL_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DBCELL_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00D7</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DCON_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DCON_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DCON_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0050</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DCONBIN_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DCONBIN_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DCONBIN_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01B5</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DCONNAME_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DCONNAME_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DCONNAME_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0053</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DCONREF_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DCONREF_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DCONREF_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0051</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DEFAULTROWHEIGHT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DEFAULTROWHEIGHT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DEFAULTROWHEIGHT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0025, 0x0225</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DEFCOLWIDTH_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DEFCOLWIDTH_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DEFCOLWIDTH_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0055</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DELMENU_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DELMENU_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DELMENU_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00C3</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DELTA_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DELTA_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DELTA_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0010</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DIMENSIONS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DIMENSIONS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DIMENSIONS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0000, 0x0200</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DOCROUTE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DOCROUTE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DOCROUTE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00B8</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DSF_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DSF_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DSF_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0161</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DV_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DV_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DV_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01BE</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_DVAL_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_DVAL_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_DVAL_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01B2</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_EDG_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_EDG_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_EDG_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0088</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_EFONT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_EFONT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_EFONT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0045</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_END_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_END_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_END_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1034</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_EOF_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_EOF_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_EOF_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x000A</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_EXTERNCOUNT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_EXTERNCOUNT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_EXTERNCOUNT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0016</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_EXTERNNAME_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_EXTERNNAME_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_EXTERNNAME_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0023, 0x0223</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_EXTERNSHEET_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_EXTERNSHEET_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_EXTERNSHEET_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0017</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_EXTSST_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_EXTSST_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_EXTSST_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00FF</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_FILEPASS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_FILEPASS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_FILEPASS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x002F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_FILESHARING_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_FILESHARING_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_FILESHARING_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x005B</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_FILTERMODE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_FILTERMODE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_FILTERMODE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x009B</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_FNGROUPCOUNT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_FNGROUPCOUNT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_FNGROUPCOUNT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x009C</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_FNGROUPNAME_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_FNGROUPNAME_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_FNGROUPNAME_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x009A</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_FONT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_FONT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_FONT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0031, 0x0231</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_FOOTER_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_FOOTER_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_FOOTER_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0015</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_FORMAT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_FORMAT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_FORMAT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x001E, 0x041E</span>
+    <span class="n">fmt_idx</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;H&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">name_len</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;H&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">compressed</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span>
+    <span class="k">print</span> <span class="s">&#39;format index      : 0x</span><span class="si">%04X</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">fmt_idx</span>
+    <span class="k">print</span> <span class="s">&#39;format name len   : 0x</span><span class="si">%04X</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">name_len</span>
+    <span class="k">print</span> <span class="s">&#39;compressed UNICODE:&#39;</span><span class="p">,</span> <span class="n">compressed</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">:]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">compressed</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">name</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="s">&#39;</span><span class="se">\x00</span><span class="s">&#39;</span><span class="p">]</span>    
+        <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;format str        :&#39;</span><span class="p">,</span> <span class="n">name</span>            
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_FORMATCOUNT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_FORMATCOUNT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_FORMATCOUNT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x001F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_FORMULA_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_FORMULA_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_FORMULA_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0006, 0x0206, 0x0406</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_GCW_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_GCW_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_GCW_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00AB</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_GRIDSET_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_GRIDSET_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_GRIDSET_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0082</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_GUTS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_GUTS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_GUTS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0080</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_HCENTER_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_HCENTER_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_HCENTER_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0083</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_HEADER_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_HEADER_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_HEADER_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0014</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_HIDEOBJ_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_HIDEOBJ_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_HIDEOBJ_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x008D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_HLINK_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_HLINK_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_HLINK_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01B8</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_HORIZONTALPAGEBREAKS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_HORIZONTALPAGEBREAKS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_HORIZONTALPAGEBREAKS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x001B</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_IMDATA_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_IMDATA_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_IMDATA_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x007F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_INDEX_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_INDEX_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_INDEX_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x000B, 0x020B</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_INTEGER_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_INTEGER_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_INTEGER_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0002</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_INTERFACEEND_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_INTERFACEEND_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_INTERFACEEND_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00E2</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_INTERFACEHDR_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_INTERFACEHDR_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_INTERFACEHDR_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00E1</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ITERATION_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ITERATION_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ITERATION_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0011</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_IXFE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_IXFE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_IXFE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0044</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_LABEL_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_LABEL_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_LABEL_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0004, 0x0204</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_LABELRANGES_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_LABELRANGES_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_LABELRANGES_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x015F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_LABELSST_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_LABELSST_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_LABELSST_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00FD</span>
+    <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">xf_idx</span><span class="p">,</span> <span class="n">sst_idx</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;3HL&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;row     : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="n">row</span>
+    <span class="k">print</span> <span class="s">&#39;col     : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="n">col</span>
+    <span class="k">print</span> <span class="s">&#39;xf  idx : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="n">xf_idx</span>
+    <span class="k">print</span> <span class="s">&#39;sst idx : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="n">sst_idx</span>
+
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_LEFTMARGIN_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_LEFTMARGIN_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_LEFTMARGIN_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0026</span>
+    <span class="k">print</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;d&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_LHNGRAPH_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_LHNGRAPH_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_LHNGRAPH_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0095</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_LHRECORD_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_LHRECORD_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_LHRECORD_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0094</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_LPR_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_LPR_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_LPR_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0098</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_MMS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_MMS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_MMS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00C1</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_MSODRAWING_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_MSODRAWING_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_MSODRAWING_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00EC</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_MSODRAWINGGROUP_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_MSODRAWINGGROUP_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_MSODRAWINGGROUP_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00EB</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_MSODRAWINGSELECTION_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_MSODRAWINGSELECTION_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_MSODRAWINGSELECTION_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00ED</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_MULBLANK_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_MULBLANK_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_MULBLANK_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00BE</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_MULRK_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_MULRK_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_MULRK_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00BD</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_NAME_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_NAME_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_NAME_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0018, 0x0218</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_NOTE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_NOTE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_NOTE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x001C</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_NUMBER_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_NUMBER_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_NUMBER_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0003, 0x0203</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_OBJ_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_OBJ_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_OBJ_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x005D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_OBJPROTECT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_OBJPROTECT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_OBJPROTECT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0063</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_OBPROJ_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_OBPROJ_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_OBPROJ_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00D3</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_OLESIZE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_OLESIZE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_OLESIZE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00DE</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PALETTE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PALETTE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PALETTE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0092</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PANE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PANE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PANE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0041</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PASSWORD_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PASSWORD_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PASSWORD_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0013</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PLS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PLS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PLS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x004D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PRECISION_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PRECISION_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PRECISION_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x000E</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PRINTGRIDLINES_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PRINTGRIDLINES_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PRINTGRIDLINES_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x002B</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PRINTHEADERS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PRINTHEADERS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PRINTHEADERS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x002A</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PROT4REV_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PROT4REV_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PROT4REV_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01AF</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PROT4REVPASS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PROT4REVPASS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PROT4REVPASS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01BC</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PROTECT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PROTECT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PROTECT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0012</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_PUB_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_PUB_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_PUB_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0089</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_QSI_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_QSI_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_QSI_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01AD</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="analyze_RECALCID_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_RECALCID_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_RECALCID_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01C1: </span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_RECIPNAME_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_RECIPNAME_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_RECIPNAME_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00B9</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_REFMODE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_REFMODE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_REFMODE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x000F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_REFRESHALL_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_REFRESHALL_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_REFRESHALL_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01B7</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_RIGHTMARGIN_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_RIGHTMARGIN_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_RIGHTMARGIN_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0027</span>
+    <span class="k">print</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;d&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_RK_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_RK_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_RK_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x007E, 0x027E</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_ROW_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_ROW_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_ROW_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0008, 0x0208</span>
+    <span class="n">idx</span><span class="p">,</span> <span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">,</span> <span class="n">height_options</span><span class="p">,</span> <span class="n">not_used</span><span class="p">,</span> <span class="n">not_used</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> \
+        <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;6HL&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;row index        : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="n">idx</span>
+    <span class="k">print</span> <span class="s">&#39;start col        : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="n">col1</span>
+    <span class="k">print</span> <span class="s">&#39;last col + 1     : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="n">col2</span>
+    <span class="k">print</span> <span class="s">&#39;height           : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="p">(</span><span class="n">height_options</span> <span class="o">&amp;</span> <span class="mh">0x7FFF</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;height is custom : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="p">((</span><span class="n">height_options</span> <span class="o">&amp;</span> <span class="mh">0x8000</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;outline level    : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="p">((</span><span class="n">options</span> <span class="o">&amp;</span> <span class="mh">0x00000007</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;level collapsed  : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="p">((</span><span class="n">options</span> <span class="o">&amp;</span> <span class="mh">0x00000010</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;row is hidden    : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="p">((</span><span class="n">options</span> <span class="o">&amp;</span> <span class="mh">0x00000020</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;font height match: 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="p">((</span><span class="n">options</span> <span class="o">&amp;</span> <span class="mh">0x00000040</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;default format   : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="p">((</span><span class="n">options</span> <span class="o">&amp;</span> <span class="mh">0x00000080</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">7</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;default xf index : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="p">((</span><span class="n">options</span> <span class="o">&amp;</span> <span class="mh">0x0FFF0000</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;add space above  : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="p">((</span><span class="n">options</span> <span class="o">&amp;</span> <span class="mh">0x10000000</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">28</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">&#39;add space below  : 0x</span><span class="si">%000X</span><span class="s">&#39;</span>  <span class="o">%</span> <span class="p">((</span><span class="n">options</span> <span class="o">&amp;</span> <span class="mh">0x20000000</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">29</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="analyze_RSTRING_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_RSTRING_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_RSTRING_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00D6</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SAFERECALC_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SAFERECALC_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SAFERECALC_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x005F</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SCENARIO_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SCENARIO_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SCENARIO_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00AF</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SCENMAN_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SCENMAN_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SCENMAN_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00AE</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SCENPROTECT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SCENPROTECT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SCENPROTECT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00DD</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SCL_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SCL_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SCL_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00A0</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SCREENTIP_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SCREENTIP_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SCREENTIP_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0800</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SELECTION_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SELECTION_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SELECTION_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x001D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SETUP_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SETUP_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SETUP_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00A1</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SHEETLAYOUT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SHEETLAYOUT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SHEETLAYOUT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0862</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SHEETPROTECTION_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SHEETPROTECTION_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SHEETPROTECTION_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0867</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SHRFMLA_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SHRFMLA_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SHRFMLA_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00BC, 0x04BC</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SORT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SORT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SORT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0090</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SOUND_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SOUND_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SOUND_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0096</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SST_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SST_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SST_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00FC</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_STANDARDWIDTH_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_STANDARDWIDTH_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_STANDARDWIDTH_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0099</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_STRING_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_STRING_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_STRING_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0007, 0x0207</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_STYLE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_STYLE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_STYLE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0093, 0x0293</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SUB_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SUB_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SUB_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0091</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SUPBOOK_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SUPBOOK_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SUPBOOK_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01AE</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXDATETIME_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXDATETIME_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXDATETIME_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00CE</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXDB_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXDB_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXDB_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00C6</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXDBEX_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXDBEX_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXDBEX_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0122</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXDI_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXDI_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXDI_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00C5</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXDOUBLE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXDOUBLE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXDOUBLE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00C9</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXEX_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXEX_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXEX_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00F1</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXEXT_PARAMQRY_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXEXT_PARAMQRY_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXEXT_PARAMQRY_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00DC</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXFDBTYPE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXFDBTYPE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXFDBTYPE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01BB</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXFIELD_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXFIELD_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXFIELD_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00C7</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXFILT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXFILT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXFILT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00F2</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXFMLA_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXFMLA_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXFMLA_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00F9</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXFORMAT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXFORMAT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXFORMAT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00FB</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXFORMULA_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXFORMULA_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXFORMULA_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0103</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXIDSTM_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXIDSTM_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXIDSTM_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00D5</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXINDEXLIST_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXINDEXLIST_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXINDEXLIST_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00C8</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXIVD_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXIVD_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXIVD_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00B4</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXLI_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXLI_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXLI_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00B5</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXNAME_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXNAME_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXNAME_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00F6</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXPAIR_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXPAIR_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXPAIR_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00F8</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXPI_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXPI_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXPI_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00B6</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXRULE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXRULE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXRULE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00F0</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXSELECT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXSELECT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXSELECT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00F7</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXSTRING_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXSTRING_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXSTRING_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00CD</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXTBL_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXTBL_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXTBL_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00D0</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXTBPG_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXTBPG_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXTBPG_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00D2</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXTBRGITEM_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXTBRGITEM_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXTBRGITEM_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00D1</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXVD_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXVD_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXVD_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00B1</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXVDEX_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXVDEX_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXVDEX_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0100</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXVI_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXVI_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXVI_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00B2</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXVIEW_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXVIEW_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXVIEW_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00B0</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_SXVS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_SXVS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_SXVS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00E3</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_TABID_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_TABID_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_TABID_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x013D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_TABLE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_TABLE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_TABLE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0036, 0x0236</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_TEMPLATE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_TEMPLATE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_TEMPLATE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0060</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_TOPMARGIN_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_TOPMARGIN_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_TOPMARGIN_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0028</span>
+    <span class="k">print</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s">&#39;&lt;d&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_TXO_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_TXO_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_TXO_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01B6</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_UDDESC_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_UDDESC_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_UDDESC_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x00DF</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_UNCALCED_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_UNCALCED_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_UNCALCED_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x005E</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_UNITS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_UNITS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_UNITS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x1001</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_USERBVIEW_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_USERBVIEW_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_USERBVIEW_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01A9</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_USERSVIEWBEGIN_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_USERSVIEWBEGIN_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_USERSVIEWBEGIN_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01AA</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_USERSVIEWEND_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_USERSVIEWEND_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_USERSVIEWEND_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01AB</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_USESELFS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_USESELFS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_USESELFS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0160</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_VCENTER_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_VCENTER_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_VCENTER_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0084</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_VERTICALPAGEBREAKS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_VERTICALPAGEBREAKS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_VERTICALPAGEBREAKS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x001A</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_WEBQRYSETTINGS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_WEBQRYSETTINGS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_WEBQRYSETTINGS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0803</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_WEBQRYTABLES_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_WEBQRYTABLES_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_WEBQRYTABLES_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0804</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_WINDOW1_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_WINDOW1_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_WINDOW1_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x003D</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_WINDOW2_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_WINDOW2_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_WINDOW2_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x003E, 0x023E</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_WINDOWPROTECT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_WINDOWPROTECT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_WINDOWPROTECT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0019</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_WRITEACCESS_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_WRITEACCESS_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_WRITEACCESS_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x005C</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_WRITEPROT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_WRITEPROT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_WRITEPROT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0086</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_WSBOOL_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_WSBOOL_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_WSBOOL_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0081</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_XCT_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_XCT_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_XCT_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0059</span>
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_XF_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_XF_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_XF_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0043, 0x00E0, 0x0243, 0x0443</span>
+    <span class="c">#fnt_idx, num_ftm_idx, \</span>
+    <span class="c">#    cell_prot,         \</span>
+    <span class="c">#    align, rotation, txt_format, \</span>
+    <span class="c">#    used_attrib, \</span>
+    <span class="c">#    border0, border1, border2 = struct.unpack(&#39;&lt;3H4B2LH&#39;, data)</span>
+    <span class="c">#print &#39;fnt idx                 : 0x%000X&#39;  % fnt_idx</span>
+    <span class="c">#print &#39;num fmt idx             : 0x%000X&#39;  % num_ftm_idx</span>
+    <span class="c">#print &#39;cell is locked          : 0x%0X  &#39;  % ((cell_prot) &amp; 0x01)</span>
+    <span class="c">#print &#39;format is hidden        : 0x%0X  &#39;  % ((cell_prot &amp; 0x02) &gt;&gt; 1)</span>
+    <span class="c">#print &#39;style XF(1), cell XF(0) : 0x%0X  &#39;  % ((cell_prot &amp; 0x03) &gt;&gt; 3)</span>
+    <span class="c">#print &#39;Index to parent style XF: 0x%0000X&#39; % ((cell_prot &amp; 0xFFF0) &gt;&gt; 4)</span>
+
+    <span class="k">pass</span>
+
+</div>
+<div class="viewcode-block" id="analyze_XL5MODIFY_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_XL5MODIFY_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_XL5MODIFY_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x0162</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="analyze_XL9FILE_record"><a class="viewcode-back" href="../../tools.html#tools.Analyzer.analyze_XL9FILE_record">[docs]</a><span class="k">def</span> <span class="nf">analyze_XL9FILE_record</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c"># 0x01C0: </span>
+    <span class="k">pass</span>
+</div>
+<span class="n">all_records</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mh">0x0000</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DIMENSIONS&#39;</span><span class="p">,</span> <span class="n">analyze_DIMENSIONS_record</span><span class="p">),</span>
+    <span class="mh">0x0001</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BLANK&#39;</span><span class="p">,</span> <span class="n">analyze_BLANK_record</span><span class="p">),</span>
+    <span class="mh">0x0002</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;INTEGER&#39;</span><span class="p">,</span> <span class="n">analyze_INTEGER_record</span><span class="p">),</span>
+    <span class="mh">0x0003</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;NUMBER&#39;</span><span class="p">,</span> <span class="n">analyze_NUMBER_record</span><span class="p">),</span>
+    <span class="mh">0x0004</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;LABEL&#39;</span><span class="p">,</span> <span class="n">analyze_LABEL_record</span><span class="p">),</span>
+    <span class="mh">0x0005</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BOOLERR&#39;</span><span class="p">,</span> <span class="n">analyze_BOOLERR_record</span><span class="p">),</span>
+    <span class="mh">0x0006</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FORMULA&#39;</span><span class="p">,</span> <span class="n">analyze_FORMULA_record</span><span class="p">),</span>
+    <span class="mh">0x0007</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;STRING&#39;</span><span class="p">,</span> <span class="n">analyze_STRING_record</span><span class="p">),</span>
+    <span class="mh">0x0008</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ROW&#39;</span><span class="p">,</span> <span class="n">analyze_ROW_record</span><span class="p">),</span>
+    <span class="mh">0x0009</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BOF&#39;</span><span class="p">,</span> <span class="n">analyze_BOF_record</span><span class="p">),</span>
+    <span class="mh">0x000A</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;EOF&#39;</span><span class="p">,</span> <span class="n">analyze_EOF_record</span><span class="p">),</span>
+    <span class="mh">0x000B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;INDEX&#39;</span><span class="p">,</span> <span class="n">analyze_INDEX_record</span><span class="p">),</span>
+    <span class="mh">0x000C</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CALCCOUNT&#39;</span><span class="p">,</span> <span class="n">analyze_CALCCOUNT_record</span><span class="p">),</span>
+    <span class="mh">0x000D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CALCMODE&#39;</span><span class="p">,</span> <span class="n">analyze_CALCMODE_record</span><span class="p">),</span>
+    <span class="mh">0x000E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PRECISION&#39;</span><span class="p">,</span> <span class="n">analyze_PRECISION_record</span><span class="p">),</span>
+    <span class="mh">0x000F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;REFMODE&#39;</span><span class="p">,</span> <span class="n">analyze_REFMODE_record</span><span class="p">),</span>
+    <span class="mh">0x0010</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DELTA&#39;</span><span class="p">,</span> <span class="n">analyze_DELTA_record</span><span class="p">),</span>
+    <span class="mh">0x0011</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ITERATION&#39;</span><span class="p">,</span> <span class="n">analyze_ITERATION_record</span><span class="p">),</span>
+    <span class="mh">0x0012</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PROTECT&#39;</span><span class="p">,</span> <span class="n">analyze_PROTECT_record</span><span class="p">),</span>
+    <span class="mh">0x0013</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PASSWORD&#39;</span><span class="p">,</span> <span class="n">analyze_PASSWORD_record</span><span class="p">),</span>
+    <span class="mh">0x0014</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;HEADER&#39;</span><span class="p">,</span> <span class="n">analyze_HEADER_record</span><span class="p">),</span>
+    <span class="mh">0x0015</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FOOTER&#39;</span><span class="p">,</span> <span class="n">analyze_FOOTER_record</span><span class="p">),</span>
+    <span class="mh">0x0016</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;EXTERNCOUNT&#39;</span><span class="p">,</span> <span class="n">analyze_EXTERNCOUNT_record</span><span class="p">),</span>
+    <span class="mh">0x0017</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;EXTERNSHEET&#39;</span><span class="p">,</span> <span class="n">analyze_EXTERNSHEET_record</span><span class="p">),</span>
+    <span class="mh">0x0018</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;NAME&#39;</span><span class="p">,</span> <span class="n">analyze_NAME_record</span><span class="p">),</span>
+    <span class="mh">0x0019</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;WINDOWPROTECT&#39;</span><span class="p">,</span> <span class="n">analyze_WINDOWPROTECT_record</span><span class="p">),</span>
+    <span class="mh">0x001A</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;VERTICALPAGEBREAKS&#39;</span><span class="p">,</span> <span class="n">analyze_VERTICALPAGEBREAKS_record</span><span class="p">),</span>
+    <span class="mh">0x001B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;HORIZONTALPAGEBREAKS&#39;</span><span class="p">,</span> <span class="n">analyze_HORIZONTALPAGEBREAKS_record</span><span class="p">),</span>
+    <span class="mh">0x001C</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;NOTE&#39;</span><span class="p">,</span> <span class="n">analyze_NOTE_record</span><span class="p">),</span>
+    <span class="mh">0x001D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SELECTION&#39;</span><span class="p">,</span> <span class="n">analyze_SELECTION_record</span><span class="p">),</span>
+    <span class="mh">0x001E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FORMAT&#39;</span><span class="p">,</span> <span class="n">analyze_FORMAT_record</span><span class="p">),</span>
+    <span class="mh">0x001F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FORMATCOUNT&#39;</span><span class="p">,</span> <span class="n">analyze_FORMATCOUNT_record</span><span class="p">),</span>
+    <span class="mh">0x0020</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;COLUMNDEFAULT&#39;</span><span class="p">,</span> <span class="n">analyze_COLUMNDEFAULT_record</span><span class="p">),</span>
+    <span class="mh">0x0021</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ARRAY&#39;</span><span class="p">,</span> <span class="n">analyze_ARRAY_record</span><span class="p">),</span>
+    <span class="mh">0x0022</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;1904&#39;</span><span class="p">,</span> <span class="n">analyze_1904_record</span><span class="p">),</span>
+    <span class="mh">0x0023</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;EXTERNNAME&#39;</span><span class="p">,</span> <span class="n">analyze_EXTERNNAME_record</span><span class="p">),</span>
+    <span class="mh">0x0024</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;COLWIDTH&#39;</span><span class="p">,</span> <span class="n">analyze_COLWIDTH_record</span><span class="p">),</span>
+    <span class="mh">0x0025</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DEFAULTROWHEIGHT&#39;</span><span class="p">,</span> <span class="n">analyze_DEFAULTROWHEIGHT_record</span><span class="p">),</span>
+    <span class="mh">0x0026</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;LEFTMARGIN&#39;</span><span class="p">,</span> <span class="n">analyze_LEFTMARGIN_record</span><span class="p">),</span>
+    <span class="mh">0x0027</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;RIGHTMARGIN&#39;</span><span class="p">,</span> <span class="n">analyze_RIGHTMARGIN_record</span><span class="p">),</span>
+    <span class="mh">0x0028</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;TOPMARGIN&#39;</span><span class="p">,</span> <span class="n">analyze_TOPMARGIN_record</span><span class="p">),</span>
+    <span class="mh">0x0029</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BOTTOMMARGIN&#39;</span><span class="p">,</span> <span class="n">analyze_BOTTOMMARGIN_record</span><span class="p">),</span>
+    <span class="mh">0x002A</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PRINTHEADERS&#39;</span><span class="p">,</span> <span class="n">analyze_PRINTHEADERS_record</span><span class="p">),</span>
+    <span class="mh">0x002B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PRINTGRIDLINES&#39;</span><span class="p">,</span> <span class="n">analyze_PRINTGRIDLINES_record</span><span class="p">),</span>
+    <span class="mh">0x002F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FILEPASS&#39;</span><span class="p">,</span> <span class="n">analyze_FILEPASS_record</span><span class="p">),</span>
+    <span class="mh">0x0031</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FONT&#39;</span><span class="p">,</span> <span class="n">analyze_FONT_record</span><span class="p">),</span>
+    <span class="mh">0x0036</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;TABLE&#39;</span><span class="p">,</span> <span class="n">analyze_TABLE_record</span><span class="p">),</span>
+    <span class="mh">0x003C</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CONTINUE&#39;</span><span class="p">,</span> <span class="n">analyze_CONTINUE_record</span><span class="p">),</span>
+    <span class="mh">0x003D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;WINDOW1&#39;</span><span class="p">,</span> <span class="n">analyze_WINDOW1_record</span><span class="p">),</span>
+    <span class="mh">0x003E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;WINDOW2&#39;</span><span class="p">,</span> <span class="n">analyze_WINDOW2_record</span><span class="p">),</span>
+    <span class="mh">0x0040</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BACKUP&#39;</span><span class="p">,</span> <span class="n">analyze_BACKUP_record</span><span class="p">),</span>
+    <span class="mh">0x0041</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PANE&#39;</span><span class="p">,</span> <span class="n">analyze_PANE_record</span><span class="p">),</span>
+    <span class="mh">0x0042</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CODEPAGE&#39;</span><span class="p">,</span> <span class="n">analyze_CODEPAGE_record</span><span class="p">),</span>
+    <span class="mh">0x0043</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;XF&#39;</span><span class="p">,</span> <span class="n">analyze_XF_record</span><span class="p">),</span>
+    <span class="mh">0x0044</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;IXFE&#39;</span><span class="p">,</span> <span class="n">analyze_IXFE_record</span><span class="p">),</span>
+    <span class="mh">0x0045</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;EFONT&#39;</span><span class="p">,</span> <span class="n">analyze_EFONT_record</span><span class="p">),</span>
+    <span class="mh">0x004D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PLS&#39;</span><span class="p">,</span> <span class="n">analyze_PLS_record</span><span class="p">),</span>
+    <span class="mh">0x0050</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DCON&#39;</span><span class="p">,</span> <span class="n">analyze_DCON_record</span><span class="p">),</span>
+    <span class="mh">0x0051</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DCONREF&#39;</span><span class="p">,</span> <span class="n">analyze_DCONREF_record</span><span class="p">),</span>
+    <span class="mh">0x0053</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DCONNAME&#39;</span><span class="p">,</span> <span class="n">analyze_DCONNAME_record</span><span class="p">),</span>
+    <span class="mh">0x0055</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DEFCOLWIDTH&#39;</span><span class="p">,</span> <span class="n">analyze_DEFCOLWIDTH_record</span><span class="p">),</span>
+    <span class="mh">0x0056</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BUILTINFMTCNT&#39;</span><span class="p">,</span> <span class="n">analyze_BUILTINFMTCNT_record</span><span class="p">),</span>
+    <span class="mh">0x0059</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;XCT&#39;</span><span class="p">,</span> <span class="n">analyze_XCT_record</span><span class="p">),</span>
+    <span class="mh">0x005A</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CRN&#39;</span><span class="p">,</span> <span class="n">analyze_CRN_record</span><span class="p">),</span>
+    <span class="mh">0x005B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FILESHARING&#39;</span><span class="p">,</span> <span class="n">analyze_FILESHARING_record</span><span class="p">),</span>
+    <span class="mh">0x005C</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;WRITEACCESS&#39;</span><span class="p">,</span> <span class="n">analyze_WRITEACCESS_record</span><span class="p">),</span>
+    <span class="mh">0x005D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;OBJ&#39;</span><span class="p">,</span> <span class="n">analyze_OBJ_record</span><span class="p">),</span>
+    <span class="mh">0x005E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;UNCALCED&#39;</span><span class="p">,</span> <span class="n">analyze_UNCALCED_record</span><span class="p">),</span>
+    <span class="mh">0x005F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SAFERECALC&#39;</span><span class="p">,</span> <span class="n">analyze_SAFERECALC_record</span><span class="p">),</span>
+    <span class="mh">0x0060</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;TEMPLATE&#39;</span><span class="p">,</span> <span class="n">analyze_TEMPLATE_record</span><span class="p">),</span>
+    <span class="mh">0x0063</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;OBJPROTECT&#39;</span><span class="p">,</span> <span class="n">analyze_OBJPROTECT_record</span><span class="p">),</span>
+    <span class="mh">0x007D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;COLINFO&#39;</span><span class="p">,</span> <span class="n">analyze_COLINFO_record</span><span class="p">),</span>
+    <span class="mh">0x007E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;RK&#39;</span><span class="p">,</span> <span class="n">analyze_RK_record</span><span class="p">),</span>
+    <span class="mh">0x007F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;IMDATA&#39;</span><span class="p">,</span> <span class="n">analyze_IMDATA_record</span><span class="p">),</span>
+    <span class="mh">0x0080</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;GUTS&#39;</span><span class="p">,</span> <span class="n">analyze_GUTS_record</span><span class="p">),</span>
+    <span class="mh">0x0081</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;WSBOOL&#39;</span><span class="p">,</span> <span class="n">analyze_WSBOOL_record</span><span class="p">),</span>
+    <span class="mh">0x0082</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;GRIDSET&#39;</span><span class="p">,</span> <span class="n">analyze_GRIDSET_record</span><span class="p">),</span>
+    <span class="mh">0x0083</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;HCENTER&#39;</span><span class="p">,</span> <span class="n">analyze_HCENTER_record</span><span class="p">),</span>
+    <span class="mh">0x0084</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;VCENTER&#39;</span><span class="p">,</span> <span class="n">analyze_VCENTER_record</span><span class="p">),</span>
+    <span class="mh">0x0085</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BOUNDSHEET&#39;</span><span class="p">,</span> <span class="n">analyze_BOUNDSHEET_record</span><span class="p">),</span>
+    <span class="mh">0x0086</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;WRITEPROT&#39;</span><span class="p">,</span> <span class="n">analyze_WRITEPROT_record</span><span class="p">),</span>
+    <span class="mh">0x0087</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ADDIN&#39;</span><span class="p">,</span> <span class="n">analyze_ADDIN_record</span><span class="p">),</span>
+    <span class="mh">0x0088</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;EDG&#39;</span><span class="p">,</span> <span class="n">analyze_EDG_record</span><span class="p">),</span>
+    <span class="mh">0x0089</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PUB&#39;</span><span class="p">,</span> <span class="n">analyze_PUB_record</span><span class="p">),</span>
+    <span class="mh">0x008C</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;COUNTRY&#39;</span><span class="p">,</span> <span class="n">analyze_COUNTRY_record</span><span class="p">),</span>
+    <span class="mh">0x008D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;HIDEOBJ&#39;</span><span class="p">,</span> <span class="n">analyze_HIDEOBJ_record</span><span class="p">),</span>
+    <span class="mh">0x008E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BUNDLESOFFSET&#39;</span><span class="p">,</span> <span class="n">analyze_BUNDLESOFFSET_record</span><span class="p">),</span>
+    <span class="mh">0x008F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BUNDLEHEADER&#39;</span><span class="p">,</span> <span class="n">analyze_BUNDLEHEADER_record</span><span class="p">),</span>
+    <span class="mh">0x0090</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SORT&#39;</span><span class="p">,</span> <span class="n">analyze_SORT_record</span><span class="p">),</span>
+    <span class="mh">0x0091</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SUB&#39;</span><span class="p">,</span> <span class="n">analyze_SUB_record</span><span class="p">),</span>
+    <span class="mh">0x0092</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PALETTE&#39;</span><span class="p">,</span> <span class="n">analyze_PALETTE_record</span><span class="p">),</span>
+    <span class="mh">0x0093</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;STYLE&#39;</span><span class="p">,</span> <span class="n">analyze_STYLE_record</span><span class="p">),</span>
+    <span class="mh">0x0094</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;LHRECORD&#39;</span><span class="p">,</span> <span class="n">analyze_LHRECORD_record</span><span class="p">),</span>
+    <span class="mh">0x0095</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;LHNGRAPH&#39;</span><span class="p">,</span> <span class="n">analyze_LHNGRAPH_record</span><span class="p">),</span>
+    <span class="mh">0x0096</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SOUND&#39;</span><span class="p">,</span> <span class="n">analyze_SOUND_record</span><span class="p">),</span>
+    <span class="mh">0x0098</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;LPR&#39;</span><span class="p">,</span> <span class="n">analyze_LPR_record</span><span class="p">),</span>
+    <span class="mh">0x0099</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;STANDARDWIDTH&#39;</span><span class="p">,</span> <span class="n">analyze_STANDARDWIDTH_record</span><span class="p">),</span>
+    <span class="mh">0x009A</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FNGROUPNAME&#39;</span><span class="p">,</span> <span class="n">analyze_FNGROUPNAME_record</span><span class="p">),</span>
+    <span class="mh">0x009B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FILTERMODE&#39;</span><span class="p">,</span> <span class="n">analyze_FILTERMODE_record</span><span class="p">),</span>
+    <span class="mh">0x009C</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FNGROUPCOUNT&#39;</span><span class="p">,</span> <span class="n">analyze_FNGROUPCOUNT_record</span><span class="p">),</span>
+    <span class="mh">0x009D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;AUTOFILTERINFO&#39;</span><span class="p">,</span> <span class="n">analyze_AUTOFILTERINFO_record</span><span class="p">),</span>
+    <span class="mh">0x009E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;AUTOFILTER&#39;</span><span class="p">,</span> <span class="n">analyze_AUTOFILTER_record</span><span class="p">),</span>
+    <span class="mh">0x00A0</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SCL&#39;</span><span class="p">,</span> <span class="n">analyze_SCL_record</span><span class="p">),</span>
+    <span class="mh">0x00A1</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SETUP&#39;</span><span class="p">,</span> <span class="n">analyze_SETUP_record</span><span class="p">),</span>
+    <span class="mh">0x00A9</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;COORDLIST&#39;</span><span class="p">,</span> <span class="n">analyze_COORDLIST_record</span><span class="p">),</span>
+    <span class="mh">0x00AB</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;GCW&#39;</span><span class="p">,</span> <span class="n">analyze_GCW_record</span><span class="p">),</span>
+    <span class="mh">0x00AE</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SCENMAN&#39;</span><span class="p">,</span> <span class="n">analyze_SCENMAN_record</span><span class="p">),</span>
+    <span class="mh">0x00AF</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SCENARIO&#39;</span><span class="p">,</span> <span class="n">analyze_SCENARIO_record</span><span class="p">),</span>
+    <span class="mh">0x00B0</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXVIEW&#39;</span><span class="p">,</span> <span class="n">analyze_SXVIEW_record</span><span class="p">),</span>
+    <span class="mh">0x00B1</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXVD&#39;</span><span class="p">,</span> <span class="n">analyze_SXVD_record</span><span class="p">),</span>
+    <span class="mh">0x00B2</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXVI&#39;</span><span class="p">,</span> <span class="n">analyze_SXVI_record</span><span class="p">),</span>
+    <span class="mh">0x00B4</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXIVD&#39;</span><span class="p">,</span> <span class="n">analyze_SXIVD_record</span><span class="p">),</span>
+    <span class="mh">0x00B5</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXLI&#39;</span><span class="p">,</span> <span class="n">analyze_SXLI_record</span><span class="p">),</span>
+    <span class="mh">0x00B6</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXPI&#39;</span><span class="p">,</span> <span class="n">analyze_SXPI_record</span><span class="p">),</span>
+    <span class="mh">0x00B8</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DOCROUTE&#39;</span><span class="p">,</span> <span class="n">analyze_DOCROUTE_record</span><span class="p">),</span>
+    <span class="mh">0x00B9</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;RECIPNAME&#39;</span><span class="p">,</span> <span class="n">analyze_RECIPNAME_record</span><span class="p">),</span>
+    <span class="mh">0x00BC</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SHRFMLA&#39;</span><span class="p">,</span> <span class="n">analyze_SHRFMLA_record</span><span class="p">),</span>
+    <span class="mh">0x00BD</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;MULRK&#39;</span><span class="p">,</span> <span class="n">analyze_MULRK_record</span><span class="p">),</span>
+    <span class="mh">0x00BE</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;MULBLANK&#39;</span><span class="p">,</span> <span class="n">analyze_MULBLANK_record</span><span class="p">),</span>
+    <span class="mh">0x00C1</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;MMS&#39;</span><span class="p">,</span> <span class="n">analyze_MMS_record</span><span class="p">),</span>
+    <span class="mh">0x00C2</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ADDMENU&#39;</span><span class="p">,</span> <span class="n">analyze_ADDMENU_record</span><span class="p">),</span>
+    <span class="mh">0x00C3</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DELMENU&#39;</span><span class="p">,</span> <span class="n">analyze_DELMENU_record</span><span class="p">),</span>
+    <span class="mh">0x00C5</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXDI&#39;</span><span class="p">,</span> <span class="n">analyze_SXDI_record</span><span class="p">),</span>
+    <span class="mh">0x00C6</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXDB&#39;</span><span class="p">,</span> <span class="n">analyze_SXDB_record</span><span class="p">),</span>
+    <span class="mh">0x00C7</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXFIELD&#39;</span><span class="p">,</span> <span class="n">analyze_SXFIELD_record</span><span class="p">),</span>
+    <span class="mh">0x00C8</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXINDEXLIST&#39;</span><span class="p">,</span> <span class="n">analyze_SXINDEXLIST_record</span><span class="p">),</span>
+    <span class="mh">0x00C9</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXDOUBLE&#39;</span><span class="p">,</span> <span class="n">analyze_SXDOUBLE_record</span><span class="p">),</span>
+    <span class="mh">0x00CD</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXSTRING&#39;</span><span class="p">,</span> <span class="n">analyze_SXSTRING_record</span><span class="p">),</span>
+    <span class="mh">0x00CE</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXDATETIME&#39;</span><span class="p">,</span> <span class="n">analyze_SXDATETIME_record</span><span class="p">),</span>
+    <span class="mh">0x00D0</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXTBL&#39;</span><span class="p">,</span> <span class="n">analyze_SXTBL_record</span><span class="p">),</span>
+    <span class="mh">0x00D1</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXTBRGITEM&#39;</span><span class="p">,</span> <span class="n">analyze_SXTBRGITEM_record</span><span class="p">),</span>
+    <span class="mh">0x00D2</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXTBPG&#39;</span><span class="p">,</span> <span class="n">analyze_SXTBPG_record</span><span class="p">),</span>
+    <span class="mh">0x00D3</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;OBPROJ&#39;</span><span class="p">,</span> <span class="n">analyze_OBPROJ_record</span><span class="p">),</span>
+    <span class="mh">0x00D5</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXIDSTM&#39;</span><span class="p">,</span> <span class="n">analyze_SXIDSTM_record</span><span class="p">),</span>
+    <span class="mh">0x00D6</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;RSTRING&#39;</span><span class="p">,</span> <span class="n">analyze_RSTRING_record</span><span class="p">),</span>
+    <span class="mh">0x00D7</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DBCELL&#39;</span><span class="p">,</span> <span class="n">analyze_DBCELL_record</span><span class="p">),</span>
+    <span class="mh">0x00DA</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BOOKBOOL&#39;</span><span class="p">,</span> <span class="n">analyze_BOOKBOOL_record</span><span class="p">),</span>
+    <span class="mh">0x00DC</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXEXT|PARAMQRY&#39;</span><span class="p">,</span> <span class="n">analyze_SXEXT_PARAMQRY_record</span><span class="p">),</span>
+    <span class="mh">0x00DD</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SCENPROTECT&#39;</span><span class="p">,</span> <span class="n">analyze_SCENPROTECT_record</span><span class="p">),</span>
+    <span class="mh">0x00DE</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;OLESIZE&#39;</span><span class="p">,</span> <span class="n">analyze_OLESIZE_record</span><span class="p">),</span>
+    <span class="mh">0x00DF</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;UDDESC&#39;</span><span class="p">,</span> <span class="n">analyze_UDDESC_record</span><span class="p">),</span>
+    <span class="mh">0x00E0</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;XF&#39;</span><span class="p">,</span> <span class="n">analyze_XF_record</span><span class="p">),</span>
+    <span class="mh">0x00E1</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;INTERFACEHDR&#39;</span><span class="p">,</span> <span class="n">analyze_INTERFACEHDR_record</span><span class="p">),</span>
+    <span class="mh">0x00E2</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;INTERFACEEND&#39;</span><span class="p">,</span> <span class="n">analyze_INTERFACEEND_record</span><span class="p">),</span>
+    <span class="mh">0x00E3</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXVS&#39;</span><span class="p">,</span> <span class="n">analyze_SXVS_record</span><span class="p">),</span>
+    <span class="mh">0x00E5</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;MERGEDCELLS&#39;</span><span class="p">,</span> <span class="n">analyze_MERGEDCELLS_record</span><span class="p">),</span>
+    <span class="mh">0x00E9</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BITMAP&#39;</span><span class="p">,</span> <span class="n">analyze_BITMAP_record</span><span class="p">),</span>
+    <span class="mh">0x00EB</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;MSODRAWINGGROUP&#39;</span><span class="p">,</span> <span class="n">analyze_MSODRAWINGGROUP_record</span><span class="p">),</span>
+    <span class="mh">0x00EC</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;MSODRAWING&#39;</span><span class="p">,</span> <span class="n">analyze_MSODRAWING_record</span><span class="p">),</span>
+    <span class="mh">0x00ED</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;MSODRAWINGSELECTION&#39;</span><span class="p">,</span> <span class="n">analyze_MSODRAWINGSELECTION_record</span><span class="p">),</span>
+    <span class="mh">0x00F0</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXRULE&#39;</span><span class="p">,</span> <span class="n">analyze_SXRULE_record</span><span class="p">),</span>
+    <span class="mh">0x00F1</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXEX&#39;</span><span class="p">,</span> <span class="n">analyze_SXEX_record</span><span class="p">),</span>
+    <span class="mh">0x00F2</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXFILT&#39;</span><span class="p">,</span> <span class="n">analyze_SXFILT_record</span><span class="p">),</span>
+    <span class="mh">0x00F6</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXNAME&#39;</span><span class="p">,</span> <span class="n">analyze_SXNAME_record</span><span class="p">),</span>
+    <span class="mh">0x00F7</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXSELECT&#39;</span><span class="p">,</span> <span class="n">analyze_SXSELECT_record</span><span class="p">),</span>
+    <span class="mh">0x00F8</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXPAIR&#39;</span><span class="p">,</span> <span class="n">analyze_SXPAIR_record</span><span class="p">),</span>
+    <span class="mh">0x00F9</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXFMLA&#39;</span><span class="p">,</span> <span class="n">analyze_SXFMLA_record</span><span class="p">),</span>
+    <span class="mh">0x00FB</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXFORMAT&#39;</span><span class="p">,</span> <span class="n">analyze_SXFORMAT_record</span><span class="p">),</span>
+    <span class="mh">0x00FC</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SST&#39;</span><span class="p">,</span> <span class="n">analyze_SST_record</span><span class="p">),</span>
+    <span class="mh">0x00FD</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;LABELSST&#39;</span><span class="p">,</span> <span class="n">analyze_LABELSST_record</span><span class="p">),</span>
+    <span class="mh">0x00FF</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;EXTSST&#39;</span><span class="p">,</span> <span class="n">analyze_EXTSST_record</span><span class="p">),</span>
+    <span class="mh">0x0100</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXVDEX&#39;</span><span class="p">,</span> <span class="n">analyze_SXVDEX_record</span><span class="p">),</span>
+    <span class="mh">0x0103</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXFORMULA&#39;</span><span class="p">,</span> <span class="n">analyze_SXFORMULA_record</span><span class="p">),</span>
+    <span class="mh">0x0122</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXDBEX&#39;</span><span class="p">,</span> <span class="n">analyze_SXDBEX_record</span><span class="p">),</span>
+    <span class="mh">0x0137</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CHTRINSERT&#39;</span><span class="p">,</span> <span class="n">analyze_CHTRINSERT_record</span><span class="p">),</span>
+    <span class="mh">0x0138</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CHTRINFO&#39;</span><span class="p">,</span> <span class="n">analyze_CHTRINFO_record</span><span class="p">),</span>
+    <span class="mh">0x013B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CHTRCELLCONTENT&#39;</span><span class="p">,</span> <span class="n">analyze_CHTRCELLCONTENT_record</span><span class="p">),</span>
+    <span class="mh">0x013D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;TABID&#39;</span><span class="p">,</span> <span class="n">analyze_TABID_record</span><span class="p">),</span>
+    <span class="mh">0x0140</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CHTRMOVERANGE&#39;</span><span class="p">,</span> <span class="n">analyze_CHTRMOVERANGE_record</span><span class="p">),</span>
+    <span class="mh">0x014D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CHTRINSERTTAB&#39;</span><span class="p">,</span> <span class="n">analyze_CHTRINSERTTAB_record</span><span class="p">),</span>
+    <span class="mh">0x015F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;LABELRANGES&#39;</span><span class="p">,</span> <span class="n">analyze_LABELRANGES_record</span><span class="p">),</span>
+    <span class="mh">0x0160</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;USESELFS&#39;</span><span class="p">,</span> <span class="n">analyze_USESELFS_record</span><span class="p">),</span>
+    <span class="mh">0x0161</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DSF&#39;</span><span class="p">,</span> <span class="n">analyze_DSF_record</span><span class="p">),</span>
+    <span class="mh">0x0162</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;XL5MODIFY&#39;</span><span class="p">,</span> <span class="n">analyze_XL5MODIFY_record</span><span class="p">),</span>
+    <span class="mh">0x0196</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CHTRHEADER&#39;</span><span class="p">,</span> <span class="n">analyze_CHTRHEADER_record</span><span class="p">),</span>
+    <span class="mh">0x01A9</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;USERBVIEW&#39;</span><span class="p">,</span> <span class="n">analyze_USERBVIEW_record</span><span class="p">),</span>
+    <span class="mh">0x01AA</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;USERSVIEWBEGIN&#39;</span><span class="p">,</span> <span class="n">analyze_USERSVIEWBEGIN_record</span><span class="p">),</span>
+    <span class="mh">0x01AB</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;USERSVIEWEND&#39;</span><span class="p">,</span> <span class="n">analyze_USERSVIEWEND_record</span><span class="p">),</span>
+    <span class="mh">0x01AD</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;QSI&#39;</span><span class="p">,</span> <span class="n">analyze_QSI_record</span><span class="p">),</span>
+    <span class="mh">0x01AE</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SUPBOOK&#39;</span><span class="p">,</span> <span class="n">analyze_SUPBOOK_record</span><span class="p">),</span>
+    <span class="mh">0x01AF</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PROT4REV&#39;</span><span class="p">,</span> <span class="n">analyze_PROT4REV_record</span><span class="p">),</span>
+    <span class="mh">0x01B0</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CONDFMT&#39;</span><span class="p">,</span> <span class="n">analyze_CONDFMT_record</span><span class="p">),</span>
+    <span class="mh">0x01B1</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CF&#39;</span><span class="p">,</span> <span class="n">analyze_CF_record</span><span class="p">),</span>
+    <span class="mh">0x01B2</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DVAL&#39;</span><span class="p">,</span> <span class="n">analyze_DVAL_record</span><span class="p">),</span>
+    <span class="mh">0x01B5</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DCONBIN&#39;</span><span class="p">,</span> <span class="n">analyze_DCONBIN_record</span><span class="p">),</span>
+    <span class="mh">0x01B6</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;TXO&#39;</span><span class="p">,</span> <span class="n">analyze_TXO_record</span><span class="p">),</span>
+    <span class="mh">0x01B7</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;REFRESHALL&#39;</span><span class="p">,</span> <span class="n">analyze_REFRESHALL_record</span><span class="p">),</span>
+    <span class="mh">0x01B8</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;HLINK&#39;</span><span class="p">,</span> <span class="n">analyze_HLINK_record</span><span class="p">),</span>
+    <span class="mh">0x01BA</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;CODENAME&#39;</span><span class="p">,</span> <span class="n">analyze_CODENAME_record</span><span class="p">),</span>
+    <span class="mh">0x01BB</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SXFDBTYPE&#39;</span><span class="p">,</span> <span class="n">analyze_SXFDBTYPE_record</span><span class="p">),</span>
+    <span class="mh">0x01BC</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;PROT4REVPASS&#39;</span><span class="p">,</span> <span class="n">analyze_PROT4REVPASS_record</span><span class="p">),</span>
+    <span class="mh">0x01BE</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DV&#39;</span><span class="p">,</span> <span class="n">analyze_DV_record</span><span class="p">),</span>
+    <span class="mh">0x01C0</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;XL9FILE&#39;</span><span class="p">,</span> <span class="n">analyze_XL9FILE_record</span><span class="p">),</span>
+    <span class="mh">0x01C1</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;RECALCID&#39;</span><span class="p">,</span><span class="n">analyze_RECALCID_record</span><span class="p">),</span>
+    <span class="mh">0x0200</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DIMENSIONS&#39;</span><span class="p">,</span> <span class="n">analyze_DIMENSIONS_record</span><span class="p">),</span>
+    <span class="mh">0x0201</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BLANK&#39;</span><span class="p">,</span> <span class="n">analyze_BLANK_record</span><span class="p">),</span>
+    <span class="mh">0x0203</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;NUMBER&#39;</span><span class="p">,</span> <span class="n">analyze_NUMBER_record</span><span class="p">),</span>
+    <span class="mh">0x0204</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;LABEL&#39;</span><span class="p">,</span> <span class="n">analyze_LABEL_record</span><span class="p">),</span>
+    <span class="mh">0x0205</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BOOLERR&#39;</span><span class="p">,</span> <span class="n">analyze_BOOLERR_record</span><span class="p">),</span>
+    <span class="mh">0x0206</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FORMULA&#39;</span><span class="p">,</span> <span class="n">analyze_FORMULA_record</span><span class="p">),</span>
+    <span class="mh">0x0207</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;STRING&#39;</span><span class="p">,</span> <span class="n">analyze_STRING_record</span><span class="p">),</span>
+    <span class="mh">0x0208</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ROW&#39;</span><span class="p">,</span> <span class="n">analyze_ROW_record</span><span class="p">),</span>
+    <span class="mh">0x0209</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BOF&#39;</span><span class="p">,</span> <span class="n">analyze_BOF_record</span><span class="p">),</span>
+    <span class="mh">0x020B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;INDEX&#39;</span><span class="p">,</span> <span class="n">analyze_INDEX_record</span><span class="p">),</span>
+    <span class="mh">0x0218</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;NAME&#39;</span><span class="p">,</span> <span class="n">analyze_NAME_record</span><span class="p">),</span>
+    <span class="mh">0x0221</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ARRAY&#39;</span><span class="p">,</span> <span class="n">analyze_ARRAY_record</span><span class="p">),</span>
+    <span class="mh">0x0223</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;EXTERNNAME&#39;</span><span class="p">,</span> <span class="n">analyze_EXTERNNAME_record</span><span class="p">),</span>
+    <span class="mh">0x0225</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;DEFAULTROWHEIGHT&#39;</span><span class="p">,</span> <span class="n">analyze_DEFAULTROWHEIGHT_record</span><span class="p">),</span>
+    <span class="mh">0x0231</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FONT&#39;</span><span class="p">,</span> <span class="n">analyze_FONT_record</span><span class="p">),</span>
+    <span class="mh">0x0236</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;TABLE&#39;</span><span class="p">,</span> <span class="n">analyze_TABLE_record</span><span class="p">),</span>
+    <span class="mh">0x023E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;WINDOW2&#39;</span><span class="p">,</span> <span class="n">analyze_WINDOW2_record</span><span class="p">),</span>
+    <span class="mh">0x0243</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;XF&#39;</span><span class="p">,</span> <span class="n">analyze_XF_record</span><span class="p">),</span>
+    <span class="mh">0x027E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;RK&#39;</span><span class="p">,</span> <span class="n">analyze_RK_record</span><span class="p">),</span>
+    <span class="mh">0x0293</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;STYLE&#39;</span><span class="p">,</span> <span class="n">analyze_STYLE_record</span><span class="p">),</span>
+    <span class="mh">0x0406</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FORMULA&#39;</span><span class="p">,</span> <span class="n">analyze_FORMULA_record</span><span class="p">),</span>
+    <span class="mh">0x0409</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BOF&#39;</span><span class="p">,</span> <span class="n">analyze_BOF_record</span><span class="p">),</span>
+    <span class="mh">0x041E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;FORMAT&#39;</span><span class="p">,</span> <span class="n">analyze_FORMAT_record</span><span class="p">),</span>
+    <span class="mh">0x0443</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;XF&#39;</span><span class="p">,</span> <span class="n">analyze_XF_record</span><span class="p">),</span>
+    <span class="mh">0x04BC</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SHRFMLA&#39;</span><span class="p">,</span> <span class="n">analyze_SHRFMLA_record</span><span class="p">),</span>
+    <span class="mh">0x0800</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SCREENTIP&#39;</span><span class="p">,</span> <span class="n">analyze_SCREENTIP_record</span><span class="p">),</span>
+    <span class="mh">0x0803</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;WEBQRYSETTINGS&#39;</span><span class="p">,</span> <span class="n">analyze_WEBQRYSETTINGS_record</span><span class="p">),</span>
+    <span class="mh">0x0804</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;WEBQRYTABLES&#39;</span><span class="p">,</span> <span class="n">analyze_WEBQRYTABLES_record</span><span class="p">),</span>
+    <span class="mh">0x0809</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BOF&#39;</span><span class="p">,</span> <span class="n">analyze_BOF_record</span><span class="p">),</span>
+    <span class="mh">0x0862</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SHEETLAYOUT&#39;</span><span class="p">,</span> <span class="n">analyze_SHEETLAYOUT_record</span><span class="p">),</span>
+    <span class="mh">0x0867</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;SHEETPROTECTION&#39;</span><span class="p">,</span> <span class="n">analyze_SHEETPROTECTION_record</span><span class="p">),</span>
+    <span class="mh">0x1001</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;UNITS&#39;</span><span class="p">,</span> <span class="n">analyze_UNITS_record</span><span class="p">),</span>
+    <span class="mh">0x1002</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartChart&#39;</span><span class="p">,</span> <span class="n">analyze_ChartChart_record</span><span class="p">),</span>
+    <span class="mh">0x1003</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSeries&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSeries_record</span><span class="p">),</span>
+    <span class="mh">0x1006</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartDataformat&#39;</span><span class="p">,</span> <span class="n">analyze_ChartDataformat_record</span><span class="p">),</span>
+    <span class="mh">0x1007</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartLineformat&#39;</span><span class="p">,</span> <span class="n">analyze_ChartLineformat_record</span><span class="p">),</span>
+    <span class="mh">0x1009</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartMarkerformat&#39;</span><span class="p">,</span> <span class="n">analyze_ChartMarkerformat_record</span><span class="p">),</span>
+    <span class="mh">0x100A</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartAreaformat&#39;</span><span class="p">,</span> <span class="n">analyze_ChartAreaformat_record</span><span class="p">),</span>
+    <span class="mh">0x100B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartPieformat&#39;</span><span class="p">,</span> <span class="n">analyze_ChartPieformat_record</span><span class="p">),</span>
+    <span class="mh">0x100C</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartAttachedlabel&#39;</span><span class="p">,</span> <span class="n">analyze_ChartAttachedlabel_record</span><span class="p">),</span>
+    <span class="mh">0x100D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSeriestext&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSeriestext_record</span><span class="p">),</span>
+    <span class="mh">0x1014</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartChartformat&#39;</span><span class="p">,</span> <span class="n">analyze_ChartChartformat_record</span><span class="p">),</span>
+    <span class="mh">0x1015</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartLegend&#39;</span><span class="p">,</span> <span class="n">analyze_ChartLegend_record</span><span class="p">),</span>
+    <span class="mh">0x1016</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSerieslist&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSerieslist_record</span><span class="p">),</span>
+    <span class="mh">0x1017</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartBar&#39;</span><span class="p">,</span> <span class="n">analyze_ChartBar_record</span><span class="p">),</span>
+    <span class="mh">0x1018</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartLine&#39;</span><span class="p">,</span> <span class="n">analyze_ChartLine_record</span><span class="p">),</span>
+    <span class="mh">0x1019</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartPie&#39;</span><span class="p">,</span> <span class="n">analyze_ChartPie_record</span><span class="p">),</span>
+    <span class="mh">0x101A</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartArea&#39;</span><span class="p">,</span> <span class="n">analyze_ChartArea_record</span><span class="p">),</span>
+    <span class="mh">0x101B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartScatter&#39;</span><span class="p">,</span> <span class="n">analyze_ChartScatter_record</span><span class="p">),</span>
+    <span class="mh">0x101C</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartChartline&#39;</span><span class="p">,</span> <span class="n">analyze_ChartChartline_record</span><span class="p">),</span>
+    <span class="mh">0x101D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartAxis&#39;</span><span class="p">,</span> <span class="n">analyze_ChartAxis_record</span><span class="p">),</span>
+    <span class="mh">0x101E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartTick&#39;</span><span class="p">,</span> <span class="n">analyze_ChartTick_record</span><span class="p">),</span>
+    <span class="mh">0x101F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartValuerange&#39;</span><span class="p">,</span> <span class="n">analyze_ChartValuerange_record</span><span class="p">),</span>
+    <span class="mh">0x1020</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartCatserrange&#39;</span><span class="p">,</span> <span class="n">analyze_ChartCatserrange_record</span><span class="p">),</span>
+    <span class="mh">0x1021</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartAxislineformat&#39;</span><span class="p">,</span> <span class="n">analyze_ChartAxislineformat_record</span><span class="p">),</span>
+    <span class="mh">0x1022</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartFormatlink&#39;</span><span class="p">,</span> <span class="n">analyze_ChartFormatlink_record</span><span class="p">),</span>
+    <span class="mh">0x1024</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartDefaulttext&#39;</span><span class="p">,</span> <span class="n">analyze_ChartDefaulttext_record</span><span class="p">),</span>
+    <span class="mh">0x1025</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartText&#39;</span><span class="p">,</span> <span class="n">analyze_ChartText_record</span><span class="p">),</span>
+    <span class="mh">0x1026</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartFontx&#39;</span><span class="p">,</span> <span class="n">analyze_ChartFontx_record</span><span class="p">),</span>
+    <span class="mh">0x1027</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartObjectLink&#39;</span><span class="p">,</span> <span class="n">analyze_ChartObjectLink_record</span><span class="p">),</span>
+    <span class="mh">0x1032</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartFrame&#39;</span><span class="p">,</span> <span class="n">analyze_ChartFrame_record</span><span class="p">),</span>
+    <span class="mh">0x1033</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;BEGIN&#39;</span><span class="p">,</span> <span class="n">analyze_BEGIN_record</span><span class="p">),</span>
+    <span class="mh">0x1034</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;END&#39;</span><span class="p">,</span> <span class="n">analyze_END_record</span><span class="p">),</span>
+    <span class="mh">0x1035</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartPlotarea&#39;</span><span class="p">,</span> <span class="n">analyze_ChartPlotarea_record</span><span class="p">),</span>
+    <span class="mh">0x103A</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;Chart3D&#39;</span><span class="p">,</span> <span class="n">analyze_Chart3D_record</span><span class="p">),</span>
+    <span class="mh">0x103C</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartPicf&#39;</span><span class="p">,</span> <span class="n">analyze_ChartPicf_record</span><span class="p">),</span>
+    <span class="mh">0x103D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartDropbar&#39;</span><span class="p">,</span> <span class="n">analyze_ChartDropbar_record</span><span class="p">),</span>
+    <span class="mh">0x103E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartRadar&#39;</span><span class="p">,</span> <span class="n">analyze_ChartRadar_record</span><span class="p">),</span>
+    <span class="mh">0x103F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSurface&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSurface_record</span><span class="p">),</span>
+    <span class="mh">0x1040</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartRadararea&#39;</span><span class="p">,</span> <span class="n">analyze_ChartRadararea_record</span><span class="p">),</span>
+    <span class="mh">0x1041</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartAxisparent&#39;</span><span class="p">,</span> <span class="n">analyze_ChartAxisparent_record</span><span class="p">),</span>
+    <span class="mh">0x1043</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartLegendxn&#39;</span><span class="p">,</span> <span class="n">analyze_ChartLegendxn_record</span><span class="p">),</span>
+    <span class="mh">0x1044</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartShtprops&#39;</span><span class="p">,</span> <span class="n">analyze_ChartShtprops_record</span><span class="p">),</span>
+    <span class="mh">0x1045</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSertocrt&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSertocrt_record</span><span class="p">),</span>
+    <span class="mh">0x1046</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartAxesused&#39;</span><span class="p">,</span> <span class="n">analyze_ChartAxesused_record</span><span class="p">),</span>
+    <span class="mh">0x1048</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSbaseref&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSbaseref_record</span><span class="p">),</span>
+    <span class="mh">0x104A</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSerparent&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSerparent_record</span><span class="p">),</span>
+    <span class="mh">0x104B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSerauxtrend&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSerauxtrend_record</span><span class="p">),</span>
+    <span class="mh">0x104E</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartIfmt&#39;</span><span class="p">,</span> <span class="n">analyze_ChartIfmt_record</span><span class="p">),</span>
+    <span class="mh">0x104F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartPos&#39;</span><span class="p">,</span> <span class="n">analyze_ChartPos_record</span><span class="p">),</span>
+    <span class="mh">0x1050</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartAlruns&#39;</span><span class="p">,</span> <span class="n">analyze_ChartAlruns_record</span><span class="p">),</span>
+    <span class="mh">0x1051</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartAI&#39;</span><span class="p">,</span> <span class="n">analyze_ChartAI_record</span><span class="p">),</span>
+    <span class="mh">0x105B</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSerauxerrbar&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSerauxerrbar_record</span><span class="p">),</span>
+    <span class="mh">0x105D</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSerfmt&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSerfmt_record</span><span class="p">),</span>
+    <span class="mh">0x105F</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;Chart3DDataFormat&#39;</span><span class="p">,</span> <span class="n">analyze_Chart3DDataFormat_record</span><span class="p">),</span>
+    <span class="mh">0x1060</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartFbi&#39;</span><span class="p">,</span> <span class="n">analyze_ChartFbi_record</span><span class="p">),</span>
+    <span class="mh">0x1061</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartBoppop&#39;</span><span class="p">,</span> <span class="n">analyze_ChartBoppop_record</span><span class="p">),</span>
+    <span class="mh">0x1062</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartAxcext&#39;</span><span class="p">,</span> <span class="n">analyze_ChartAxcext_record</span><span class="p">),</span>
+    <span class="mh">0x1063</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartDat&#39;</span><span class="p">,</span> <span class="n">analyze_ChartDat_record</span><span class="p">),</span>
+    <span class="mh">0x1064</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartPlotgrowth&#39;</span><span class="p">,</span> <span class="n">analyze_ChartPlotgrowth_record</span><span class="p">),</span>
+    <span class="mh">0x1065</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartSiindex&#39;</span><span class="p">,</span> <span class="n">analyze_ChartSiindex_record</span><span class="p">),</span>
+    <span class="mh">0x1066</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartGelframe&#39;</span><span class="p">,</span> <span class="n">analyze_ChartGelframe_record</span><span class="p">),</span>
+    <span class="mh">0x1067</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;ChartBoppcustom&#39;</span><span class="p">,</span> <span class="n">analyze_ChartBoppcustom_record</span><span class="p">),</span>
+    <span class="mh">0xFFFF</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">all_records</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">all_records</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">all_records</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">](</span><span class="s">&#39;analyze it!&#39;</span><span class="p">)</span>
+            
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */</script>
+
+    <div class="footer">
+      &copy; Copyright 2012, Rick van Hattem.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+xls2txt Module
+==============
+
+.. automodule:: xls2txt
+    :members:
+    :undoc-members:
+    :show-inheritance:

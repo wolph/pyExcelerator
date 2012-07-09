@@ -1,0 +1,7 @@
+xls2html Module
+===============
+
+.. automodule:: xls2html
+    :members:
+    :undoc-members:
+    :show-inheritance:

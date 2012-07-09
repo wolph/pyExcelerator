@@ -4,24 +4,24 @@
 
 __rev_id__ = """$Id: xls2txt.py,v 1.3 2005/05/19 09:27:42 rvk Exp $"""
 
+if __name__ == '__main__':
+    from pyExcelerator import *
+    import sys
 
-from pyExcelerator import *
-import sys
+    me, args = sys.argv[0], sys.argv[1:]
 
-me, args = sys.argv[0], sys.argv[1:]
-
-if args:
-    for arg in args:
-        print >>sys.stderr, 'extracting data from', arg
-        for sheet_name, values in parse_xls(arg, 'cp1251'): # parse_xls(arg) -- default encoding
-            print 'Sheet = "%s"' % sheet_name.encode('cp866', 'backslashreplace')
-            print '----------------'
-            for row_idx, col_idx in sorted(values.keys()):
-                v = values[(row_idx, col_idx)]
-                if isinstance(v, unicode):
-                    v = v.encode('cp866', 'backslashreplace')
-                print '(%d, %d) =' % (row_idx, col_idx), v
-            print '----------------'
-else:
-    print 'usage: %s (inputfile)+' % me
+    if args:
+        for arg in args:
+            print >>sys.stderr, 'extracting data from', arg
+            for sheet_name, values in parse_xls(arg, 'cp1251'): # parse_xls(arg) -- default encoding
+                print 'Sheet = "%s"' % sheet_name.encode('cp866', 'backslashreplace')
+                print '----------------'
+                for row_idx, col_idx in sorted(values.keys()):
+                    v = values[(row_idx, col_idx)]
+                    if isinstance(v, unicode):
+                        v = v.encode('cp866', 'backslashreplace')
+                    print '(%d, %d) =' % (row_idx, col_idx), v
+                print '----------------'
+    else:
+        print 'usage: %s (inputfile)+' % me
 

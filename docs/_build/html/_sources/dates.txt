@@ -1,0 +1,7 @@
+dates Module
+============
+
+.. automodule:: dates
+    :members:
+    :undoc-members:
+    :show-inheritance:

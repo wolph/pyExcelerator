@@ -1,0 +1,422 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyExcelerator.Formatting &mdash; pyExcelerator 0.6.4.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.6.4.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="pyExcelerator 0.6.4.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="../../_static/small_flask.css" type= "text/css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">pyExcelerator 0.6.4.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for pyExcelerator.Formatting</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: windows-1251 -*-</span>
+
+<span class="c">#  Copyright (C) 2005 Roman V. Kiseliov</span>
+<span class="c">#  All rights reserved.</span>
+<span class="c"># </span>
+<span class="c">#  Redistribution and use in source and binary forms, with or without</span>
+<span class="c">#  modification, are permitted provided that the following conditions</span>
+<span class="c">#  are met:</span>
+<span class="c"># </span>
+<span class="c">#  1. Redistributions of source code must retain the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer.</span>
+<span class="c"># </span>
+<span class="c">#  2. Redistributions in binary form must reproduce the above copyright</span>
+<span class="c">#     notice, this list of conditions and the following disclaimer in</span>
+<span class="c">#     the documentation and/or other materials provided with the</span>
+<span class="c">#     distribution.</span>
+<span class="c"># </span>
+<span class="c">#  3. All advertising materials mentioning features or use of this</span>
+<span class="c">#     software must display the following acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c"># </span>
+<span class="c">#  4. Redistributions of any form whatsoever must retain the following</span>
+<span class="c">#     acknowledgment:</span>
+<span class="c">#     &quot;This product includes software developed by</span>
+<span class="c">#      Roman V. Kiseliov &lt;roman@kiseliov.ru&gt;.&quot;</span>
+<span class="c"># </span>
+<span class="c">#  THIS SOFTWARE IS PROVIDED BY Roman V. Kiseliov ``AS IS&#39;&#39; AND ANY</span>
+<span class="c">#  EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c">#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</span>
+<span class="c">#  PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL Roman V. Kiseliov OR</span>
+<span class="c">#  ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
+<span class="c">#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT</span>
+<span class="c">#  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<span class="c">#  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)</span>
+<span class="c">#  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,</span>
+<span class="c">#  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c">#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED</span>
+<span class="c">#  OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">The  XF  record is able to store explicit cell formatting attributes or the</span>
+<span class="sd">attributes  of  a cell style. Explicit formatting includes the reference to</span>
+<span class="sd">a  cell  style  XF  record. This allows to extend a defined cell style with</span>
+<span class="sd">some  explicit  attributes.  The  formatting  attributes  are  divided into</span>
+<span class="sd">6 groups:</span>
+
+<span class="sd">Group           Attributes</span>
+<span class="sd">-------------------------------------</span>
+<span class="sd">Number format   Number format index (index to FORMAT record)</span>
+<span class="sd">Font            Font index (index to FONT record)</span>
+<span class="sd">Alignment       Horizontal and vertical alignment, text wrap, indentation, </span>
+<span class="sd">                orientation/rotation, text direction</span>
+<span class="sd">Border          Border line styles and colours</span>
+<span class="sd">Background      Background area style and colours</span>
+<span class="sd">Protection      Cell locked, formula hidden</span>
+
+<span class="sd">For  each  group  a flag in the cell XF record specifies whether to use the</span>
+<span class="sd">attributes  contained  in  that  XF  record  or  in  the  referenced  style</span>
+<span class="sd">XF  record. In style XF records, these flags specify whether the attributes</span>
+<span class="sd">will  overwrite  explicit  cell  formatting  when  the  style is applied to</span>
+<span class="sd">a  cell. Changing a cell style (without applying this style to a cell) will</span>
+<span class="sd">change  all  cells which already use that style and do not contain explicit</span>
+<span class="sd">cell  attributes for the changed style attributes. If a cell XF record does</span>
+<span class="sd">not  contain  explicit  attributes  in a group (if the attribute group flag</span>
+<span class="sd">is not set), it repeats the attributes of its style XF record.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">__rev_id__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;$Id: Formatting.py,v 1.4 2005/07/20 07:24:11 rvk Exp $&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">BIFFRecords</span>
+
+<span class="n">colours</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;aqua&#39;</span>    <span class="p">:</span> <span class="mh">0x0F</span><span class="p">,</span>
+        <span class="s">&#39;cyan&#39;</span>    <span class="p">:</span> <span class="mh">0x0F</span><span class="p">,</span>
+        <span class="s">&#39;black&#39;</span>   <span class="p">:</span> <span class="mh">0x08</span><span class="p">,</span>
+        <span class="s">&#39;blue&#39;</span>    <span class="p">:</span> <span class="mh">0x0C</span><span class="p">,</span>
+        <span class="s">&#39;brown&#39;</span>   <span class="p">:</span> <span class="mh">0x10</span><span class="p">,</span>
+        <span class="s">&#39;magenta&#39;</span> <span class="p">:</span> <span class="mh">0x0E</span><span class="p">,</span>
+        <span class="s">&#39;fuchsia&#39;</span> <span class="p">:</span> <span class="mh">0x0E</span><span class="p">,</span>
+        <span class="s">&#39;gray&#39;</span>    <span class="p">:</span> <span class="mh">0x17</span><span class="p">,</span>
+        <span class="s">&#39;grey&#39;</span>    <span class="p">:</span> <span class="mh">0x17</span><span class="p">,</span>
+        <span class="s">&#39;green&#39;</span>   <span class="p">:</span> <span class="mh">0x11</span><span class="p">,</span>
+        <span class="s">&#39;lime&#39;</span>    <span class="p">:</span> <span class="mh">0x0B</span><span class="p">,</span>
+        <span class="s">&#39;navy&#39;</span>    <span class="p">:</span> <span class="mh">0x12</span><span class="p">,</span>
+        <span class="s">&#39;orange&#39;</span>  <span class="p">:</span> <span class="mh">0x35</span><span class="p">,</span>
+        <span class="s">&#39;pink&#39;</span>    <span class="p">:</span> <span class="mh">0x21</span><span class="p">,</span>
+        <span class="s">&#39;purple&#39;</span>  <span class="p">:</span> <span class="mh">0x14</span><span class="p">,</span>
+        <span class="s">&#39;red&#39;</span>     <span class="p">:</span> <span class="mh">0x0A</span><span class="p">,</span>
+        <span class="s">&#39;silver&#39;</span>  <span class="p">:</span> <span class="mh">0x16</span><span class="p">,</span>
+        <span class="s">&#39;white&#39;</span>   <span class="p">:</span> <span class="mh">0x09</span><span class="p">,</span>
+        <span class="s">&#39;yellow&#39;</span>  <span class="p">:</span> <span class="mh">0x0D</span><span class="p">,</span>
+<span class="p">}</span>
+
+<div class="viewcode-block" id="get_colour_val"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.get_colour_val">[docs]</a><span class="k">def</span> <span class="nf">get_colour_val</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">colours</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">colours</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">c</span>
+</div>
+<div class="viewcode-block" id="CopyableObject"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.CopyableObject">[docs]</a><span class="k">class</span> <span class="nc">CopyableObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="c"># make sure to override this in the derived class if</span>
+    <span class="c"># copying needs to be more complex</span>
+<div class="viewcode-block" id="CopyableObject.copy"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.CopyableObject.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cobj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">()</span>
+        <span class="n">cobj</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cobj</span>
+</div></div>
+<div class="viewcode-block" id="Font"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.Font">[docs]</a><span class="k">class</span> <span class="nc">Font</span><span class="p">(</span><span class="n">CopyableObject</span><span class="p">):</span>
+    <span class="n">ESCAPEMENT_NONE</span>         <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">ESCAPEMENT_SUPERSCRIPT</span>  <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">ESCAPEMENT_SUBSCRIPT</span>    <span class="o">=</span> <span class="mh">0x02</span>
+    
+    <span class="n">UNDERLINE_NONE</span>          <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">UNDERLINE_SINGLE</span>        <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">UNDERLINE_SINGLE_ACC</span>    <span class="o">=</span> <span class="mh">0x21</span>
+    <span class="n">UNDERLINE_DOUBLE</span>        <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">UNDERLINE_DOUBLE_ACC</span>    <span class="o">=</span> <span class="mh">0x22</span>
+    
+    <span class="n">FAMILY_NONE</span>         <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">FAMILY_ROMAN</span>        <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">FAMILY_SWISS</span>        <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">FAMILY_MODERN</span>       <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">FAMILY_SCRIPT</span>       <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">FAMILY_DECORARTIVE</span>  <span class="o">=</span> <span class="mh">0x05</span>
+    
+    <span class="n">CHARSET_ANSI_LATIN</span>          <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">CHARSET_SYS_DEFAULT</span>         <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">CHARSET_SYMBOL</span>              <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">CHARSET_APPLE_ROMAN</span>         <span class="o">=</span> <span class="mh">0x4D</span>
+    <span class="n">CHARSET_ANSI_JAP_SHIFT_JIS</span>  <span class="o">=</span> <span class="mh">0x80</span>
+    <span class="n">CHARSET_ANSI_KOR_HANGUL</span>     <span class="o">=</span> <span class="mh">0x81</span>
+    <span class="n">CHARSET_ANSI_KOR_JOHAB</span>      <span class="o">=</span> <span class="mh">0x82</span>
+    <span class="n">CHARSET_ANSI_CHINESE_GBK</span>    <span class="o">=</span> <span class="mh">0x86</span>
+    <span class="n">CHARSET_ANSI_CHINESE_BIG5</span>   <span class="o">=</span> <span class="mh">0x88</span>
+    <span class="n">CHARSET_ANSI_GREEK</span>          <span class="o">=</span> <span class="mh">0xA1</span>
+    <span class="n">CHARSET_ANSI_TURKISH</span>        <span class="o">=</span> <span class="mh">0xA2</span>
+    <span class="n">CHARSET_ANSI_VIETNAMESE</span>     <span class="o">=</span> <span class="mh">0xA3</span>
+    <span class="n">CHARSET_ANSI_HEBREW</span>         <span class="o">=</span> <span class="mh">0xB1</span>
+    <span class="n">CHARSET_ANSI_ARABIC</span>         <span class="o">=</span> <span class="mh">0xB2</span>
+    <span class="n">CHARSET_ANSI_BALTIC</span>         <span class="o">=</span> <span class="mh">0xBA</span>
+    <span class="n">CHARSET_ANSI_CYRILLIC</span>       <span class="o">=</span> <span class="mh">0xCC</span>
+    <span class="n">CHARSET_ANSI_THAI</span>           <span class="o">=</span> <span class="mh">0xDE</span>
+    <span class="n">CHARSET_ANSI_LATIN_II</span>       <span class="o">=</span> <span class="mh">0xEE</span>
+    <span class="n">CHARSET_OEM_LATIN_I</span>         <span class="o">=</span> <span class="mh">0xFF</span>   
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># twip = 1/20 of a point = 1/1440 of a inch</span>
+        <span class="c"># usually resolution == 96 pixels per 1 inch </span>
+        <span class="c"># (rarely 120 pixels per 1 inch or another one)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mh">0x00C8</span> <span class="c"># 200: this is font with height 10 points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">italic</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">struck_out</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outline</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">colour_index</span> <span class="o">=</span> <span class="mh">0x7FFF</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bold</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_weight</span> <span class="o">=</span> <span class="mh">0x0190</span> <span class="c"># 0x02BC gives bold font</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">escapement</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ESCAPEMENT_NONE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">underline</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">UNDERLINE_NONE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">family</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FAMILY_NONE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">charset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CHARSET_ANSI_CYRILLIC</span>       
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Arial&#39;</span>
+                
+<div class="viewcode-block" id="Font.get_biff_record"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.Font.get_biff_record">[docs]</a>    <span class="k">def</span> <span class="nf">get_biff_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
+        
+        <span class="n">options</span> <span class="o">=</span> <span class="mh">0x00</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bold</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">|=</span> <span class="mh">0x01</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_weight</span> <span class="o">=</span> <span class="mh">0x02BC</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">italic</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">|=</span> <span class="mh">0x02</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">underline</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">UNDERLINE_NONE</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">|=</span> <span class="mh">0x04</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">struck_out</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">|=</span> <span class="mh">0x08</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">outline</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">|=</span> <span class="mh">0x010</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shadow</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">|=</span> <span class="mh">0x020</span>
+            
+        <span class="n">colour_index</span> <span class="o">=</span> <span class="n">get_colour_val</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colour_index</span><span class="p">)</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_weight</span>
+        <span class="n">escapement</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">escapement</span>
+        <span class="n">underline</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">underline</span> 
+        <span class="n">family</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">family</span> 
+        <span class="n">charset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">charset</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        
+        <span class="k">return</span> <span class="n">BIFFRecords</span><span class="o">.</span><span class="n">FontRecord</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">colour_index</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">escapement</span><span class="p">,</span> 
+                    <span class="n">underline</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="n">charset</span><span class="p">,</span> 
+                    <span class="n">name</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="Alignment"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.Alignment">[docs]</a><span class="k">class</span> <span class="nc">Alignment</span><span class="p">(</span><span class="n">CopyableObject</span><span class="p">):</span>
+    <span class="n">HORZ_GENERAL</span>                <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">HORZ_LEFT</span>                   <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">HORZ_CENTER</span>                 <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">HORZ_RIGHT</span>                  <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">HORZ_FILLED</span>                 <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">HORZ_JUSTIFIED</span>              <span class="o">=</span> <span class="mh">0x05</span> <span class="c"># BIFF4-BIFF8X</span>
+    <span class="n">HORZ_CENTER_ACROSS_SEL</span>      <span class="o">=</span> <span class="mh">0x06</span> <span class="c"># Centred across selection (BIFF4-BIFF8X)</span>
+    <span class="n">HORZ_DISTRIBUTED</span>            <span class="o">=</span> <span class="mh">0x07</span> <span class="c"># Distributed (BIFF8X)</span>
+    
+    <span class="n">VERT_TOP</span>                    <span class="o">=</span> <span class="mh">0x00</span> 
+    <span class="n">VERT_CENTER</span>                 <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">VERT_BOTTOM</span>                 <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">VERT_JUSTIFIED</span>              <span class="o">=</span> <span class="mh">0x03</span> <span class="c"># Justified (BIFF5-BIFF8X)</span>
+    <span class="n">VERT_DISIRIBUTED</span>            <span class="o">=</span> <span class="mh">0x04</span> <span class="c"># Distributed (BIFF8X)</span>
+
+    <span class="n">DIRECTION_GENERAL</span>           <span class="o">=</span> <span class="mh">0x00</span> <span class="c"># BIFF8X</span>
+    <span class="n">DIRECTION_LR</span>                <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">DIRECTION_RL</span>                <span class="o">=</span> <span class="mh">0x02</span>
+
+    <span class="n">ORIENTATION_NOT_ROTATED</span>     <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">ORIENTATION_STACKED</span>         <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">ORIENTATION_90_CC</span>           <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">ORIENTATION_90_CW</span>           <span class="o">=</span> <span class="mh">0x03</span>
+
+    <span class="n">ROTATION_0_ANGLE</span>            <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">ROTATION_STACKED</span>            <span class="o">=</span> <span class="mh">0xFF</span>
+    
+    <span class="n">WRAP_AT_RIGHT</span>               <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">NOT_WRAP_AT_RIGHT</span>           <span class="o">=</span> <span class="mh">0x00</span>
+    
+    <span class="n">SHRINK_TO_FIT</span>               <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">NOT_SHRINK_TO_FIT</span>           <span class="o">=</span> <span class="mh">0x00</span>       
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">horz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">HORZ_GENERAL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vert</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">VERT_BOTTOM</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dire</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DIRECTION_GENERAL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ORIENTATION_NOT_ROTATED</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rota</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ROTATION_0_ANGLE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wrap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOT_WRAP_AT_RIGHT</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOT_SHRINK_TO_FIT</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inde</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">merg</span> <span class="o">=</span> <span class="mi">0</span>
+</div>
+<div class="viewcode-block" id="Borders"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.Borders">[docs]</a><span class="k">class</span> <span class="nc">Borders</span><span class="p">(</span><span class="n">CopyableObject</span><span class="p">):</span>
+    <span class="n">NO_LINE</span> <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">THIN</span>    <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">MEDIUM</span>  <span class="o">=</span> <span class="mh">0x02</span>
+    <span class="n">DASHED</span>  <span class="o">=</span> <span class="mh">0x03</span>
+    <span class="n">DOTTED</span>  <span class="o">=</span> <span class="mh">0x04</span>
+    <span class="n">THICK</span>   <span class="o">=</span> <span class="mh">0x05</span>
+    <span class="n">DOUBLE</span>  <span class="o">=</span> <span class="mh">0x06</span>
+    <span class="n">HAIR</span>    <span class="o">=</span> <span class="mh">0x07</span>
+    <span class="c">#The following for BIFF8</span>
+    <span class="n">MEDIUM_DASHED</span>               <span class="o">=</span> <span class="mh">0x08</span>
+    <span class="n">THIN_DASH_DOTTED</span>            <span class="o">=</span> <span class="mh">0x09</span>
+    <span class="n">MEDIUM_DASH_DOTTED</span>          <span class="o">=</span> <span class="mh">0x0A</span>
+    <span class="n">THIN_DASH_DOT_DOTTED</span>        <span class="o">=</span> <span class="mh">0x0B</span>
+    <span class="n">MEDIUM_DASH_DOT_DOTTED</span>      <span class="o">=</span> <span class="mh">0x0C</span>
+    <span class="n">SLANTED_MEDIUM_DASH_DOTTED</span>  <span class="o">=</span> <span class="mh">0x0D</span>
+    
+    <span class="n">NEED_DIAG1</span>      <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">NEED_DIAG2</span>      <span class="o">=</span> <span class="mh">0x01</span>
+    <span class="n">NO_NEED_DIAG1</span>   <span class="o">=</span> <span class="mh">0x00</span>
+    <span class="n">NO_NEED_DIAG2</span>   <span class="o">=</span> <span class="mh">0x00</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NO_LINE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NO_LINE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NO_LINE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NO_LINE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diag</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NO_LINE</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_colour</span>   <span class="o">=</span> <span class="mh">0x40</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_colour</span>  <span class="o">=</span> <span class="mh">0x40</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_colour</span>    <span class="o">=</span> <span class="mh">0x40</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bottom_colour</span> <span class="o">=</span> <span class="mh">0x40</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diag_colour</span>   <span class="o">=</span> <span class="mh">0x40</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">need_diag1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NO_NEED_DIAG1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">need_diag2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NO_NEED_DIAG2</span>
+</div>
+<div class="viewcode-block" id="Pattern"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.Pattern">[docs]</a><span class="k">class</span> <span class="nc">Pattern</span><span class="p">(</span><span class="n">CopyableObject</span><span class="p">):</span>
+    <span class="c"># patterns 0x00 - 0x12</span>
+    <span class="n">NO_PATTERN</span>      <span class="o">=</span> <span class="mh">0x00</span> 
+    <span class="n">SOLID_PATTERN</span>   <span class="o">=</span> <span class="mh">0x01</span> 
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NO_PATTERN</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pattern_fore_colour</span> <span class="o">=</span> <span class="mh">0x40</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pattern_back_colour</span> <span class="o">=</span> <span class="mh">0x41</span>
+    
+<div class="viewcode-block" id="Pattern.get_pattern_fore_colour"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.Pattern.get_pattern_fore_colour">[docs]</a>    <span class="k">def</span> <span class="nf">get_pattern_fore_colour</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pattern_fore_colour</span></div>
+<div class="viewcode-block" id="Pattern.set_pattern_fore_colour"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.Pattern.set_pattern_fore_colour">[docs]</a>    <span class="k">def</span> <span class="nf">set_pattern_fore_colour</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pattern_fore_colour</span> <span class="o">=</span> <span class="n">get_colour_val</span><span class="p">(</span><span class="n">c</span><span class="p">)</span></div>
+    <span class="n">pattern_fore_colour</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_pattern_fore_colour</span><span class="p">,</span> <span class="n">set_pattern_fore_colour</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="Pattern.get_pattern_back_colour"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.Pattern.get_pattern_back_colour">[docs]</a>    <span class="k">def</span> <span class="nf">get_pattern_back_colour</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pattern_back_colour</span></div>
+<div class="viewcode-block" id="Pattern.set_pattern_back_colour"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.Pattern.set_pattern_back_colour">[docs]</a>    <span class="k">def</span> <span class="nf">set_pattern_back_colour</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pattern_back_colour</span> <span class="o">=</span> <span class="n">get_colour_val</span><span class="p">(</span><span class="n">c</span><span class="p">)</span></div>
+    <span class="n">pattern_back_colour</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_pattern_back_colour</span><span class="p">,</span> <span class="n">set_pattern_back_colour</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Protection"><a class="viewcode-back" href="../../pyExcelerator.html#pyExcelerator.Formatting.Protection">[docs]</a><span class="k">class</span> <span class="nc">Protection</span><span class="p">(</span><span class="n">CopyableObject</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cell_locked</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">formula_hidden</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        </div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">font0</span> <span class="o">=</span> <span class="n">Font</span><span class="p">()</span>
+    <span class="n">font0</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Arial&#39;</span>
+    <span class="n">font1</span> <span class="o">=</span> <span class="n">Font</span><span class="p">()</span>
+    <span class="n">font1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Arial Cyr&#39;</span>
+    <span class="n">font2</span> <span class="o">=</span> <span class="n">Font</span><span class="p">()</span>
+    <span class="n">font2</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Times New Roman&#39;</span>
+    <span class="n">font3</span> <span class="o">=</span> <span class="n">Font</span><span class="p">()</span>
+    <span class="n">font3</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Courier New Cyr&#39;</span>
+    
+    <span class="k">for</span> <span class="n">font</span><span class="p">,</span> <span class="n">filename</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">font0</span><span class="p">,</span> <span class="s">&#39;font0.bin&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">font1</span><span class="p">,</span> <span class="s">&#39;font1.bin&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">font2</span><span class="p">,</span> <span class="s">&#39;font2.bin&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">font3</span><span class="p">,</span> <span class="s">&#39;font3.bin&#39;</span><span class="p">)]:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">font</span><span class="o">.</span><span class="n">get_biff_record</span><span class="p">()</span><span class="o">.</span><span class="n">get_data</span><span class="p">())</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */</script>
+
+    <div class="footer">
+      &copy; Copyright 2012, Rick van Hattem.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+    </div>
+  </body>
+</html>

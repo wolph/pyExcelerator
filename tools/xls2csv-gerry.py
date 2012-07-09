@@ -57,23 +57,21 @@ def process(fname):
         
     print '----------------'
 
-commas = re.compile(",")
+if __name__ == '__main__':
+    commas = re.compile(",")
 
-try:    args = sys.argv[1:]
-except: args = []
+    try:    args = sys.argv[1:]
+    except: args = []
 
-if len(args) < 1:
-    fnames = os.listdir(".")
-    fnames.sort()
-    for fname in fnames:
-        parts = fname.split(".")
-        if parts[-1] != "xls": continue
-        process(fname) 
-    sys.exit()
-else:
-    for arg in args:
-        process(arg)
+    if len(args) < 1:
+        fnames = os.listdir(".")
+        fnames.sort()
+        for fname in fnames:
+            parts = fname.split(".")
+            if parts[-1] != "xls": continue
+            process(fname) 
+        sys.exit()
+    else:
+        for arg in args:
+            process(arg)
 
-    
-    
-    
