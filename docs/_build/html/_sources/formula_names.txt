@@ -1,7 +1,0 @@
-formula_names Module
-====================
-
-.. automodule:: formula_names
-    :members:
-    :undoc-members:
-    :show-inheritance:

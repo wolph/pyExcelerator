@@ -2,7 +2,7 @@ pyExcelerator
 =============
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    pyExcelerator
    tools

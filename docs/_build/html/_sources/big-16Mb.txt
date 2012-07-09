@@ -1,7 +1,0 @@
-big-16Mb Module
-===============
-
-.. automodule:: big-16Mb
-    :members:
-    :undoc-members:
-    :show-inheritance:

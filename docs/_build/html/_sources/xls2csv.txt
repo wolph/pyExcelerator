@@ -1,7 +1,0 @@
-xls2csv Module
-==============
-
-.. automodule:: xls2csv
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,0 @@
-unicode2 Module
-===============
-
-.. automodule:: unicode2
-    :members:
-    :undoc-members:
-    :show-inheritance:

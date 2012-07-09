@@ -1,7 +1,0 @@
-outline Module
-==============
-
-.. automodule:: outline
-    :members:
-    :undoc-members:
-    :show-inheritance:

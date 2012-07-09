@@ -1,7 +1,0 @@
-format Module
-=============
-
-.. automodule:: format
-    :members:
-    :undoc-members:
-    :show-inheritance:

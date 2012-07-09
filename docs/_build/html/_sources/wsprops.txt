@@ -1,7 +1,0 @@
-wsprops Module
-==============
-
-.. automodule:: wsprops
-    :members:
-    :undoc-members:
-    :show-inheritance:

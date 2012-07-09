@@ -1,7 +1,0 @@
-col_width Module
-================
-
-.. automodule:: col_width
-    :members:
-    :undoc-members:
-    :show-inheritance:

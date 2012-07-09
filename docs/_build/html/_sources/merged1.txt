@@ -1,7 +1,0 @@
-merged1 Module
-==============
-
-.. automodule:: merged1
-    :members:
-    :undoc-members:
-    :show-inheritance:

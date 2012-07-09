@@ -1,7 +1,0 @@
-sst Module
-==========
-
-.. automodule:: sst
-    :members:
-    :undoc-members:
-    :show-inheritance:
