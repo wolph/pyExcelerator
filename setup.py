@@ -42,7 +42,7 @@
 __rev_id__ = """$Id: setup.py,v 1.10 2005/10/26 07:44:23 rvk Exp $"""
 
 import sys
-from distutils.core import setup
+from setuptools import setup
 
 DESCRIPTION = \
 'generating Excel 97+ files; importing Excel 95+ files; Excel files dumper; OLE2 files dumper; xls2txt, xls2csv, xls2html'
