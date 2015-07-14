@@ -3,29 +3,29 @@
 
 #  Copyright (C) 2005 Roman V. Kiseliov
 #  All rights reserved.
-# 
+#
 #  Redistribution and use in source and binary forms, with or without
 #  modification, are permitted provided that the following conditions
 #  are met:
-# 
+#
 #  1. Redistributions of source code must retain the above copyright
 #     notice, this list of conditions and the following disclaimer.
-# 
+#
 #  2. Redistributions in binary form must reproduce the above copyright
 #     notice, this list of conditions and the following disclaimer in
 #     the documentation and/or other materials provided with the
 #     distribution.
-# 
+#
 #  3. All advertising materials mentioning features or use of this
 #     software must display the following acknowledgment:
 #     "This product includes software developed by
 #      Roman V. Kiseliov <roman@kiseliov.ru>."
-# 
+#
 #  4. Redistributions of any form whatsoever must retain the following
 #     acknowledgment:
 #     "This product includes software developed by
 #      Roman V. Kiseliov <roman@kiseliov.ru>."
-# 
+#
 #  THIS SOFTWARE IS PROVIDED BY Roman V. Kiseliov ``AS IS'' AND ANY
 #  EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 #  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
@@ -79,7 +79,7 @@ class MulBlankCell(object):
                 "__parent", "__col1", "__col2", "__xf_idx"]
 
     def __init__(self, parent, col1, col2, xf_idx):
-        assert col1 < col2, '%d < %d is false'%(col1, col2)
+        assert col1 <= col2, '%d <= %d is false'%(col1, col2)
         self.__parent = parent
         self.__col1 = col1
         self.__col2 = col2
@@ -133,7 +133,7 @@ class NumberCell(object):
             rk_encoded = (3 | (int(temp) << 2)) & 0xffffffffL
             return BIFFRecords.RKRecord(self.__parent.get_index(), self.__idx, self.__xf_idx, rk_encoded).get()
 
-        #print "Number" 
+        #print "Number"
         #print
         return BIFFRecords.NumberRecord(self.__parent.get_index(), self.__idx, self.__xf_idx, self.__number).get()
 
