@@ -75,7 +75,7 @@ KEYWORDS = \
 'xls openoffice excel spreadsheet workbook database table unicode'
 
 setup(name = 'pyExcelerator',
-      version = '0.6.4.2',
+      version = '0.7.0',
       author = 'Roman V. Kiseliov',
       author_email = 'roman@kiseliov.ru',
       url = 'http://sourceforge.net/projects/pyexcelerator/',
